@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>HSR</title>
+
+    
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Materials CSS -->
+    <link href="css/material.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/agency.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- My CSS -->
+    <link href="css/myCSS.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!--  to parsing JSON -->      
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>-->
+                <a class="navbar-brand page-scroll" href="#page-top">Hotels system recommendation</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#services">Search Hotels</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#team">Team</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Welcome To Our System!</div>
+                <div class="intro-heading">It's Nice To Meet You</div>
+                <a href="#services" class="page-scroll btn btn-xl">Begin</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Search Hotels</h2>
+                    <h3 class="section-subheading text-muted">Encuentra los mejores hoteles en la ciudad que elijas.</h3>
+                </div>
+
+                <!-- total form -->
+                <div class="col-md-12">
+                    <!--<div class="panel">-->
+                    <form class="form-horizontal" action="fin.html">
+                        <!-- Datos -->
+                        <div class="panel panel-default" id="datos">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Advanced Search Hotels</h3>
+                            </div>
+                            <div class="panel-body">
+                                <fieldset>
+                                    <!--<legend>Búsqueda avanzada de hoteles</legend>-->
+                                    <div class="form-group col-md-12">
+                                        <label for="nif" class="col-md-4 control-label">Nombre de Hotel: </label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="pac-input" placeholder="nombre hotel" required>
+                                        </div>
+                                        <!-- choose the city -->
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-xl page-scroll btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="city">
+                                                   City     
+                                              <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                              <li><a id="mad" onclick="placeAutocompleted()">Madrid</a></li>
+                                              <li><a href="#" onclick="initializecity()">Barcelona</a></li>
+                                              <li><a href="#" onclick="initializeCity()">Zaragoza</a></li>
+                                              <li><a href="#" onclick="initializeCity()">Cádiz</a></li>
+                                              <li><a href="#" onclick="initializeCity()">Valencia</a></li>
+                                              <li><a href="#" onclick="initializeCity()">Sevilla</a></li>
+                                              <li><a href="#" onclick="initializeCity()">León</a></li>
+                                              <li><a href="#" onclick="initializeCity()">Alicante</a></li>
+                                            </ul>
+                                        </div>                                      
+                                    </div>
+                                    <div class="form-group col-md-6 map">
+                                         <!-- <label for="nac" class="col-md-2 control-label">Mapa</label> -->
+                                        <div class="col-md-6 map">
+                                            <div id="map_canvas" style="width:800px;height:380px;"></div>
+                                        </div>
+                                        <div class="col-md-12">
+                                          <!--  <input id="ex4" type="text" data-slider-min="100" data-slider-max="500" data-slider-step="1" data-slider-value="-3" data-slider-orientation="vertical"/> -->
+                                        </div> 
+
+                                    </div>
+                                    
+                                    <div class="col-md-12 map">
+                                          
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="col-md-12" id="show_latlng">
+                                            <!-- search nearly hotels button -->
+                                            <input class="btn btn-xl" type="button" id="driver" value="Nearly Hotels" />
+                                        </div>
+                                        <div class="col-md-12">
+                                          slider
+                                        </div>
+                                        <div class="row text-center">
+                                            <div class="col-md-6">
+                                               <!-- <span class="fa-stack fa-4x">
+                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                    <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
+                                                </span> -->
+                                                <h2 class="service-heading">Statistical search</h2>
+                                                <p class="text-muted">Uso del teorema de Bayes.</p>
+                                                <div class="col-lg-12 text-center">
+                                                    
+                                                    <button type="submit" class="btn btn-xl page-scroll" id="bayes"><span class="fa-stack fa-2x">
+                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                    <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
+                                                </span>Buscar</button>
+                                                    <div id="successB">
+                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                               <!-- <span class="fa-stack fa-4x">
+                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                    <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                                                </span> -->
+                                                <h2 class="service-heading">Recommender search</h2>
+                                                <p class="text-muted">Uso de expresiones regulares.</p>
+                                                <div class="col-lg-12 text-center">
+                                                    
+                                                    <button type="submit" class="btn btn-xl page-scroll" id="expR"><span class="fa-stack fa-2x">
+                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                    <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                                                </span>Buscar</button>
+                                                    <div id="successER0">
+                                                      
+                                                    </div>
+                                                    <div id="successER1">
+                                                      
+                                                    </div>
+                                                    <div id="successER2">
+                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<legend>Búsqueda avanzada de hoteles</legend>-->
+                                    <!-- RESULTADOS DE LA BUSQUEDA DEPENDIENDO EL TIPO
+                                    <div class="form-group">
+                                        <div class="panel panel-default" id="resultados">
+                                        </div>
+                                    </div> -->
+                                </fieldset>
+                            </div>
+                        </div> <!-- end panel datos -->
+                    </form> <!-- end total form -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">About</h2>
+                    <h3 class="section-subheading text-muted">Trabajo de fin de Grado.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="timeline">
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="img/about/about1.gif" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>2014-2015</h4>
+                                    <h4 class="subheading">Nuestro trabajo</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Reflejamos en está web un arduo trabajo de investigación y desarrollo
+                                        que representa nuestro trabajo de fin de carrera, Hotel System Recommendation (HSR)
+                                        es un sistema de recomendación hotelera que puede usarse en cualquier parte del mundo,
+                                        es una busqueda avanzada de hoteles que por una parte puede ser estadística y por otra manejar expresiones regulares, poniendo en los resultados las mejores propuestas a la hora de encontrar un hotel en la ciudad que desees.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="img/about/about2.png" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Junio 2015</h4>
+                                    <h4 class="subheading">TFG</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Proyecto generado desde las aulas de la Facultad de Informática
+                                        de la Universidad Complutense de Madrid para el Grado de Informática.</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Nuestro equipo</h2>
+                    <h3 class="section-subheading text-muted">Tres cabezas piensan mejor que dos desorientadas.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/yofdi.png" class="img-responsive img-circle" alt="">
+                        <h4>Roberto Yánez</h4>
+                        <p class="text-muted">Desarrollador</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/2.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Eddy Cerpa</h4>
+                        <p class="text-muted">Desarrollador</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/2.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Juan Antonio</h4>
+                        <p class="text-muted">Tutor - Director de orquesta</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p class="large text-muted">Grupo de trabajo en el proyecto del recomendador hotelero para el TFG.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Aside 
+    <aside class="clients">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="img/logos/envato.jpg" class="img-responsive img-centered" alt="">
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="img/logos/designmodo.jpg" class="img-responsive img-centered" alt="">
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="img/logos/themeforest.jpg" class="img-responsive img-centered" alt="">
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="img/logos/creative-market.jpg" class="img-responsive img-centered" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside> -->
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Contacta con nosotros</h2>
+                    <h3 class="section-subheading text-muted tm">Estamos agradecidos por tu atención y tus observaciones.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6" id="formLeft">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6" >
+                                <div class="form-group">
+                                    <textarea class="form-control ta" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button type="submit" class="btn btn-xl">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; HSR 2015</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Politicas de Privacidad</a>
+                        </li>
+                        <li><a href="#">Terminos de uso</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/agency.js"></script>
+    
+    <!--  google maps  https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places 
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+
+    <script>
+      var map;
+      var geocoder;
+      var clickLat = 40.41349604970198;
+      var clickLng = -3.7051391601562;
+     
+        function initialize() {
+          var latlng = new google.maps.LatLng(clickLat,clickLng);
+          var myOptions = {
+            zoom: 15,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+          geocoder = new google.maps.Geocoder();
+
+          // call place autocompleted method
+          placeAutocompleted();
+          
+          google.maps.event.addListener(map, 'click', function(event) {
+            
+            // call a creator marker method
+            placeMarker(event.latLng);
+
+            clickLat = event.latLng.lat();
+            clickLng = event.latLng.lng();
+
+            // call getNearlyHotels method
+           // getNearlyHotels(clickLat, clickLng);
+
+          });
+        }
+        // --------------------------------------------------------------------------*
+        // ------------------------------------- show nearly hoteles parsing the JSON
+
+        //function getNearlyHotels(lat, lng){
+            $(document).ready(function() {
+              $("#driver").click(function(event){
+                  $.getJSON(getLatLngURL(clickLat,clickLng), function(jd) {
+                    for (var item in jd) { 
+                                                                 
+                      
+                      $('#stage'+item).html('<li><b>name:</b> ' + jd[item].name + '</li>');
+                      $('#stage'+item).append('<li><b>lat:</b> ' + jd[item].latitude + '</li>');
+                      $('#stage'+item).append('<li><b>lng:</b> ' + jd[item].longitude + '</li>');
+                      $('#stage'+item).append('<li><b>adress:</b> '+jd[item].vicinity + '</li>');
+
+                      var myLatlng = new google.maps.LatLng(jd[item].latitude,jd[item].longitude);
+                      // call to create markers method
+                      createMarker(myLatlng, jd[item].name);
+                      
+
+                    };map.setZoom(15);
+                  });
+              });
+           });
+        //}
+
+        // ------------------------------------------------ place autocompleted
+        function placeAutocompleted(){
+          var input = /** @type {HTMLInputElement} */(
+              document.getElementById('pac-input') || document.getElementById('mad'));
+                
+          var autocomplete = new google.maps.places.Autocomplete(input);
+
+          autocomplete.bindTo('bounds', map);
+
+          var infowindow = new google.maps.InfoWindow();
+          var marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29)
+          });
+
+          google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            infowindow.close();
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+              return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+              map.fitBounds(place.geometry.viewport);
+            } else {
+              map.setCenter(place.geometry.location);
+              map.setZoom(17);  // Why 17? Because it looks good.
+            }
+            marker.setIcon(/** @type {google.maps.Icon} */({
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(35, 35)
+            }));
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+
+            infowindow.setContent('<div><strong>' + place.name + '</strong><br>');
+            infowindow.open(map, marker);
+          });
+        }
+
+        // ------------------------------------ show latlng on the map with a click
+        function placeMarker(location) {
+        var pin = 'img/png/pin87.png';
+          var marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            icon: pin,
+          });
+
+          map.setCenter(location);
+          var infowindow = new google.maps.InfoWindow({
+            content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+          });
+          // call to listeners events to the map
+          setupEvents();
+
+          // call to write lat and lng method
+          //writeLatLng(location.lat(), location.lng());
+
+          infowindow.open(map,marker);
+        }
+
+        // ------------------------------------------- create the map markers
+        function createMarker(location, nameH) {
+            var hpin = 'img/png/sleeping.png';
+            var marker = new google.maps.Marker({
+              position: location,
+              map: map,
+              icon: hpin,
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+              var infowindowH = new google.maps.InfoWindow({
+            content: nameH
+          });
+              infowindowH.open(map, this);
+            });
+          }
+
+        // ------------------------------------setup the listeners events to the map  
+        function setupEvents() {
+            google.maps.event.addListener(map, 'zoom_changed', function() {
+              map.getZoom();
+            });
+            // --------------------------------------change the center 
+           // google.maps.event.addListener(map, 'center_changed', centerChanged);
+
+           /* google.maps.event.addDomListener(document.getElementById('show_latlng'),'dblclick', function() {
+               map.setZoom(map.getZoom() + 1);
+            });*/
+        }
+
+        // -------------------------------------------write lat and lng
+        function writeLatLng(lat, lng){
+          document.getElementById('latitude').innerHTML = lat;
+          document.getElementById('longitude').innerHTML = lng;
+        }
+
+        // -------------------------------------------return the new url with lat and lng onclick
+        function getLatLngURL(lat, lng) {
+            var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/SearchHotel?radio=500&lat='+lat+'&lon='+lng;            
+            return url;
+        
+        }
+
+        // -------------------------------------------return the new url with bayes data
+        // 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=sucio'
+        function getBayesURL(nameH) {
+            var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/Results?city=Madrid&hotel='+nameH+'&termino=sucio';            
+            return url;
+        
+        }
+
+        // -------------------------------------------return the new url with bayes data
+        // http://mlh.fdi.ucm.es:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20Palace&scan=8
+        function getExpRegURL(nameH, scanNum) {
+            var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20'+nameH+'&scan='+scanNum;            
+            return url;
+        
+        }        
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+
+        // ------------------------------------------ parsing JSON
+        
+           /* var json_text = '{"hotels":['+
+              '{"name": "The Living Roof Hostel","latitude": 40.426183,"longitude": -3.705646},'+
+              '{"name": "Sil","latitude": 40.427131,"longitude": -3.701717}]}';
+
+            obj = JSON.parse(json_text); // convert to js object
+
+            for (var i = 0; i < 2; i++) {
+                document.getElementById("parser").innerHTML += obj.hotels[i].name + "  ";
+                document.getElementById("jlat").innerHTML += obj.hotels[i].latitude + "  ";
+                document.getElementById("jlng").innerHTML += obj.hotels[i].longitude + "  ";
+
+            };*/
+
+         // ------------------------------------- show bayes method result
+            $(document).ready(function() {
+              $("#bayes").click(function(event){
+                  $.getJSON(getBayesURL(document.getElementById('pac-input').value), function(jd) {
+                    $('#successB').html('<li><b>total bayes:</b> ' + jd + '</li>');
+                  });
+              });
+           });
+        // -----------------------------------------------------------------------------------
+
+        // ------------------------------------- show expReg method results
+            $(document).ready(function() {
+              $("#expR").click(function(event){
+                  $.getJSON(getExpRegURL(document.getElementById('pac-input').value, 13), function(jd) {
+                    for (var item in jd) {
+                      $('#successER'+item).html('<ul class="list-group"><li class= "list-group-item list-group-item-warning"><b>hotel:</b> ' + jd[item].url + '</li>');
+
+                      $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveRegularExpresion+'</span><b>positiveRE:</b></li>');
+
+                      $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><span class="badge">'+jd[item].negativeRegularExpresion+'</span><b>negativeRE:</b></li>');
+
+                      $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveWord+'</span><b>positiveWord:</b></li>');
+
+                      $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><span class="badge">'+ jd[item].negativeWord +'</span><b>negativeWord:</b></li>');
+
+                      // positve words list
+                      if(jd[item].positiveWord > 0){
+                          for (var i = 0; i < jd[item].positiveWord; i++) {
+                          $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveWord+'</span><b>positiveWordList:</b> <ul><li><b>type:</b>' + jd[item].PositiveWordList[i].type + '</li><li><b>value:</b>'+jd[item].PositiveWordList[i].value+'</li></ul>');
+                        
+                        };
+                      }
+                      else{
+                        alert("Menor a cero");
+                      }
+                                            
+
+                      $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><span class="badge">'+jd[item].negativeWord+'</span><b>negativeWordList:</b> <ul><li><b>type:</b>' + jd[item].negativeWord.type + '</li><li><b>value:</b>'+jd[item].PositiveWordList.value+'</li></ul>');
+
+
+                      $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveRegularExpresion+'</span><b>positiveREList:</b> ' + jd[item].positiveRegularExpresionList.type + '</li>');
+
+                      $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><span class="badge">'+jd[item].negativeRegularExpresion+'</span><b>negativeREList:</b> ' + jd[item].negativeRegularExpresionList.type + '</li></ul>');
+
+                    };
+                  });
+               });
+            });
+        // -----------------------------------------------------------------------------------
+        
+
+    </script>
+
+</body>
+
+</html>

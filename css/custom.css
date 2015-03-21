@@ -1,0 +1,16 @@
+.container{
+	margin-top: 80px;
+}
+
+.panel ul{
+	list-style: none;
+}
+
+.espacio{
+	margin-bottom: 30px;
+}
+
+.navbar{
+
+box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+}

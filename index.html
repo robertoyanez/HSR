@@ -18,6 +18,8 @@
 
     <!-- Materials CSS -->
     <link href="css/material.css" rel="stylesheet">
+    <link href="css/ripples.css" rel="stylesheet">
+
 
     <!-- Custom CSS -->
     <link href="css/agency.css" rel="stylesheet">
@@ -57,7 +59,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>-->
-                <a class="navbar-brand page-scroll" href="#page-top">Hotels system recommendation</a>
+                <a class="navbar-brand page-scroll" href="#page-top"><b>Hotels system recommendation</b></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -129,7 +131,7 @@
                                               <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
-                                              <li><a id="mad" onclick="placeAutocompleted()">Madrid</a></li>
+                                              <li><a id="mad" onclick="searchCity()">Madrid</a></li>
                                               <li><a href="#" onclick="initializecity()">Barcelona</a></li>
                                               <li><a href="#" onclick="initializeCity()">Zaragoza</a></li>
                                               <li><a href="#" onclick="initializeCity()">Cádiz</a></li>
@@ -140,13 +142,16 @@
                                             </ul>
                                         </div>                                      
                                     </div>
-                                    <div class="form-group col-md-6 map">
+                                    <div class="form-group col-md-12 map">
                                          <!-- <label for="nac" class="col-md-2 control-label">Mapa</label> -->
-                                        <div class="col-md-6 map">
-                                            <div id="map_canvas" style="width:900px;height:380px;"></div>
+                                        <div class="col-md-12 map">
+                                            <div id="map_canvas" class="google-maps">
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7098.94326104394!2d78.0430654485247!3d27.172909818538997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1385710909804" width="50" height="50" frameborder="0" style="border:0"></iframe>
+                                            </div>
                                         </div>
                                         <div class="col-md-12">
                                           <!--  <input id="ex4" type="text" data-slider-min="100" data-slider-max="500" data-slider-step="1" data-slider-value="-3" data-slider-orientation="vertical"/> -->
+                                          <br>
                                         </div> 
 
                                     </div>
@@ -156,7 +161,7 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <div class="col-md-12" id="show_latlng">
+                                        <div class="col-md-12 nearlyH" id="show_latlng">
                                             <!-- search nearly hotels button -->
                                             <input class="btn btn-xl" type="button" id="driver" value="Nearly Hotels" />
                                         </div>
@@ -170,7 +175,7 @@
                                                 <p class="text-muted">Uso del teorema de Bayes.</p>
                                                 <div class="col-lg-12 text-center">
                                                     
-                                                    <button type="submit" class="btn btn-xl page-scroll" id="bayes"><span class="fa-stack fa-2x">
+                                                    <button type="" class="btn btn-xl page-scroll" id="bayes"><span class="fa-stack fa-2x">
                                                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
                                                 </span>Buscar</button>
@@ -413,14 +418,7 @@
                     <span class="copyright">Copyright &copy; HSR 2015</span>
                 </div>
                 <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
+                    
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline quicklinks">
@@ -496,18 +494,9 @@
               $("#driver").click(function(event){
                   $.getJSON(getLatLngURL(clickLat,clickLng), function(jd) {
                     for (var item in jd) { 
-                                                                 
-                      
-                      $('#stage'+item).html('<li><b>name:</b> ' + jd[item].name + '</li>');
-                      $('#stage'+item).append('<li><b>lat:</b> ' + jd[item].latitude + '</li>');
-                      $('#stage'+item).append('<li><b>lng:</b> ' + jd[item].longitude + '</li>');
-                      $('#stage'+item).append('<li><b>adress:</b> '+jd[item].vicinity + '</li>');
-
                       var myLatlng = new google.maps.LatLng(jd[item].latitude,jd[item].longitude);
                       // call to create markers method
                       createMarker(myLatlng, jd[item].name);
-                      
-
                     };map.setZoom(15);
                   });
               });
@@ -517,20 +506,20 @@
         // ------------------------------------------------ place autocompleted
         function placeAutocompleted(){
           var input = /** @type {HTMLInputElement} */(
-              document.getElementById('pac-input') || document.getElementById('mad'));
+              document.getElementById('pac-input') || document.getElementById('mad').value);
                 
           var autocomplete = new google.maps.places.Autocomplete(input);
 
           autocomplete.bindTo('bounds', map);
 
-          var infowindow = new google.maps.InfoWindow();
+          var infowindowA = new google.maps.InfoWindow();
           var marker = new google.maps.Marker({
             map: map,
             anchorPoint: new google.maps.Point(0, -29)
           });
 
           google.maps.event.addListener(autocomplete, 'place_changed', function() {
-            infowindow.close();
+            infowindowA.close();
             marker.setVisible(false);
             var place = autocomplete.getPlace();
             if (!place.geometry) {
@@ -554,10 +543,47 @@
             marker.setPosition(place.geometry.location);
             marker.setVisible(true);
 
-            infowindow.setContent('<div><strong>' + place.name + '</strong><br>');
-            infowindow.open(map, marker);
+            infowindowA.setContent('<div><strong>' + place.name + '</strong><br>');
+            infowindowA.open(map, marker);
           });
         }
+
+        // ------------------------------------ search city
+        function searchCity(){
+            var madrid = {lat:40.41 , lng:-3.70};
+            var pyrmont = new google.maps.LatLng(madrid.lat, madrid.lng);
+
+          var request = {
+            location: pyrmont,
+            radius: 500
+          };
+
+          infowindowC = new google.maps.InfoWindow();
+          var service = new google.maps.places.PlacesService(map);
+          service.nearbySearch(request, callback);
+        }
+
+        function callback(results, status) {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+              createMarkerCity(results);
+          }
+        }
+
+        function createMarkerCity(place) {
+          //var placeLoc = place.geometry.location;
+          var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry
+          });
+
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindowC.setContent(place.name);
+            infowindowC.open(map, this);
+          });
+          console.log("MAD");
+        }
+        // -----------------------------------------------------------------------
+
 
         // ------------------------------------ show latlng on the map with a click
         function placeMarker(location) {
@@ -573,7 +599,7 @@
             content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
           });
           // call to listeners events to the map
-          setupEvents();
+          // setupEvents();
 
           // call to write lat and lng method
           //writeLatLng(location.lat(), location.lng());
@@ -661,9 +687,11 @@
          // ------------------------------------- show bayes method result
             $(document).ready(function() {
               $("#bayes").click(function(event){
-                  $.getJSON(getBayesURL(document.getElementById('pac-input').value), function(jd) {
+                if(document.getElementById('pac-input').value != ''){
+                    $.getJSON(getBayesURL(document.getElementById('pac-input').value), function(jd) {
                     $('#successB').html('<li><b>total bayes:</b> ' + jd + '</li>');
                   });
+                } 
               });
            });
         // -----------------------------------------------------------------------------------
@@ -671,6 +699,7 @@
         // ------------------------------------- show expReg method results
             $(document).ready(function() {
               $("#expR").click(function(event){
+                if(document.getElementById('pac-input').value != ''){
                   $.getJSON(getExpRegURL(document.getElementById('pac-input').value, 13), function(jd) {
                     for (var item in jd) {
                       $('#successER'+item).html('<ul class="list-group"><li class= "list-group-item list-group-item-warning"><b>hotel:</b> ' + jd[item].url + '</li>');
@@ -704,6 +733,7 @@
 
                     };
                   });
+                 }
                });
             });
         // -----------------------------------------------------------------------------------

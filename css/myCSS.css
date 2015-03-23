@@ -47,3 +47,38 @@ width: 100%;
 height: 100%;
 margin: 0 auto;
 }
+
+.google-maps {
+    position: relative;
+    padding-bottom: 40%%; // This is the aspect ratio
+    height: 0;
+    overflow: hidden;
+}
+.form-group .google-maps iframe {	
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.nearlyH .btn-xl{
+
+	width: 50%;
+	margin: 0 auto;
+}
+
+button{
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+	  -webkit-transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body{
+	font-family: Roboto;
+}
+
+.navbar-default .navbar-brand {
+  font-family: Roboto,cursive;
+  color: #fed136;
+}

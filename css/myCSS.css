@@ -50,7 +50,7 @@ margin: 0 auto;
 
 .google-maps {
     position: relative;
-    padding-bottom: 40%%; // This is the aspect ratio
+    padding-bottom: 60%%; // This is the aspect ratio
     height: 0;
     overflow: hidden;
 }
@@ -83,3 +83,10 @@ body{
   color: #fed136;
 }
 
+.btn .btn-lx{
+  transition: transform ease-out 0.1s, background 0.2s;
+  transition-property: transform, background;
+  transition-duration: 0.1s, 0.2s;
+  transition-timing-function: ease-out, initial;
+  transition-delay: initial, initial;
+}

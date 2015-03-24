@@ -131,14 +131,22 @@
                                               <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
-                                              <li><a id="mad" onclick="searchCity()">Madrid</a></li>
-                                              <li><a href="#" onclick="initializecity()">Barcelona</a></li>
-                                              <li><a href="#" onclick="initializeCity()">Zaragoza</a></li>
-                                              <li><a href="#" onclick="initializeCity()">Cádiz</a></li>
-                                              <li><a href="#" onclick="initializeCity()">Valencia</a></li>
-                                              <li><a href="#" onclick="initializeCity()">Sevilla</a></li>
-                                              <li><a href="#" onclick="initializeCity()">León</a></li>
-                                              <li><a href="#" onclick="initializeCity()">Alicante</a></li>
+                                              <li><a onclick="searchCity('Alicante')">Alicante</a></li>
+                                              <li><a onclick="searchCity('Barcelona')">Barcelona</a></li>
+                                              <li><a onclick="searchCity('Bilbao')">Bilbao</a></li>
+                                              <li><a onclick="searchCity('Burgos')">Burgos</a></li>
+                                              <li><a onclick="searchCity('Canarias')">Canarias</a></li>
+                                              <li><a onclick="searchCity('Donostia - San Sebastián')">Donostia - San Sebastián</a></li>
+                                              <li><a onclick="searchCity('Girona')">Girona</a></li>
+                                              <li><a onclick="searchCity('Granada')">Granada</a></li>
+                                              <li><a onclick="searchCity('Islas Baleares')">Islas Baleares</a></li>
+                                              <li><a onclick="searchCity('Madrid')">Madrid</a></li>
+                                              <li><a onclick="searchCity('Salamanca')">Salamanca</a></li>
+                                              <li><a onclick="searchCity('Santiago de Compostela')">Santiago de Compostela</a></li>
+                                              <li><a onclick="searchCity('Sevilla')">Sevilla</a></li>
+                                              <li><a onclick="searchCity('Toledo')">Toledo</a></li>
+                                              <li><a onclick="searchCity('Valencia')">Valencia</a></li>
+                                              <li><a onclick="searchCity('Zaragoza')">Zaragoza</a></li>
                                             </ul>
                                         </div>                                      
                                     </div>
@@ -467,7 +475,7 @@
         // ------------------------------------------------ place autocompleted
         function placeAutocompleted(){
           var input = /** @type {HTMLInputElement} */(
-              document.getElementById('pac-input') || document.getElementById('mad').value);
+              document.getElementById('pac-input'));
                 
           var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -510,38 +518,102 @@
         }
 
         // ------------------------------------ search city
-        function searchCity(){
-            var madrid = {lat:40.41 , lng:-3.70};
-            var pyrmont = new google.maps.LatLng(madrid.lat, madrid.lng);
-
-          var request = {
-            location: pyrmont,
-            radius: 500
-          };
-
-          infowindowC = new google.maps.InfoWindow();
-          var service = new google.maps.places.PlacesService(map);
-          service.nearbySearch(request, callback);
-        }
-
-        function callback(results, status) {
-          if (status == google.maps.places.PlacesServiceStatus.OK) {
-              createMarkerCity(results);
+        function searchCity(city){
+          var infowindowC = new google.maps.InfoWindow();
+          var pyrmont = 0;
+          var shieldCity = 0;
+          switch(city) {
+            case "Madrid":{
+                pyrmont = new google.maps.LatLng(40.416775400000000000, -3.703790199999957600);
+                shieldCity = '/img/madrid.png';
+                break;}
+            case "Toledo":{
+                pyrmont = new google.maps.LatLng(39.862831600000000000, -4.027323099999990000);
+                shieldCity = '/img/toledo.png';
+                break;}
+            case "Salamanca":{
+                pyrmont = new google.maps.LatLng(40.970103900000000000, -5.663539700000001000);
+                shieldCity = '/img/salamanca.png';
+                break;}
+            case "Burgos":{
+                pyrmont = new google.maps.LatLng(42.343992500000000000, -3.696906000000012700);
+                shieldCity = '/img/burgos.png';
+                break;}
+            case "Bilbao":{
+                pyrmont = new google.maps.LatLng(43.263012600000000000, -2.934985200000028300);
+                shieldCity = '/img/bilbao.png';
+                break;}
+            case "Granada":{
+                pyrmont = new google.maps.LatLng(37.177336300000000000, -3.598557099999993600);
+                shieldCity = '/img/granada.png';
+                break;}
+            case "Zaragoza":{
+                pyrmont = new google.maps.LatLng(41.648822600000000000 , -0.889085300000033400);
+                shieldCity = '/img/zaragoza.png';
+                break;}
+            case "Alicante":{
+                pyrmont = new google.maps.LatLng(38.345996300000000000, -0.490685500000040500);
+                shieldCity = '/img/alicante.png';
+                break;}
+            case "Islas Baleares":{
+                pyrmont = new google.maps.LatLng(39.534178900000000000, -2.857710499999939000);
+                shieldCity = '/img/baleares.png';
+                break;}
+            case "Sevilla":{
+                pyrmont = new google.maps.LatLng(37.389092400000000000, -5.984458899999936000);
+                shieldCity = '/img/sevilla.png';
+                break;}
+            case "Donostia - San Sebastián":{
+                pyrmont = new google.maps.LatLng(43.318334000000000000, -1.981231299999990400);
+                shieldCity = '/img/sanSebastian.png';
+                break;}
+            case "Santiago de Compostela":{
+                pyrmont = new google.maps.LatLng(42.878213200000000000, -8.544844499999954000);
+                shieldCity = '/img/sanCompostela.png';
+                break;}
+            case "Barcelona":{
+                pyrmont = new google.maps.LatLng(41.385063900000000000, -2.173403499999949400);
+                shieldCity = '/img/barcelona.png';
+                break;}
+            case "Girona":{
+                pyrmont = new google.maps.LatLng(41.394820400000000000, -2.171103600000037700);
+                shieldCity = '/img/girona.png';
+                break;}
+            case "Valencia":{
+                pyrmont = new google.maps.LatLng(39.469907500000000000, -0.376288100000010700);
+                shieldCity = '/img/valencia.png';
+                break;}
+            case "Canarias":{
+                pyrmont = new google.maps.LatLng(28.291563700000000000, -16.629130400000008000);
+                shieldCity = '/img/canarias.png';
+                break;}
+            default:{
+                alert("default");
+                pyrmont = new google.maps.LatLng(40.416775400000000000, -3.703790199999957600);
+                shieldCity = '/img/madrid.png';}
           }
-        }
 
-        function createMarkerCity(place) {
-          //var placeLoc = place.geometry.location;
+          var info = '<div id="sm">'+
+                        '<h3>'+city+'</h3>'+
+                        '<div id="ssm">' +
+                            '<p><a href="http://es.wikipedia.org/wiki/'+city+'">'+
+                                '<img src="'+shieldCity+'" alt="shield city" height="42" width="42"></a></p>'+
+                        '</div>'+
+                    '</div>';
+
           var marker = new google.maps.Marker({
             map: map,
-            position: place.geometry
+            position: pyrmont,
+            content: info
           });
 
           google.maps.event.addListener(marker, 'click', function() {
-            infowindowC.setContent(place.name);
+            infowindowC.setContent(info);
             infowindowC.open(map, this);
           });
-          console.log("MAD");
+
+          map.setCenter(pyrmont);
+          map.setZoom(12);
         }
         // -----------------------------------------------------------------------
 

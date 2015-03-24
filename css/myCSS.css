@@ -99,3 +99,7 @@ body{
   transition-delay: initial, initial;
 }
 
+#sm{
+  text-align: center;
+  font-family: Roboto;
+}

@@ -76,12 +76,6 @@ margin: 0 auto;
 	margin: 0 auto;
 }
 
-button{
-	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
-	  -webkit-transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-          transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 body{
 	font-family: Roboto;
 }
@@ -89,14 +83,6 @@ body{
 .navbar-default .navbar-brand {
   font-family: Roboto,cursive;
   color: #fed136;
-}
-
-.btn .btn-lx{
-  transition: transform ease-out 0.1s, background 0.2s;
-  transition-property: transform, background;
-  transition-duration: 0.1s, 0.2s;
-  transition-timing-function: ease-out, initial;
-  transition-delay: initial, initial;
 }
 
 #sm{

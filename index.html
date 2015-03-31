@@ -9,15 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>HSR</title>
-
-    
+    <title>SRH</title>   
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Materials CSS -->
     <link href="css/material.css" rel="stylesheet">
+
 
     <!-- Custom CSS -->
     <link href="css/agency.css" rel="stylesheet">
@@ -31,6 +30,9 @@
 
     <!-- My CSS -->
     <link href="css/myCSS.css" rel="stylesheet">
+
+    <link href="css/ripples.min.css" rel="stylesheet">
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,7 +59,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top"><img src="img/receptionist2.png"><!--<b>Hotels system recommendation</b>--></a>
+                <a class="navbar-brand page-scroll" href="#page-top"><!--<img src="img/receptionist2.png">--><b>Sistema Recomendador de Hoteles</b></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,16 +69,16 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Search Hotels</a>
+                        <a class="page-scroll" href="#services">Buscar</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="#about">Acerca de SRH</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#team">Team</a>
+                        <a class="page-scroll" href="#team">Equipo</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="#contact">Contacto</a>
                     </li>
                 </ul>
             </div>
@@ -89,9 +91,9 @@
     <header>
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in"> </div>
-                <div class="intro-heading">Just do it!</div>
-                <a href="#services" class="page-scroll btn btn-xl">Begin</a>
+                <div class="intro-lead-in">Bienvenido </div>
+                <div class="intro-heading">Hazlo ahora!</div>
+                <a href="#services" class="page-scroll btn btn-xl">Empezar</a>
             </div>
         </div>
     </header>
@@ -101,8 +103,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Search Hotels</h2>
-                    <h3 class="section-subheading text-muted">Find the Best Hotels in the city of your choice.</h3>
+                    <h2 class="section-heading">Buscar Hoteles</h2>
+                    <h3 class="section-subheading text-muted">Encuentra los mejores hoteles en la ciudad que elijas.</h3>
                 </div>
 
                 <!-- total form -->
@@ -112,21 +114,22 @@
                         <!-- Datos -->
                         <div class="panel panel-default" id="datos">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Advanced Search Hotels</h3>
+                                <h3 class="panel-title">Búsqueda avanzada de hoteles</h3>
                             </div>
                             <div class="panel-body">
                                 <fieldset>
                                     <!--<legend>Búsqueda avanzada de hoteles</legend>-->
                                     <div class="form-group col-md-12">
-                                        <label for="nif" class="col-md-4 control-label">Hotel name: </label>
-                                        <div class="col-md-6" >
+                                        
+                                        <div class="col-md-8" >
+                                            <label class="col-md-6 control-label">Nombre del hotel: </label>
                                             <p id="name_input"></p>
-                                            <input type="text" class="form-control" id="pac-input" placeholder="hotel name" required>
+                                            <input type="text" class="form-control" id="pac-input" placeholder="Ejemplo: Palace" required>
                                         </div>
                                         <!-- choose the city -->
-                                        <div class="btn-group" role="group">
+                                        <div class="btn-group col-md-0" role="group">
                                             <button type="button" class="btn btn-xl page-scroll btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="city">
-                                                   City     
+                                                   Ciudad     
                                               <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
@@ -178,15 +181,47 @@
                                                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
                                                 </span> -->
-                                                <h2 class="service-heading">Statistical search</h2>
-                                                <p class="text-muted">Uses the Bayes Theorem.</p>
-                                                <input type="text" class="form-control col-md-2" id="ponw" placeholder="positive or negative term" required>
+                                                <h2 class="service-heading">Búsqueda estadística</h2>
+                                                <p class="text-muted">Uso del teorema de Bayes.</p>
+                                                <!--<input type="text" class="form-control col-md-2" id="ponw" placeholder="positive or negative term" required>-->
+                                                <div class="checkbox col-md-3"><b>Precio</b>
+                                                    <label>
+                                                        <input type="checkbox" id="precio"/>
+                                                       
+                                                        <scan class="check"></scan>
+                                                         <scan class="ripple"></scan>
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox col-md-3"><b>Ubicación</b>
+                                                    <label>
+                                                        <input type="checkbox" id="ubicacion"/>
+                                                       
+                                                        <scan class="check"></scan>
+                                                         <scan class="ripple"></scan>
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox col-md-3"><b>Limpieza</b>
+                                                    <label>
+                                                        <input type="checkbox" id="limpieza"/>
+                                                       
+                                                        <scan class="check"></scan>
+                                                         <scan class="ripple"></scan>
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox col-md-3"><b>Servicios</b>
+                                                    <label>
+                                                        <input type="checkbox" id="servicios"/>
+                                                       
+                                                        <scan class="check"></scan>
+                                                         <scan class="ripple"></scan>
+                                                    </label>
+                                                </div>
                                                 <div class="col-lg-12 text-center">
                                                     
                                                     <button type="button" class="btn btn-xl page-scroll" id="bayes"><span class="fa-stack fa-2x">
                                                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
-                                                </span>Search</button>
+                                                </span>buscar</button>
                                                     <div id="successB">
                                                       
                                                     </div>
@@ -197,16 +232,20 @@
                                                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-users fa-stack-1x fa-inverse"></i>
                                                 </span> -->
-                                                <h2 class="service-heading">Recommender search</h2>
-                                                <p class="text-muted">Uses Regular Expresions.</p>
-                                                <label class="col-md-8 control-label">Number of the webs to scan: </label>
-                                                <input type="number" class="form-control-short" id="numScan" min="1" max="20">
+                                                <h2 class="service-heading">Búsqueda con recomendador</h2>
+                                                <p class="text-muted">Uso de expresiones regulares.</p>
+                                                
+                                                <div>
+                                                      
+                                                </div>
+                                                <!--<label class="col-md-8 control-label">Número de páginas webs a escanear: </label>
+                                                <input type="number" class="form-control-short" id="numScan" min="1" max="20">-->
                                                 <div class="col-lg-12 text-center">
                                                     
                                                     <button type="button" class="btn btn-xl page-scroll" id="expR"><span class="fa-stack fa-2x">
                                                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-users fa-stack-1x fa-inverse"></i>
-                                                </span>Search</button>
+                                                </span>buscar</button>
                                                     <div id="successER0">
                                                       
                                                     </div>
@@ -291,8 +330,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">About</h2>
-                    <h3 class="section-subheading text-muted">Thesis in Grade of Informatic.</h3>
+                    <h2 class="section-heading">Acerca del SRH</h2>
+                    <h3 class="section-subheading text-muted">Trabajo de fin de Grado en Informática.</h3>
                 </div>
             </div>
             <div class="row">
@@ -305,10 +344,10 @@
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
                                     <h4>2014-2015</h4>
-                                    <h4 class="subheading">Our Project</h4>
+                                    <h4 class="subheading">Nuestro Proyecto</h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">We reflect on web is a hard work of research and development  representing our work EOG, Hotel System Recommendation (HSR) is a hotel recommendation system that can be used anywhere in the world, is an advanced search for hotels on the one hand can be statistical and otherwise handle regular expressions, getting the best results when proposals to find a hotel in the city you want.</p>
+                                    <p class="text-muted">Nosotros reflejamos en ésta web un duro trabajo de investigación y desarrollo para presentar nuestro TFG, un sistema recomendador de hoteles (SRH) para las ciudades más visitadas en territorio español en los últimos años, dicho sistema hace una busqueda avanzada una vez seleccionada la ciuddad, puedes dar click sobre el mapa en el lugar donde se desee, y podrás buscar hoteles cercanos a la ubicación que señalaste, luego de ello hacer ouna busqueda estadítica o una búsqueda por un recomendador con el fin de ver la reputación de dicho hotel bajo valoraciones por puntajes o expresiones regulares que expresaran entre otras cosas los servicios que posee o no dicho hotel, de ésta forma encontrar el hotel que se adapte a tus necesidades y cumpla con lo que realmente necesites.</p>
                                 </div>
                             </div>
                         </li>
@@ -318,11 +357,11 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>June 2015</h4>
-                                    <h4 class="subheading">EOG</h4>
+                                    <h4>Junio 2015</h4>
+                                    <h4 class="subheading">TFG</h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Project generated from the classrooms of the Faculty of Informatics   the Complutense University of Madrid for the Degree of Computer Science.</p>
+                                    <p class="text-muted">Proyecto generado desde las aulas de la Facultad de Informática de la Universidad Complutense de Madrid para el Grado en Ingeniería Informática.</p>
                                 </div>
                             </div>
                         </li>
@@ -337,7 +376,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Our team</h2>
+                    <h2 class="section-heading">Nuestro Equipo</h2>
                 </div>
             </div>
             <div class="row">
@@ -345,7 +384,7 @@
                     <div class="team-member">
                         <img src="img/team/yofdi.png" class="img-responsive img-circle" alt="">
                         <h4>Roberto Yánez</h4>
-                        <p class="text-muted">Developer</p>
+                        <p class="text-muted">Desarrollador</p>
                         <ul class="list-inline social-buttons">
                             <li><a href="#"><i class="fa fa-twitter"></i></a>
                             </li>
@@ -360,7 +399,7 @@
                     <div class="team-member">
                         <img src="img/team/2.jpg" class="img-responsive img-circle" alt="">
                         <h4>Eddy Cerpa</h4>
-                        <p class="text-muted">Developer</p>
+                        <p class="text-muted">Desarrollador</p>
                         <ul class="list-inline social-buttons">
                             <li><a href="#"><i class="fa fa-twitter"></i></a>
                             </li>
@@ -389,7 +428,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">Working Group on the project of hotel recommender for the EOG.</p>
+                    <p class="large text-muted">Grupo de trabajo sobre el proyecto de un recomendador hotelero.</p>
                 </div>
             </div>
         </div>
@@ -398,8 +437,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Contact us</h2>
-                    <h3 class="section-subheading text-muted tm">We are grateful for your attention and your observations.</h3>
+                    <h2 class="section-heading">Contacta con nosotros</h2>
+                    <h3 class="section-subheading text-muted tm">Agradecemos tu atención y observaciones.</h3>
                 </div>
             </div>
             <div class="row">
@@ -408,28 +447,28 @@
                         <div class="row">
                             <div class="col-md-6" id="formLeft">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control" placeholder="nombre *" id="name" required data-validation-required-message="Por favor ingresa tu nombre.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <input type="email" class="form-control" placeholder="correo electrónico *" id="email" required data-validation-required-message="Por favor ingresa la dirección de tu correo electrónico.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                    <input type="tel" class="form-control" placeholder="teléfono *" id="phone" required data-validation-required-message="Por favor ingresa tu número telefónico.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="col-md-6" >
                                 <div class="form-group">
-                                    <textarea class="form-control ta" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    <textarea class="form-control ta" placeholder="mensaje *" id="message" required data-validation-required-message="Por favor ingresa tu mensaje."></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
-                                <button type="submit" class="btn btn-xl">Send</button>
+                                <button type="submit" class="btn btn-xl">Enviar</button>
                             </div>
                         </div>
                     </form>
@@ -442,7 +481,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; HSR 2015</span>
+                    <span class="copyright">Copyright &copy; SRH 2015</span>
                 </div>
                 <div class="col-md-4">
                     
@@ -797,9 +836,8 @@
               $("#expR").click(function(event){
                 var nameH = document.getElementById('pac-input').value;
                 var nameH2 = document.getElementById('name_input').value;
-                var numWebs = document.getElementById('numScan').value;
                 if(nameH != ''){
-                  $.getJSON(getExpRegURL(nameH, numWebs), function(jd) {
+                  $.getJSON(getExpRegURL(nameH, 20), function(jd) {
                     for (var item in jd) {
                       $('#successER'+item).html('<ol class="list-group"><li class= "list-group-item list-group-item-warning"><b>web:</b> ' + jd[item].url + '</li>');
 
@@ -839,7 +877,7 @@
                  }
 
                  else if(nameH2 != ''){
-                    $.getJSON(getExpRegURL(nameH2, numWebs), function(jd) {
+                    $.getJSON(getExpRegURL(nameH2, 20), function(jd) {
                     for (var item in jd) {
                         $('#successER'+item).html('<ol class="list-group"><li class= "list-group-item list-group-item-warning"><b>web:</b> ' + jd[item].url + '</li>');
 

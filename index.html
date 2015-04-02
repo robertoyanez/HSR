@@ -17,7 +17,6 @@
     <!-- Materials CSS -->
     <link href="css/material.css" rel="stylesheet">
 
-
     <!-- Custom CSS -->
     <link href="css/agency.css" rel="stylesheet">
 
@@ -27,7 +26,6 @@
     <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
     <!-- My CSS -->
     <link href="css/myCSS.css" rel="stylesheet">
 
@@ -44,6 +42,9 @@
     <!--  to parsing JSON -->      
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 </head>
 
 <body id="page-top" class="index">
@@ -59,7 +60,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top"><!--<img src="img/receptionist2.png">--><b>Sistema Recomendador de Hoteles</b></a>
+                <div class="logo col-lg-12">
+                    <a class="navbar-brand page-scroll" href="#page-top"><!--<img src="img/receptionist2.png">-->
+                        <b>Sistema Recomendador de Hoteles</b>
+                    </a>
+                </div>
+                
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -137,13 +143,13 @@
                                               <li><a onclick="searchCity('Barcelona')">Barcelona</a></li>
                                               <li><a onclick="searchCity('Bilbao')">Bilbao</a></li>
                                               <li><a onclick="searchCity('Burgos')">Burgos</a></li>
-                                              <li><a onclick="searchCity('Canarias')">Canarias</a></li>
                                               <li><a onclick="searchCity('Donostia - San Sebastián')">Donostia - San Sebastián</a></li>
                                               <li><a onclick="searchCity('Girona')">Girona</a></li>
                                               <li><a onclick="searchCity('Granada')">Granada</a></li>
-                                              <li><a onclick="searchCity('Islas Baleares')">Islas Baleares</a></li>
                                               <li><a onclick="searchCity('Madrid')">Madrid</a></li>
+                                              <li><a onclick="searchCity('Palma de Mallorca')">Palma de Mallorca</a></li>
                                               <li><a onclick="searchCity('Salamanca')">Salamanca</a></li>
+                                              <li><a onclick="searchCity('Santa Cruz de Tenerife')">Santa Cruz de Tenerife</a></li>
                                               <li><a onclick="searchCity('Santiago de Compostela')">Santiago de Compostela</a></li>
                                               <li><a onclick="searchCity('Sevilla')">Sevilla</a></li>
                                               <li><a onclick="searchCity('Toledo')">Toledo</a></li>
@@ -184,38 +190,41 @@
                                                 <h2 class="service-heading">Búsqueda estadística</h2>
                                                 <p class="text-muted">Uso del teorema de Bayes.</p>
                                                 <!--<input type="text" class="form-control col-md-2" id="ponw" placeholder="positive or negative term" required>-->
-                                                <div class="checkbox col-md-3"><b>Precio</b>
-                                                    <label>
-                                                        <input type="checkbox" id="precio"/>
-                                                       
-                                                        <scan class="check"></scan>
-                                                         <scan class="ripple"></scan>
-                                                    </label>
+
+                                                <div class="col-lg-12">
+                                                    <div class="checkbox col-md-3"><div class="check_text"><b>Precio</b></div>
+                                                        <label>
+                                                            <input type="checkbox" id="precio"/>
+                                                           
+                                                            <scan class="check"></scan>
+                                                             <scan class="ripple"></scan>
+                                                         </label>
+                                                    </div>
+                                                    <div class="checkbox col-md-3"><b>Ubicación</b>
+                                                        <label>
+                                                            <input type="checkbox" id="ubicacion"/>
+                                                            <scan class="check"></scan>
+                                                             <scan class="ripple"></scan>
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox col-md-3"><b>Limpieza</b>
+                                                        <label>
+                                                            <input type="checkbox" id="limpieza"/>
+                                                           
+                                                            <scan class="check"></scan>
+                                                             <scan class="ripple"></scan>
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox col-md-3"><b>Servicios</b>
+                                                        <label>
+                                                            <input type="checkbox" id="servicios"/>
+                                                           
+                                                            <scan class="check"></scan>
+                                                             <scan class="ripple"></scan>
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                                <div class="checkbox col-md-3"><b>Ubicación</b>
-                                                    <label>
-                                                        <input type="checkbox" id="ubicacion"/>
-                                                       
-                                                        <scan class="check"></scan>
-                                                         <scan class="ripple"></scan>
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox col-md-3"><b>Limpieza</b>
-                                                    <label>
-                                                        <input type="checkbox" id="limpieza"/>
-                                                       
-                                                        <scan class="check"></scan>
-                                                         <scan class="ripple"></scan>
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox col-md-3"><b>Servicios</b>
-                                                    <label>
-                                                        <input type="checkbox" id="servicios"/>
-                                                       
-                                                        <scan class="check"></scan>
-                                                         <scan class="ripple"></scan>
-                                                    </label>
-                                                </div>
+                                                
                                                 <div class="col-lg-12 text-center">
                                                     
                                                     <button type="button" class="btn btn-xl page-scroll" id="bayes"><span class="fa-stack fa-2x">
@@ -233,75 +242,53 @@
                                                     <i class="fa fa-users fa-stack-1x fa-inverse"></i>
                                                 </span> -->
                                                 <h2 class="service-heading">Búsqueda con recomendador</h2>
-                                                <p class="text-muted">Uso de expresiones regulares.</p>
+                                                <!-- <p class="text-muted">Uso de expresiones regulares.</p> -->
                                                 
-                                                <div>
-                                                      
-                                                </div>
-                                                <!--<label class="col-md-8 control-label">Número de páginas webs a escanear: </label>
-                                                <input type="number" class="form-control-short" id="numScan" min="1" max="20">-->
                                                 <div class="col-lg-12 text-center">
-                                                    
+                                                    <!-- rotaing progress -->
+                                                    <div class="rotating progress" id="progress"></div>
                                                     <button type="button" class="btn btn-xl page-scroll" id="expR"><span class="fa-stack fa-2x">
                                                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-users fa-stack-1x fa-inverse"></i>
-                                                </span>buscar</button>
+                                                    </span>buscar</button>
+                                                    
                                                     <div id="successER0">
-                                                      
                                                     </div>
                                                     <div id="successER1">
-                                                      
                                                     </div>
                                                     <div id="successER2">
-                                                      
                                                     </div>
                                                     <div id="successER3">
-                                                      
                                                     </div>
                                                     <div id="successER4">
-                                                      
                                                     </div>
                                                     <div id="successER5">
-                                                      
                                                     </div>
                                                     <div id="successER6">
-                                                      
                                                     </div>
                                                     <div id="successER7">
-                                                      
                                                     </div>
                                                     <div id="successER8">
-                                                      
                                                     </div>
                                                     <div id="successER9">
-                                                      
                                                     </div>
                                                     <div id="successER10">
-                                                      
                                                     </div>
                                                     <div id="successER11">
-                                                      
                                                     </div>
                                                     <div id="successER12">
-                                                      
                                                     </div>
                                                     <div id="successER13">
-                                                      
                                                     </div>
                                                     <div id="successER14">
-                                                      
                                                     </div>
                                                     <div id="successER15">
-                                                      
                                                     </div>
                                                     <div id="successER16">
-                                                      
                                                     </div>
                                                     <div id="successER17">
-                                                      
                                                     </div>
                                                     <div id="successER18">
-                                                      
                                                     </div>
                                                     <div id="successER19">
                                                       
@@ -524,7 +511,7 @@
         function initialize() {
           var latlng = new google.maps.LatLng(clickLat,clickLng);
           var myOptions = {
-            zoom: 15,
+            zoom: 12,
             center: latlng,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
@@ -647,8 +634,8 @@
                 pyrmont = new google.maps.LatLng(38.345996300000000000, -0.490685500000040500);
                 shieldCity = 'img/alicante.png';
                 break;}
-            case "Islas Baleares":{
-                pyrmont = new google.maps.LatLng(39.534178900000000000, -2.857710499999939000);
+            case "Palma de Mallorca":{
+                pyrmont = new google.maps.LatLng(39.566667, 2.649722);
                 shieldCity = 'img/baleares.png';
                 break;}
             case "Sevilla":{
@@ -664,19 +651,19 @@
                 shieldCity = 'img/sanCompostela.png';
                 break;}
             case "Barcelona":{
-                pyrmont = new google.maps.LatLng(41.385063900000000000, -2.173403499999949400);
+                pyrmont = new google.maps.LatLng(41.3825, 2.176944);
                 shieldCity = 'img/barcelona.png';
                 break;}
             case "Girona":{
-                pyrmont = new google.maps.LatLng(41.394820400000000000, -2.171103600000037700);
+                pyrmont = new google.maps.LatLng(41.983333, 2.816667);
                 shieldCity = 'img/girona.png';
                 break;}
             case "Valencia":{
                 pyrmont = new google.maps.LatLng(39.469907500000000000, -0.376288100000010700);
                 shieldCity = 'img/valencia.png';
                 break;}
-            case "Canarias":{
-                pyrmont = new google.maps.LatLng(28.291563700000000000, -16.629130400000008000);
+            case "Santa Cruz de Tenerife":{
+                pyrmont = new google.maps.LatLng(28.466667, -16.25);
                 shieldCity = 'img/canarias.png';
                 break;}
             default:{
@@ -705,14 +692,14 @@
           });
 
           map.setCenter(pyrmont);
-          map.setZoom(12);
+          map.setZoom(14);
         }
         // -----------------------------------------------------------------------
 
 
         // ------------------------------------ show latlng on the map with a click
         function placeMarker(location) {
-        var pin = 'img/png/pin87.png';
+        var pin = 'img/png/map52.png';
           var marker = new google.maps.Marker({
             position: location,
             map: map,
@@ -721,7 +708,8 @@
 
           map.setCenter(location);
           var infowindow = new google.maps.InfoWindow({
-            content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+            //content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+            content: 'Ud está aquí!!'
           });
           // call to listeners events to the map
           // setupEvents();
@@ -919,10 +907,43 @@
                });
             });
         // -----------------------------------------------------------------------------------
-        
-
+    
     </script>
+    
+    <!-- These are probably out dated so you might want to use newest versions -->
+        <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.6.1/dist/progressbar.js"></script>
 
-</body>
+        <script>
+            window.onload = function onLoad() {
+                var circle = new ProgressBar.Circle('#progress', {
+                    color: '#4caf50',
+                    trailColor: '#eee',
+                    strokeWidth: 10,
+                    duration: 2500,
+                    easing: 'easeInOut'
+                });
+
+                circle.set(0.05);
+
+                setTimeout(function() {
+                    circle.animate(0.3);
+                }, 1000);
+
+                setTimeout(function() {
+                    circle.animate(0.4);
+                }, 3500);
+
+                setTimeout(function() {
+                    circle.animate(0.8);
+                }, 5500);
+
+                setTimeout(function() {
+                    circle.animate(1);
+                }, 8000);
+            };
+        </script>
+
+
+  </body>
 
 </html>

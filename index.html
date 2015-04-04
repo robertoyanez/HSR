@@ -60,9 +60,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div class="logo col-lg-12">
-                    <a class="navbar-brand page-scroll" href="#page-top"><!--<img src="img/receptionist2.png">-->
-                        <b>Sistema Recomendador de Hoteles</b>
+                <div class="logo">
+                    <a class="navbar-brand page-scroll" href="#page-top"><img src="img/final2.png">
+                        <!-- <b>Sistema Recomendador de Hoteles</b> -->
                     </a>
                 </div>
                 
@@ -130,7 +130,7 @@
                                         <div class="col-md-8" >
                                             <label class="col-md-6 control-label">Nombre del hotel: </label>
                                             <p id="name_input"></p>
-                                            <input type="text" class="form-control" id="pac-input" placeholder="Ejemplo: Palace" required>
+                                            <input type="text" class="form-control" id="hn-input" placeholder="Ejemplo: Palace" required>
                                         </div>
                                         <!-- choose the city -->
                                         <div class="btn-group col-md-0" role="group">
@@ -191,7 +191,7 @@
                                                 <p class="text-muted">Uso del teorema de Bayes.</p>
                                                 <!--<input type="text" class="form-control col-md-2" id="ponw" placeholder="positive or negative term" required>-->
 
-                                                <div class="col-lg-12">
+                                                <div class="col-lg-12" id="checkOp">
                                                     <div class="checkbox col-md-3"><div class="check_text"><b>Precio</b></div>
                                                         <label>
                                                             <input type="checkbox" id="precio"/>
@@ -242,11 +242,14 @@
                                                     <i class="fa fa-users fa-stack-1x fa-inverse"></i>
                                                 </span> -->
                                                 <h2 class="service-heading">Búsqueda con recomendador</h2>
-                                                <!-- <p class="text-muted">Uso de expresiones regulares.</p> -->
+                                                <p class="text-muted">Uso de expresiones regulares.</p>
                                                 
                                                 <div class="col-lg-12 text-center">
                                                     <!-- rotaing progress -->
-                                                    <div class="rotating progress" id="progress"></div>
+                                                    <div class="rotating progress" id="progress">
+                                                    </div>
+
+                                                    <div id="loadText"></div>
                                                     <button type="button" class="btn btn-xl page-scroll" id="expR"><span class="fa-stack fa-2x">
                                                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-users fa-stack-1x fa-inverse"></i>
@@ -554,7 +557,7 @@
         // ------------------------------------------------ place autocompleted
         function placeAutocompleted(){
           var input = /** @type {HTMLInputElement} */(
-              document.getElementById('pac-input'));
+              document.getElementById('hn-input'));
                 
           var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -699,7 +702,7 @@
 
         // ------------------------------------ show latlng on the map with a click
         function placeMarker(location) {
-        var pin = 'img/png/map52.png';
+        var pin = 'img/png/mapUs.png';
           var marker = new google.maps.Marker({
             position: location,
             map: map,
@@ -759,24 +762,32 @@
         }
 
         // -------------------------------------------return the new url with lat and lng onclick
+        // var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/SearchHotel?radio=500&lat='+lat+'&lon='+lng;
+        // personal server
+        // http://mlh1415.ddns.net:8080/SystemRecommendations/SearchHotel?radio=500&lat=40.43&lon=-3.70
         function getLatLngURL(lat, lng) {
-            var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/SearchHotel?radio=500&lat='+lat+'&lon='+lng;            
+            var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/SearchHotel?radio=500&lat='+lat+'&lon='+lng;            
             return url;
         
         }
 
         // -------------------------------------------return the new url with bayes data
         // 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=sucio'
+        // var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/Results?city=Madrid&hotel='+nameH+'&termino='+termH;
+        // personal server
+        // http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=sucio
         function getBayesURL(nameH, termH) {
-            var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/Results?city=Madrid&hotel='+nameH+'&termino='+termH;            
+            var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city=Madrid&hotel='+nameH+'&termino='+termH;            
             return url;
         
         }
 
         // -------------------------------------------return the new url with bayes data
         // http://mlh.fdi.ucm.es:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20Palace&scan=8
+        // personal server
+        // http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20Palace&scan=8
         function getExpRegURL(nameH, scanNum) {
-            var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20'+nameH+'&scan='+scanNum;            
+            var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20'+nameH+'&scan='+scanNum;            
             return url;
         
         }        
@@ -802,7 +813,7 @@
          // ------------------------------------- show bayes method result
             $(document).ready(function() {
               $("#bayes").click(function(event){
-                var nameHotel= document.getElementById('pac-input').value;
+                var nameHotel= document.getElementById('hn-input').value;
                 var nameHotel2 = document.getElementById('name_input').value;
                 var termHotel= document.getElementById('ponw').value;
                 if( nameHotel != '' && termHotel != ''){
@@ -822,10 +833,27 @@
         // ------------------------------------- show expReg method results
             $(document).ready(function() {
               $("#expR").click(function(event){
-                var nameH = document.getElementById('pac-input').value;
+                // call the progress animation
+                 onLoadProgress();
+                /*$.ajax({
+                    url: url,
+                    dataType: "json",
+                    beforeSend: function() {
+                        //$('.loading').show();
+                        onLoadProgress();
+                    },
+                    success: function(data) {
+                        // Do stuff...
+                    },
+                    complete: function() {
+                        $('.loading').hide();
+                    }
+                });*/
+
+                var nameH = document.getElementById('hn-input').value;
                 var nameH2 = document.getElementById('name_input').value;
                 if(nameH != ''){
-                  $.getJSON(getExpRegURL(nameH, 20), function(jd) {
+                  $.getJSON(getExpRegURL(nameH, 2), function(jd) {
                     for (var item in jd) {
                       $('#successER'+item).html('<ol class="list-group"><li class= "list-group-item list-group-item-warning"><b>web:</b> ' + jd[item].url + '</li>');
 
@@ -865,19 +893,21 @@
                  }
 
                  else if(nameH2 != ''){
+                    $('#progress').show();
+                    $('#loadText').html('Cargando...');
                     $.getJSON(getExpRegURL(nameH2, 20), function(jd) {
                     for (var item in jd) {
-                        $('#successER'+item).html('<ol class="list-group"><li class= "list-group-item list-group-item-warning"><b>web:</b> ' + jd[item].url + '</li>');
+                        $('#successER'+item).html('<ol class="list-group"><li class= "list-group-item list-group-item-default"><b>web:</b> ' + jd[item].url + '</li>');
 
                       // positve words list
                       if(jd[item].positiveWord > 0){
-                          $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><b>Positive words list (+)</b></li>');
+                          $('#successER'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de palabras positivas (+)</b></li>');
                           for (var i = 0; i < jd[item].positiveWord; i++) {
                           $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].PositiveWordList[i].value+'</span><ul><li>' + jd[item].PositiveWordList[i].type + '</li></ul>');
                         };
                         // negative word list
                         if(jd[item].negativeWord > 0){
-                             $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><b>Negative words list (-)</b></li>');
+                             $('#successER'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de palabras negativas (-)</b></li>');
                               for (var i = 0; i < jd[item].negativeWord; i++) {
                               $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].NegativeWordList[i].value+'</span><ul><li>' + jd[item].NegativeWordList[i].type + '</li></ul>');
                              };
@@ -885,21 +915,23 @@
                       }
                       // positive regular expressions list  
                       else if(jd[item].positiveRegularExpresion > 0){
-                         $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><b>Positive Regular Expresion List (+)</b></li>');
+                         $('#successER'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de expresiones regulares positivas (+)</b></li>');
                           for (var i = 0; i < jd[item].positiveRegularExpresion; i++) {
                           $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveRegularExpresionList[i].value+'</span><ul><li>' + jd[item].positiveRegularExpresionList[i].type + '</li></ul>');
                         };
                         // negative regular expressions list
                         if(jd[item].negativeRegularExpresion > 0){
-                             $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><b>Negative Regular Expresion List (-)</b></li>');
+                             $('#successER'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de expresiones regulares negativas (-)</b></li>');
                               for (var i = 0; i < jd[item].negativeRegularExpresion; i++) {
                               $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].negativeRegularExpresionList[i].value+'</span><ul><li>' + jd[item].negativeRegularExpresionList[i].type + '</li></ul>');
                             };
                         }
                       }
                       else{
-                        $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><b>No Found Regular Expressions (!)</b></li>');
+                        $('#successER'+item).append('<li class= "list-group-item list-group-item-info"><b>Datos no encontrados (!)</b></li>');
                       }
+                      $('#loadText').hide();
+                      $('#progress').hide();
                     };
                   });
                  }
@@ -914,32 +946,49 @@
         <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.6.1/dist/progressbar.js"></script>
 
         <script>
-            window.onload = function onLoad() {
+            function onLoadProgress() {
                 var circle = new ProgressBar.Circle('#progress', {
                     color: '#4caf50',
                     trailColor: '#eee',
                     strokeWidth: 10,
-                    duration: 2500,
-                    easing: 'easeInOut'
+                    duration: 73000,
+                    //easing: 'easeInOut'
                 });
+
+                // $('#progress').show();
+                // $('#loadText').html('Cargando...');
 
                 circle.set(0.05);
 
                 setTimeout(function() {
-                    circle.animate(0.3);
-                }, 1000);
+                    circle.animate(0.2);
+                }, 5000);
 
                 setTimeout(function() {
                     circle.animate(0.4);
-                }, 3500);
+                }, 5000);
+                setTimeout(function() {
+                    circle.animate(0.6);
+                }, 5000);
 
                 setTimeout(function() {
                     circle.animate(0.8);
-                }, 5500);
+                }, 5000);
 
                 setTimeout(function() {
                     circle.animate(1);
-                }, 8000);
+                    setTimeout(function(){
+                      //  $('#loadText').hide();
+                      //  $('#progress').hide();
+                        circle.set(0.05);
+                        onLoadProgress();
+                        }, 73000)
+                    
+                }, 33000);
+
+                /*while (xmlhttp.status != 400){
+                    document.getElementById('loadText').innerHTML("400");
+                }*/
             };
         </script>
 

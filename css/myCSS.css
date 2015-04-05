@@ -49,26 +49,24 @@ color: #DAD71D;
 	margin: 0 auto;
 }
 
-#driver{
-position: relative;
-width: 100%;
-height: 100%;
-margin: 0 auto;
+.nearlyH input{
+  text-align: center;
 }
 
 .google-maps {
     position: relative;
-    padding-bottom: 60%; // This is the aspect ratio
+    padding-bottom: 48%; // This is the aspect ratio
     height: 0;
     overflow: hidden;
 }
-.form-group .google-maps iframe {	
+
+/*.form-group .google-maps iframe {	
     position: absolute;
     top: 0;
     left: 0;
     width: 100% !important;
     height: 100% !important;
-}
+}*/
 
 .nearlyH .btn-xl{
 
@@ -162,7 +160,7 @@ body{
 }
 
 #checkOp{
-  padding-bottom: 45px;
+  padding-bottom: 20px;
 }
 
 #loadText{
@@ -171,4 +169,35 @@ body{
 
 #expR{
   position: relative;
+}
+
+#city_div{
+ position:absolute;
+ top:0;
+ right:0;
+ margin-right: 8%;
+}
+
+#dataH{
+  padding-top: 1%;
+  position: relative;
+  margin: 0 auto;
+  padding-bottom: 2%;
+}
+
+#hotelMap{
+  position: relative;
+  margin: 0 auto;
+}
+
+#showHotels{
+  padding-top: 1%;
+  padding-bottom: 3%;
+}
+
+.changeColour{
+  font-family: Roboto;
+  font-weight: bolder;
+  font-size: 130%;
+  color: #4B088A;
 }

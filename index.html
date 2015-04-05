@@ -125,15 +125,14 @@
                             <div class="panel-body">
                                 <fieldset>
                                     <!--<legend>Búsqueda avanzada de hoteles</legend>-->
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-12" id="dataH">
                                         
                                         <div class="col-md-8" >
                                             <label class="col-md-6 control-label">Nombre del hotel: </label>
-                                            <p id="name_input"></p>
-                                            <input type="text" class="form-control" id="hn-input" placeholder="Ejemplo: Palace" required>
+                                            <input type="text" class="form-control" id="hn-input" placeholder="Ejemplo: Palace" required onFocus="rmClass()">
                                         </div>
                                         <!-- choose the city -->
-                                        <div class="btn-group col-md-0" role="group">
+                                        <div class="btn-group" role="group" id="city_div">
                                             <button type="button" class="btn btn-xl page-scroll btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="city">
                                                    Ciudad     
                                               <span class="caret"></span>
@@ -158,11 +157,11 @@
                                             </ul>
                                         </div>                                      
                                     </div>
-                                    <div class="form-group col-md-12 map">
+                                    <div class="form-group col-md-12 map" id="hotelMap">
                                          <!-- <label for="nac" class="col-md-2 control-label">Mapa</label> -->
                                         <div class="col-md-12 map">
                                             <div id="map_canvas" class="google-maps">
-                                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7098.94326104394!2d78.0430654485247!3d27.172909818538997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1385710909804" width="50" height="50" frameborder="0" style="border:0"></iframe>
+                                                <iframe frameborder="0" style="border:0"></iframe>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -177,9 +176,9 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <div class="col-md-12 nearlyH" id="show_latlng">
+                                        <div class="nearlyH text-center" id="showHotels">
                                             <!-- search nearly hotels button -->
-                                            <input class="btn btn-xl" type="button" id="driver" value="Nearly Hotels" />
+                                            <input class="btn btn-xl" type="button" id="nearlyHotels" value="Hoteles cercanos" />
                                         </div>
                                         <div class="row text-center">
                                             <div class="col-md-6">
@@ -227,7 +226,7 @@
                                                 
                                                 <div class="col-lg-12 text-center">
                                                     
-                                                    <button type="button" class="btn btn-xl page-scroll" id="bayes"><span class="fa-stack fa-2x">
+                                                    <button type="submit" class="btn btn-xl page-scroll" id="bayes"><span class="fa-stack fa-2x">
                                                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
                                                 </span>buscar</button>
@@ -250,10 +249,12 @@
                                                     </div>
 
                                                     <div id="loadText"></div>
-                                                    <button type="button" class="btn btn-xl page-scroll" id="expR"><span class="fa-stack fa-2x">
+                                                    <button type="submit" class="btn btn-xl page-scroll" id="expR"><span class="fa-stack fa-2x">
                                                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-users fa-stack-1x fa-inverse"></i>
                                                     </span>buscar</button>
+
+                                                    <div id="divCollapse"></div>
                                                     
                                                     <div id="successER0">
                                                     </div>
@@ -523,7 +524,7 @@
 
           // call place autocompleted method
           placeAutocompleted();
-          
+
           google.maps.event.addListener(map, 'click', function(event) {
             
             // call a creator marker method
@@ -542,15 +543,23 @@
 
         //function getNearlyHotels(lat, lng){
             $(document).ready(function() {
-              $("#driver").click(function(event){
-                  $.getJSON(getLatLngURL(clickLat,clickLng), function(jd) {
-                    for (var item in jd) { 
-                      var myLatlng = new google.maps.LatLng(jd[item].latitude,jd[item].longitude);
-                      // call to create markers method
-                      createMarker(myLatlng, jd[item].name);
-                    };map.setZoom(15);
-                  });
-              });
+                
+                    $("#nearlyHotels").click(function(event){
+                        if(clickLat != 40.41349604970198 && clickLng != -3.7051391601562){
+                          $.getJSON(getLatLngURL(clickLat,clickLng), function(jd) {
+                            for (var item in jd) { 
+                              var myLatlng = new google.maps.LatLng(jd[item].latitude,jd[item].longitude);
+                              // call to create markers method
+                              createMarker(myLatlng, jd[item].name);
+                            };map.setZoom(15);
+                          });
+                        }
+                        else{
+                            alert("Por favor indique su posición en el mapa!!");
+                        }
+                    });
+                
+              
            });
         //}
 
@@ -604,103 +613,103 @@
           var infowindowC = new google.maps.InfoWindow();
           var pyrmont = 0;
           var shieldCity = 0;
-          switch(city) {
-            case "Madrid":{
-                pyrmont = new google.maps.LatLng(40.416775400000000000, -3.703790199999957600);
-                shieldCity = 'img/madrid.png';
-                break;}
-            case "Toledo":{
-                pyrmont = new google.maps.LatLng(39.862831600000000000, -4.027323099999990000);
-                shieldCity = 'img/toledo.png';
-                break;}
-            case "Salamanca":{
-                pyrmont = new google.maps.LatLng(40.970103900000000000, -5.663539700000001000);
-                shieldCity = 'img/salamanca.png';
-                break;}
-            case "Burgos":{
-                pyrmont = new google.maps.LatLng(42.343992500000000000, -3.696906000000012700);
-                shieldCity = 'img/burgos.png';
-                break;}
-            case "Bilbao":{
-                pyrmont = new google.maps.LatLng(43.263012600000000000, -2.934985200000028300);
-                shieldCity = 'img/bilbao.png';
-                break;}
-            case "Granada":{
-                pyrmont = new google.maps.LatLng(37.177336300000000000, -3.598557099999993600);
-                shieldCity = 'img/granada.png';
-                break;}
-            case "Zaragoza":{
-                pyrmont = new google.maps.LatLng(41.648822600000000000 , -0.889085300000033400);
-                shieldCity = 'img/zaragoza.png';
-                break;}
-            case "Alicante":{
-                pyrmont = new google.maps.LatLng(38.345996300000000000, -0.490685500000040500);
-                shieldCity = 'img/alicante.png';
-                break;}
-            case "Palma de Mallorca":{
-                pyrmont = new google.maps.LatLng(39.566667, 2.649722);
-                shieldCity = 'img/baleares.png';
-                break;}
-            case "Sevilla":{
-                pyrmont = new google.maps.LatLng(37.389092400000000000, -5.984458899999936000);
-                shieldCity = 'img/sevilla.png';
-                break;}
-            case "Donostia - San Sebastián":{
-                pyrmont = new google.maps.LatLng(43.318334000000000000, -1.981231299999990400);
-                shieldCity = 'img/sanSebastian.png';
-                break;}
-            case "Santiago de Compostela":{
-                pyrmont = new google.maps.LatLng(42.878213200000000000, -8.544844499999954000);
-                shieldCity = 'img/sanCompostela.png';
-                break;}
-            case "Barcelona":{
-                pyrmont = new google.maps.LatLng(41.3825, 2.176944);
-                shieldCity = 'img/barcelona.png';
-                break;}
-            case "Girona":{
-                pyrmont = new google.maps.LatLng(41.983333, 2.816667);
-                shieldCity = 'img/girona.png';
-                break;}
-            case "Valencia":{
-                pyrmont = new google.maps.LatLng(39.469907500000000000, -0.376288100000010700);
-                shieldCity = 'img/valencia.png';
-                break;}
-            case "Santa Cruz de Tenerife":{
-                pyrmont = new google.maps.LatLng(28.466667, -16.25);
-                shieldCity = 'img/canarias.png';
-                break;}
-            default:{
-                alert("default");
-                pyrmont = new google.maps.LatLng(40.416775400000000000, -3.703790199999957600);
-                shieldCity = 'img/madrid.png';}
-          }
+              switch(city) {
+                case "Madrid":{
+                    pyrmont = new google.maps.LatLng(40.416775400000000000, -3.703790199999957600);
+                    shieldCity = 'img/madrid.png';
+                    break;}
+                case "Toledo":{
+                    pyrmont = new google.maps.LatLng(39.862831600000000000, -4.027323099999990000);
+                    shieldCity = 'img/toledo.png';
+                    break;}
+                case "Salamanca":{
+                    pyrmont = new google.maps.LatLng(40.970103900000000000, -5.663539700000001000);
+                    shieldCity = 'img/salamanca.png';
+                    break;}
+                case "Burgos":{
+                    pyrmont = new google.maps.LatLng(42.343992500000000000, -3.696906000000012700);
+                    shieldCity = 'img/burgos.png';
+                    break;}
+                case "Bilbao":{
+                    pyrmont = new google.maps.LatLng(43.263012600000000000, -2.934985200000028300);
+                    shieldCity = 'img/bilbao.png';
+                    break;}
+                case "Granada":{
+                    pyrmont = new google.maps.LatLng(37.177336300000000000, -3.598557099999993600);
+                    shieldCity = 'img/granada.png';
+                    break;}
+                case "Zaragoza":{
+                    pyrmont = new google.maps.LatLng(41.648822600000000000 , -0.889085300000033400);
+                    shieldCity = 'img/zaragoza.png';
+                    break;}
+                case "Alicante":{
+                    pyrmont = new google.maps.LatLng(38.345996300000000000, -0.490685500000040500);
+                    shieldCity = 'img/alicante.png';
+                    break;}
+                case "Palma de Mallorca":{
+                    pyrmont = new google.maps.LatLng(39.566667, 2.649722);
+                    shieldCity = 'img/baleares.png';
+                    break;}
+                case "Sevilla":{
+                    pyrmont = new google.maps.LatLng(37.389092400000000000, -5.984458899999936000);
+                    shieldCity = 'img/sevilla.png';
+                    break;}
+                case "Donostia - San Sebastián":{
+                    pyrmont = new google.maps.LatLng(43.318334000000000000, -1.981231299999990400);
+                    shieldCity = 'img/sanSebastian.png';
+                    break;}
+                case "Santiago de Compostela":{
+                    pyrmont = new google.maps.LatLng(42.878213200000000000, -8.544844499999954000);
+                    shieldCity = 'img/sanCompostela.png';
+                    break;}
+                case "Barcelona":{
+                    pyrmont = new google.maps.LatLng(41.3825, 2.176944);
+                    shieldCity = 'img/barcelona.png';
+                    break;}
+                case "Girona":{
+                    pyrmont = new google.maps.LatLng(41.983333, 2.816667);
+                    shieldCity = 'img/girona.png';
+                    break;}
+                case "Valencia":{
+                    pyrmont = new google.maps.LatLng(39.469907500000000000, -0.376288100000010700);
+                    shieldCity = 'img/valencia.png';
+                    break;}
+                case "Santa Cruz de Tenerife":{
+                    pyrmont = new google.maps.LatLng(28.466667, -16.25);
+                    shieldCity = 'img/canarias.png';
+                    break;}
+                default:{
+                    alert("default");
+                    pyrmont = new google.maps.LatLng(40.416775400000000000, -3.703790199999957600);
+                    shieldCity = 'img/madrid.png';}
+              }
 
-          var info = '<div id="sm">'+
-                        '<h3>'+city+'</h3>'+
-                        '<div id="ssm">' +
-                            '<p><a href="http://es.wikipedia.org/wiki/'+city+'" target="_blank">'+
-                                '<img src="'+shieldCity+'" alt="shield city" height="42" width="42"></a></p>'+
-                        '</div>'+
-                    '</div>';
+              var info = '<div id="sm">'+
+                            '<h3>'+city+'</h3>'+
+                            '<div id="ssm">' +
+                                '<p><a href="http://es.wikipedia.org/wiki/'+city+'" target="_blank">'+
+                                    '<img src="'+shieldCity+'" alt="shield city" height="42" width="42"></a></p>'+
+                            '</div>'+
+                        '</div>';
 
-          var marker = new google.maps.Marker({
-            map: map,
-            position: pyrmont,
-            content: info
-          });
+              var marker = new google.maps.Marker({
+                map: map,
+                position: pyrmont,
+                content: info
+              });
 
-          google.maps.event.addListener(marker, 'click', function() {
-            infowindowC.setContent(info);
-            infowindowC.open(map, this);
-          });
+              google.maps.event.addListener(marker, 'click', function() {
+                infowindowC.setContent(info);
+                infowindowC.open(map, this);
+              });
 
-          map.setCenter(pyrmont);
-          map.setZoom(14);
+              map.setCenter(pyrmont);
+              map.setZoom(14);
         }
         // -----------------------------------------------------------------------
 
 
-        // ------------------------------------ show latlng on the map with a click
+        // ------------------------------------ show latlng on the map with a click (you are here!!)
         function placeMarker(location) {
         var pin = 'img/png/mapUs.png';
           var marker = new google.maps.Marker({
@@ -723,7 +732,7 @@
           infowindow.open(map,marker);
         }
 
-        // ------------------------------------------- create the map markers
+        // ------------------------------------------- create hotels markers on the map
         function createMarker(location, nameH) {
             var hpin = 'img/png/ubed.png';
             var marker = new google.maps.Marker({
@@ -733,7 +742,8 @@
             });
 
             google.maps.event.addListener(marker, 'click', function() {
-                document.getElementById('name_input').innerHTML = nameH;
+                $("#hn-input").val(nameH); // update input hotel name
+                $("#hn-input").addClass("changeColour");
               var infowindowH = new google.maps.InfoWindow({
             content: nameH
           });
@@ -814,129 +824,128 @@
             $(document).ready(function() {
               $("#bayes").click(function(event){
                 var nameHotel= document.getElementById('hn-input').value;
-                var nameHotel2 = document.getElementById('name_input').value;
                 var termHotel= document.getElementById('ponw').value;
                 if( nameHotel != '' && termHotel != ''){
                     $.getJSON(getBayesURL(nameHotel,termHotel), function(jd) {
                     $('#successB').html('<li><b>total bayes:</b> ' + jd + '</li>');
                   });
                 }
-                else if(nameHotel2 != '' && termHotel != ''){
-                     $.getJSON(getBayesURL(nameHotel2,termHotel), function(jd) {
-                    $('#successB').html('<li><b>total bayes:</b> ' + jd + '</li>');
-                  });
-                } 
               });
            });
         // -----------------------------------------------------------------------------------
 
         // ------------------------------------- show expReg method results
             $(document).ready(function() {
-              $("#expR").click(function(event){
-                // call the progress animation
-                 onLoadProgress();
-                /*$.ajax({
-                    url: url,
-                    dataType: "json",
-                    beforeSend: function() {
-                        //$('.loading').show();
+                $("#expR").click(function(event){                
+                    var nameH = document.getElementById('hn-input').value;
+                    if(nameH != ''){
+                        // call the progress animation
                         onLoadProgress();
-                    },
-                    success: function(data) {
-                        // Do stuff...
-                    },
-                    complete: function() {
-                        $('.loading').hide();
-                    }
-                });*/
 
-                var nameH = document.getElementById('hn-input').value;
-                var nameH2 = document.getElementById('name_input').value;
-                if(nameH != ''){
-                  $.getJSON(getExpRegURL(nameH, 2), function(jd) {
-                    for (var item in jd) {
-                      $('#successER'+item).html('<ol class="list-group"><li class= "list-group-item list-group-item-warning"><b>web:</b> ' + jd[item].url + '</li>');
+                        $('#progress').show();
+                       // $('#loadText').html('Cargando...');
+                        $.getJSON(getExpRegURL(nameH, 8), function(jd) {
 
-                      // positve words list
-                      if(jd[item].positiveWord > 0){
-                          $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><b>Positive words list (+)</b></li>');
-                          for (var i = 0; i < jd[item].positiveWord; i++) {
-                          $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].PositiveWordList[i].value+'</span><ul><li>' + jd[item].PositiveWordList[i].type + '</li></ul>');
-                        };
-                        // negative word list
-                        if(jd[item].negativeWord > 0){
-                             $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><b>Negative words list (-)</b></li>');
-                              for (var i = 0; i < jd[item].negativeWord; i++) {
-                              $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].NegativeWordList[i].value+'</span><ul><li>' + jd[item].NegativeWordList[i].type + '</li></ul>');
-                             };
-                        }
-                      }
-                      // positive regular expressions list  
-                      else if(jd[item].positiveRegularExpresion > 0){
-                         $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><b>Positive Regular Expresion List (+)</b></li>');
-                          for (var i = 0; i < jd[item].positiveRegularExpresion; i++) {
-                          $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveRegularExpresionList[i].value+'</span><ul><li>' + jd[item].positiveRegularExpresionList[i].type + '</li></ul>');
-                        };
-                        // negative regular expressions list
-                        if(jd[item].negativeRegularExpresion > 0){
-                             $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><b>Negative Regular Expresion List (-)</b></li>');
-                              for (var i = 0; i < jd[item].negativeRegularExpresion; i++) {
-                              $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].negativeRegularExpresionList[i].value+'</span><ul><li>' + jd[item].negativeRegularExpresionList[i].type + '</li></ul>');
-                            };
-                        }
-                      }
-                      else{
-                        $('#successER'+item).append('<li class= "list-group-item list-group-item-warning"><b>No Found Regular Expressions (!)</b></li>');
-                      }
-                    };
-                  });
-                 }
+                            $('#divCollapse').html('<div class="container"><div class="panel-group col-lg-6" id="accordion" role="tablist" aria-multiselectable="true">');
 
-                 else if(nameH2 != ''){
-                    $('#progress').show();
-                    $('#loadText').html('Cargando...');
-                    $.getJSON(getExpRegURL(nameH2, 20), function(jd) {
-                    for (var item in jd) {
-                        $('#successER'+item).html('<ol class="list-group"><li class= "list-group-item list-group-item-default"><b>web:</b> ' + jd[item].url + '</li>');
+                            for (var item in jd) {
 
-                      // positve words list
-                      if(jd[item].positiveWord > 0){
-                          $('#successER'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de palabras positivas (+)</b></li>');
-                          for (var i = 0; i < jd[item].positiveWord; i++) {
-                          $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].PositiveWordList[i].value+'</span><ul><li>' + jd[item].PositiveWordList[i].type + '</li></ul>');
-                        };
-                        // negative word list
-                        if(jd[item].negativeWord > 0){
-                             $('#successER'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de palabras negativas (-)</b></li>');
-                              for (var i = 0; i < jd[item].negativeWord; i++) {
-                              $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].NegativeWordList[i].value+'</span><ul><li>' + jd[item].NegativeWordList[i].type + '</li></ul>');
-                             };
-                        }
-                      }
-                      // positive regular expressions list  
-                      else if(jd[item].positiveRegularExpresion > 0){
-                         $('#successER'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de expresiones regulares positivas (+)</b></li>');
-                          for (var i = 0; i < jd[item].positiveRegularExpresion; i++) {
-                          $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveRegularExpresionList[i].value+'</span><ul><li>' + jd[item].positiveRegularExpresionList[i].type + '</li></ul>');
-                        };
-                        // negative regular expressions list
-                        if(jd[item].negativeRegularExpresion > 0){
-                             $('#successER'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de expresiones regulares negativas (-)</b></li>');
-                              for (var i = 0; i < jd[item].negativeRegularExpresion; i++) {
-                              $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].negativeRegularExpresionList[i].value+'</span><ul><li>' + jd[item].negativeRegularExpresionList[i].type + '</li></ul>');
-                            };
-                        }
-                      }
-                      else{
-                        $('#successER'+item).append('<li class= "list-group-item list-group-item-info"><b>Datos no encontrados (!)</b></li>');
-                      }
-                      $('#loadText').hide();
-                      $('#progress').hide();
-                    };
-                  });
-                 }
+                                $('#divCollapse').append('<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+item+'"><p class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse'+item+'" aria-expanded="true" aria-controls="collapse'+item+'"><li class= "list-group-item list-group-item-default"><b>web:</b> ' + jd[item].url + '</li></a></p></div><div id="collapse'+item+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'+item+'"><div class="panel-body"><div class="list-group">AAAA'+item);
+                                // positve words list
+                                  if(jd[item].positiveWord > 0){
+                                        $('#divCollapse').append('<li class= "list-group-item list-group-item-success"><a href="#" class="list-group-item list-group-item-success"><b>Lista de palabras positivas (+)</b>');
+                                          for (var i = 0; i < jd[item].positiveWord; i++) {
+                                          $('#divCollapse').append('<li class= "list-group-item"><span class="badge">'+jd[item].PositiveWordList[i].value+'</span><ul><li>' + jd[item].PositiveWordList[i].type + '</li></ul>');
+                                            };
+                                            $('#divCollapse').append('</a></li>');
+                                    }
+                                    else{
+                                    $('#divCollapse').append('<a href="#" class="list-group-item list-group-item-info"><b>No existe palabras positivas (!)</b></a>');
+                                    }
+                                    // negative word list
+                                    if(jd[item].negativeWord > 0){
+                                             $('#divCollapse').append('<li class= "list-group-item list-group-item-danger"><a href="#" class="list-group-item list-group-item-danger"><b>Lista de palabras negativas (-)</b>');
+                                              for (var i = 0; i < jd[item].negativeWord; i++) {
+                                              $('#divCollapse').append('<li class= "list-group-item"><span class="badge">'+jd[item].NegativeWordList[i].value+'</span><ul><li>' + jd[item].NegativeWordList[i].type + '</li></ul>');
+                                             };
+                                             $('#divCollapse').append('</a></li>');
+                                    }
+                                    else{
+                                    $('#divCollapse').append('<a href="#" class="list-group-item list-group-item-info"><b>No existe palabras negativas (!)</b></a>');
+                                    }
 
-               });
+                                // positive regular expressions list  
+                                  if(jd[item].positiveRegularExpresion > 0){
+                                     $('#divCollapse').append('<li class= "list-group-item list-group-item-success"><a href="#" class="list-group-item list-group-item-success"><b>Lista de expresiones regulares positivas (+)</b>');
+                                      for (var i = 0; i < jd[item].positiveRegularExpresion; i++) {
+                                      $('#divCollapse').append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveRegularExpresionList[i].value+'</span><ul><li>' + jd[item].positiveRegularExpresionList[i].type + '</li></ul>');
+                                        };
+                                        $('#divCollapse').append('</a></li>');                                  
+                                  }
+                                  else{
+                                    $('#divCollapse').append('<a href="#" class="list-group-item list-group-item-info"><b>No existe exp. reg. positivas (!)</b></a>');
+                                  }
+                                  // negative regular expressions list
+                                  if(jd[item].negativeRegularExpresion > 0){
+                                         $('#divCollapse').append('<li class= "list-group-item list-group-item-danger"><a href="#" class="list-group-item list-group-item-danger"><b>Lista de expresiones regulares negativas (-)</b>');
+                                          for (var i = 0; i < jd[item].negativeRegularExpresion; i++) {
+                                          $('#divCollapse').append('<li class= "list-group-item"><span class="badge">'+jd[item].negativeRegularExpresionList[i].value+'</span><ul><li>' + jd[item].negativeRegularExpresionList[i].type + '</li></ul>');
+                                        };
+                                        $('#divCollapse').append('</a></li>');
+                                    }
+
+                                  else{
+                                    $('#divCollapse').append('<a href="#" class="list-group-item list-group-item-info"><b>No existe exp. reg. negativas (!)</b></a>');
+                                  }
+                                  $('#divCollapse').append('</div></div></div></div>');
+                            }; // end for
+
+                            $('#divCollapse').append('</div></div>');
+                            
+                             
+                                
+                                /*('<a href="#" class="list-group-item">Ampliación de Redes y sistemas operativos <b>(ASOR)</b></a><a href="#" class="list-group-item">Análisis de redes sociales <b>(SOC)</b></a><a href="#" class="list-group-item">Arquitectura de ordenadores <b>(AC)</b></a><a href="#" class="list-group-item">Interfaces de usuario <b>(IU)</b></a></div></div></div></div></div> <!-- accordion -->');*/
+
+                                /*$('#successER'+item).html('<ol class="list-group"><li class= "list-group-item list-group-item-default"><b>web:</b> ' + jd[item].url + '</li>');
+
+                                  // positve words list
+                                  if(jd[item].positiveWord > 0){
+                                      $('#successER'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de palabras positivas (+)</b></li>');
+                                      for (var i = 0; i < jd[item].positiveWord; i++) {
+                                      $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].PositiveWordList[i].value+'</span><ul><li>' + jd[item].PositiveWordList[i].type + '</li></ul>');
+                                    };
+                                    // negative word list
+                                    if(jd[item].negativeWord > 0){
+                                         $('#successER'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de palabras negativas (-)</b></li>');
+                                          for (var i = 0; i < jd[item].negativeWord; i++) {
+                                          $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].NegativeWordList[i].value+'</span><ul><li>' + jd[item].NegativeWordList[i].type + '</li></ul>');
+                                         };
+                                    }
+                                  }
+                                  // positive regular expressions list  
+                                  else if(jd[item].positiveRegularExpresion > 0){
+                                     $('#successER'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de expresiones regulares positivas (+)</b></li>');
+                                      for (var i = 0; i < jd[item].positiveRegularExpresion; i++) {
+                                      $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveRegularExpresionList[i].value+'</span><ul><li>' + jd[item].positiveRegularExpresionList[i].type + '</li></ul>');
+                                    };
+                                    // negative regular expressions list
+                                    if(jd[item].negativeRegularExpresion > 0){
+                                         $('#successER'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de expresiones regulares negativas (-)</b></li>');
+                                          for (var i = 0; i < jd[item].negativeRegularExpresion; i++) {
+                                          $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].negativeRegularExpresionList[i].value+'</span><ul><li>' + jd[item].negativeRegularExpresionList[i].type + '</li></ul>');
+                                        };
+                                    }
+                                  }
+                                  else{
+                                    $('#successER'+item).append('<li class= "list-group-item list-group-item-info"><b>Datos no encontrados (!)</b></li>');
+                                  }*/
+
+                            $('#loadText').hide();
+                            $('#progress').hide();
+                        }); // end getJSON
+                        
+                     }
+                });
             });
         // -----------------------------------------------------------------------------------
     
@@ -985,14 +994,13 @@
                         }, 73000)
                     
                 }, 33000);
-
-                /*while (xmlhttp.status != 400){
-                    document.getElementById('loadText').innerHTML("400");
-                }*/
             };
+
+            function rmClass(){
+                $("#hn-input").removeClass("changeColour");
+            }
         </script>
 
-
-  </body>
+   </body>
 
 </html>

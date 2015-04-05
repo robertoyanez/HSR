@@ -253,50 +253,8 @@
                                                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-users fa-stack-1x fa-inverse"></i>
                                                     </span>buscar</button>
-
+                                                    <!-- results to recommender search -->
                                                     <div id="divCollapse"></div>
-                                                    
-                                                    <div id="successER0">
-                                                    </div>
-                                                    <div id="successER1">
-                                                    </div>
-                                                    <div id="successER2">
-                                                    </div>
-                                                    <div id="successER3">
-                                                    </div>
-                                                    <div id="successER4">
-                                                    </div>
-                                                    <div id="successER5">
-                                                    </div>
-                                                    <div id="successER6">
-                                                    </div>
-                                                    <div id="successER7">
-                                                    </div>
-                                                    <div id="successER8">
-                                                    </div>
-                                                    <div id="successER9">
-                                                    </div>
-                                                    <div id="successER10">
-                                                    </div>
-                                                    <div id="successER11">
-                                                    </div>
-                                                    <div id="successER12">
-                                                    </div>
-                                                    <div id="successER13">
-                                                    </div>
-                                                    <div id="successER14">
-                                                    </div>
-                                                    <div id="successER15">
-                                                    </div>
-                                                    <div id="successER16">
-                                                    </div>
-                                                    <div id="successER17">
-                                                    </div>
-                                                    <div id="successER18">
-                                                    </div>
-                                                    <div id="successER19">
-                                                      
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -850,96 +808,58 @@
 
                             for (var item in jd) {
 
-                                $('#divCollapse').append('<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+item+'"><p class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse'+item+'" aria-expanded="true" aria-controls="collapse'+item+'"><li class= "list-group-item list-group-item-default"><b>web:</b> ' + jd[item].url + '</li></a></p></div><div id="collapse'+item+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'+item+'"><div class="panel-body"><div class="list-group">AAAA'+item);
+                                $('#divCollapse').append('<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+item+'"><p class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse'+item+'" aria-expanded="true" aria-controls="collapse'+item+'"><li class= "list-group-item list-group-item-default"><b>web:</b> ' + jd[item].url + '</li></a></p></div><div id="collapse'+item+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'+item+'"><div class="panel-body"><div class="list-group" id="terms'+item+'"></div>');
+                                    $('#terms'+item).html('<h1>Results</h1>');
                                 // positve words list
                                   if(jd[item].positiveWord > 0){
-                                        $('#divCollapse').append('<li class= "list-group-item list-group-item-success"><a href="#" class="list-group-item list-group-item-success"><b>Lista de palabras positivas (+)</b>');
+                                        $('#terms'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de palabras positivas (+)</b>');
                                           for (var i = 0; i < jd[item].positiveWord; i++) {
-                                          $('#divCollapse').append('<li class= "list-group-item"><span class="badge">'+jd[item].PositiveWordList[i].value+'</span><ul><li>' + jd[item].PositiveWordList[i].type + '</li></ul>');
+                                          $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].PositiveWordList[i].value+'</span><ul><li>' + jd[item].PositiveWordList[i].type + '</li></ul>');
                                             };
-                                            $('#divCollapse').append('</a></li>');
+                                            $('#terms'+item).append('</li>');
                                     }
                                     else{
-                                    $('#divCollapse').append('<a href="#" class="list-group-item list-group-item-info"><b>No existe palabras positivas (!)</b></a>');
+                                    $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe palabras positivas (!)</b></li>');
                                     }
                                     // negative word list
                                     if(jd[item].negativeWord > 0){
-                                             $('#divCollapse').append('<li class= "list-group-item list-group-item-danger"><a href="#" class="list-group-item list-group-item-danger"><b>Lista de palabras negativas (-)</b>');
+                                             $('#terms'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de palabras negativas (-)</b>');
                                               for (var i = 0; i < jd[item].negativeWord; i++) {
-                                              $('#divCollapse').append('<li class= "list-group-item"><span class="badge">'+jd[item].NegativeWordList[i].value+'</span><ul><li>' + jd[item].NegativeWordList[i].type + '</li></ul>');
+                                              $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].NegativeWordList[i].value+'</span><ul><li>' + jd[item].NegativeWordList[i].type + '</li></ul>');
                                              };
-                                             $('#divCollapse').append('</a></li>');
+                                             $('#terms'+item).append('</li>');
                                     }
                                     else{
-                                    $('#divCollapse').append('<a href="#" class="list-group-item list-group-item-info"><b>No existe palabras negativas (!)</b></a>');
+                                    $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe palabras negativas (!)</b></li>');
                                     }
 
                                 // positive regular expressions list  
                                   if(jd[item].positiveRegularExpresion > 0){
-                                     $('#divCollapse').append('<li class= "list-group-item list-group-item-success"><a href="#" class="list-group-item list-group-item-success"><b>Lista de expresiones regulares positivas (+)</b>');
+                                     $('#terms'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de expresiones regulares positivas (+)</b>');
                                       for (var i = 0; i < jd[item].positiveRegularExpresion; i++) {
-                                      $('#divCollapse').append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveRegularExpresionList[i].value+'</span><ul><li>' + jd[item].positiveRegularExpresionList[i].type + '</li></ul>');
+                                      $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveRegularExpresionList[i].value+'</span><ul><li>' + jd[item].positiveRegularExpresionList[i].type + '</li></ul>');
                                         };
-                                        $('#divCollapse').append('</a></li>');                                  
+                                        $('#terms'+item).append('</li>');                                  
                                   }
                                   else{
-                                    $('#divCollapse').append('<a href="#" class="list-group-item list-group-item-info"><b>No existe exp. reg. positivas (!)</b></a>');
+                                    $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe exp. reg. positivas (!)</b></li>');
                                   }
                                   // negative regular expressions list
                                   if(jd[item].negativeRegularExpresion > 0){
-                                         $('#divCollapse').append('<li class= "list-group-item list-group-item-danger"><a href="#" class="list-group-item list-group-item-danger"><b>Lista de expresiones regulares negativas (-)</b>');
+                                         $('#terms'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de expresiones regulares negativas (-)</b>');
                                           for (var i = 0; i < jd[item].negativeRegularExpresion; i++) {
-                                          $('#divCollapse').append('<li class= "list-group-item"><span class="badge">'+jd[item].negativeRegularExpresionList[i].value+'</span><ul><li>' + jd[item].negativeRegularExpresionList[i].type + '</li></ul>');
+                                          $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].negativeRegularExpresionList[i].value+'</span><ul><li>' + jd[item].negativeRegularExpresionList[i].type + '</li></ul>');
                                         };
-                                        $('#divCollapse').append('</a></li>');
+                                        $('#terms'+item).append('</li>');
                                     }
 
                                   else{
-                                    $('#divCollapse').append('<a href="#" class="list-group-item list-group-item-info"><b>No existe exp. reg. negativas (!)</b></a>');
+                                    $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe exp. reg. negativas (!)</b></li>');
                                   }
-                                  $('#divCollapse').append('</div></div></div></div>');
+                                  $('#divCollapse').append('</div></div></div>');
                             }; // end for
 
                             $('#divCollapse').append('</div></div>');
-                            
-                             
-                                
-                                /*('<a href="#" class="list-group-item">Ampliación de Redes y sistemas operativos <b>(ASOR)</b></a><a href="#" class="list-group-item">Análisis de redes sociales <b>(SOC)</b></a><a href="#" class="list-group-item">Arquitectura de ordenadores <b>(AC)</b></a><a href="#" class="list-group-item">Interfaces de usuario <b>(IU)</b></a></div></div></div></div></div> <!-- accordion -->');*/
-
-                                /*$('#successER'+item).html('<ol class="list-group"><li class= "list-group-item list-group-item-default"><b>web:</b> ' + jd[item].url + '</li>');
-
-                                  // positve words list
-                                  if(jd[item].positiveWord > 0){
-                                      $('#successER'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de palabras positivas (+)</b></li>');
-                                      for (var i = 0; i < jd[item].positiveWord; i++) {
-                                      $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].PositiveWordList[i].value+'</span><ul><li>' + jd[item].PositiveWordList[i].type + '</li></ul>');
-                                    };
-                                    // negative word list
-                                    if(jd[item].negativeWord > 0){
-                                         $('#successER'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de palabras negativas (-)</b></li>');
-                                          for (var i = 0; i < jd[item].negativeWord; i++) {
-                                          $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].NegativeWordList[i].value+'</span><ul><li>' + jd[item].NegativeWordList[i].type + '</li></ul>');
-                                         };
-                                    }
-                                  }
-                                  // positive regular expressions list  
-                                  else if(jd[item].positiveRegularExpresion > 0){
-                                     $('#successER'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de expresiones regulares positivas (+)</b></li>');
-                                      for (var i = 0; i < jd[item].positiveRegularExpresion; i++) {
-                                      $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveRegularExpresionList[i].value+'</span><ul><li>' + jd[item].positiveRegularExpresionList[i].type + '</li></ul>');
-                                    };
-                                    // negative regular expressions list
-                                    if(jd[item].negativeRegularExpresion > 0){
-                                         $('#successER'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de expresiones regulares negativas (-)</b></li>');
-                                          for (var i = 0; i < jd[item].negativeRegularExpresion; i++) {
-                                          $('#successER'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].negativeRegularExpresionList[i].value+'</span><ul><li>' + jd[item].negativeRegularExpresionList[i].type + '</li></ul>');
-                                        };
-                                    }
-                                  }
-                                  else{
-                                    $('#successER'+item).append('<li class= "list-group-item list-group-item-info"><b>Datos no encontrados (!)</b></li>');
-                                  }*/
-
                             $('#loadText').hide();
                             $('#progress').hide();
                         }); // end getJSON

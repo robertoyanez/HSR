@@ -188,6 +188,7 @@ body{
 #hotelMap{
   position: relative;
   margin: 0 auto;
+  padding-top: 2%;
 }
 
 #showHotels{

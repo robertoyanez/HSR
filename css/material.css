@@ -5476,7 +5476,7 @@ icon-material-lightgrey {
 }
 .panel {
   border-radius: 2px;
-  border: 0;
+  /*border: 0;*/
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.12);
 }
 .panel > .heading,

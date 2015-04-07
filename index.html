@@ -22,9 +22,9 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <!-- <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'> -->
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <!-- My CSS -->
     <link href="css/myCSS.css" rel="stylesheet">
@@ -744,8 +744,22 @@
         // var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/Results?city=Madrid&hotel='+nameH+'&termino='+termH;
         // personal server
         // http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=sucio
-        function getBayesURL(nameH, termH) {
-            var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city=Madrid&hotel='+nameH+'&termino='+termH;            
+        function getBayesURL(cityH, nameH, term1H, term2H, term3H, term4H) {
+            if(term1H != '' && (term2H == '' && term3H == '' && term4H == '')){
+                var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+termH1;
+            }
+            else if(term2H != '' && (term1H == '' && term3H == '' && term4H == '')){
+                var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+termH2;
+            }
+            else if(term3H != '' && (term1H == '' && term2H == '' && term4H == '')){
+                var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+termH3;
+            }
+            else if(term4H != '' && (term1H == '' && term2H == '' && term3H == '')){
+                var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+termH4;
+            }
+            else{
+                var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+termH1+termH2+termH3+termH4;
+            }      
             return url;
         
         }

@@ -137,23 +137,23 @@
                                                    Ciudad     
                                               <span class="caret"></span>
                                             </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                              <li><a onclick="searchCity('Alicante')">Alicante</a></li>
-                                              <li><a onclick="searchCity('Barcelona')">Barcelona</a></li>
-                                              <li><a onclick="searchCity('Bilbao')">Bilbao</a></li>
-                                              <li><a onclick="searchCity('Burgos')">Burgos</a></li>
-                                              <li><a onclick="searchCity('Donostia - San Sebastián')">Donostia - San Sebastián</a></li>
-                                              <li><a onclick="searchCity('Girona')">Girona</a></li>
-                                              <li><a onclick="searchCity('Granada')">Granada</a></li>
-                                              <li><a onclick="searchCity('Madrid')">Madrid</a></li>
-                                              <li><a onclick="searchCity('Palma de Mallorca')">Palma de Mallorca</a></li>
-                                              <li><a onclick="searchCity('Salamanca')">Salamanca</a></li>
-                                              <li><a onclick="searchCity('Santa Cruz de Tenerife')">Santa Cruz de Tenerife</a></li>
-                                              <li><a onclick="searchCity('Santiago de Compostela')">Santiago de Compostela</a></li>
-                                              <li><a onclick="searchCity('Sevilla')">Sevilla</a></li>
-                                              <li><a onclick="searchCity('Toledo')">Toledo</a></li>
-                                              <li><a onclick="searchCity('Valencia')">Valencia</a></li>
-                                              <li><a onclick="searchCity('Zaragoza')">Zaragoza</a></li>
+                                            <ul class="dropdown-menu" role="menu" id="cities">
+                                              <li><a onclick="searchCity('Alicante')" id="0">Alicante</a></li>
+                                              <li><a onclick="searchCity('Barcelona')" id="1">Barcelona</a></li>
+                                              <li><a onclick="searchCity('Bilbao')" id="2">Bilbao</a></li>
+                                              <li><a onclick="searchCity('Burgos')" id="3">Burgos</a></li>
+                                              <li><a onclick="searchCity('Donostia - San Sebastián')" id="4">Donostia - San Sebastián</a></li>
+                                              <li><a onclick="searchCity('Girona')" id="5">Girona</a></li>
+                                              <li><a onclick="searchCity('Granada')" id="6">Granada</a></li>
+                                              <li><a onclick="searchCity('Madrid')" id="7">Madrid</a></li>
+                                              <li><a onclick="searchCity('Palma de Mallorca')" id="8">Palma de Mallorca</a></li>
+                                              <li><a onclick="searchCity('Salamanca')" id="9">Salamanca</a></li>
+                                              <li><a onclick="searchCity('Santa Cruz de Tenerife')" id="10">Santa Cruz de Tenerife</a></li>
+                                              <li><a onclick="searchCity('Santiago de Compostela')" id="11">Santiago de Compostela</a></li>
+                                              <li><a onclick="searchCity('Sevilla')" id="12">Sevilla</a></li>
+                                              <li><a onclick="searchCity('Toledo')" id="13">Toledo</a></li>
+                                              <li><a onclick="searchCity('Valencia')" id="14">Valencia</a></li>
+                                              <li><a onclick="searchCity('Zaragoza')" id="15">Zaragoza</a></li>
                                             </ul>
                                         </div>                                      
                                     </div>
@@ -504,7 +504,7 @@
                 
                     $("#nearlyHotels").click(function(event){
                         if(clickLat != 40.41349604970198 && clickLng != -3.7051391601562){
-                          $.getJSON(getLatLngURL(clickLat,clickLng), function(jd) {
+                          $.getJSON(getLatLngURL(500,clickLat,clickLng), function(jd) {
                             for (var item in jd) { 
                               var myLatlng = new google.maps.LatLng(jd[item].latitude,jd[item].longitude);
                               // call to create markers method
@@ -513,7 +513,7 @@
                           });
                         }
                         else{
-                            alert("Por favor indique su posición en el mapa!!");
+                            alert("Por favor indique la ciudad y su posición en el mapa!!");
                         }
                     });
                 
@@ -665,8 +665,7 @@
               map.setZoom(14);
         }
         // -----------------------------------------------------------------------
-
-
+        
         // ------------------------------------ show latlng on the map with a click (you are here!!)
         function placeMarker(location) {
         var pin = 'img/png/mapUs.png';
@@ -733,8 +732,8 @@
         // var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/SearchHotel?radio=500&lat='+lat+'&lon='+lng;
         // personal server
         // http://mlh1415.ddns.net:8080/SystemRecommendations/SearchHotel?radio=500&lat=40.43&lon=-3.70
-        function getLatLngURL(lat, lng) {
-            var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/SearchHotel?radio=500&lat='+lat+'&lon='+lng;            
+        function getLatLngURL(rad, lat, lng) {
+            var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/SearchHotel?radio='+rad+'&lat='+lat+'&lon='+lng;            
             return url;
         
         }
@@ -768,8 +767,8 @@
         // http://mlh.fdi.ucm.es:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20Palace&scan=8
         // personal server
         // http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20Palace&scan=8
-        function getExpRegURL(nameH, scanNum) {
-            var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20'+nameH+'&scan='+scanNum;            
+        function getExpRegURL(cityH, nameH, scanNum) {
+            var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?search=Hotel%20'+cityH+'%20'+nameH+'&scan='+scanNum;            
             return url;
         
         }        
@@ -792,13 +791,19 @@
 
             };*/
 
+        
          // ------------------------------------- show bayes method result
             $(document).ready(function() {
               $("#bayes").click(function(event){
+                $("#cities li").click(function() {
+                    var city = $(this).text(); // gets text contents of clicked li
+                });
                 var nameHotel= document.getElementById('hn-input').value;
-                var termHotel= document.getElementById('ponw').value;
-                if( nameHotel != '' && termHotel != ''){
-                    $.getJSON(getBayesURL(nameHotel,termHotel), function(jd) {
+                // var termHotel= document.getElementById('ponw').value;
+
+                
+                if( nameHotel != ''){
+                    $.getJSON(getBayesURL(city,nameHotel,termHotel), function(jd) {
                     $('#successB').html('<li><b>total bayes:</b> ' + jd + '</li>');
                   });
                 }
@@ -808,7 +813,10 @@
 
         // ------------------------------------- show expReg method results
             $(document).ready(function() {
-                $("#expR").click(function(event){                
+                $("#expR").click(function(event){
+                    $("#cities li").click(function() {
+                        var city = $(this).text(); // gets text contents of clicked li
+                    });         
                     var nameH = document.getElementById('hn-input').value;
                     if(nameH != ''){
                         // call the progress animation
@@ -816,7 +824,7 @@
 
                         $('#progress').show();
                        // $('#loadText').html('Cargando...');
-                        $.getJSON(getExpRegURL(nameH, 8), function(jd) {
+                        $.getJSON(getExpRegURL(city, nameH, 8), function(jd) {
 
                             $('#divCollapse').html('<div class="container"><div class="panel-group col-lg-6" id="accordion" role="tablist" aria-multiselectable="true">');
 

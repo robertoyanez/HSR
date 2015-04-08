@@ -191,22 +191,21 @@
                                                 <!--<input type="text" class="form-control col-md-2" id="ponw" placeholder="positive or negative term" required>-->
 
                                                 <div class="col-lg-12" id="checkOp">
-                                                    <div class="checkbox col-md-3"><div class="check_text"><b>Precio</b></div>
+                                                    <div class="checkbox col-md-3"><b id="pre">Precio</b>
                                                         <label>
                                                             <input type="checkbox" id="precio"/>
-                                                           
                                                             <scan class="check"></scan>
                                                              <scan class="ripple"></scan>
                                                          </label>
                                                     </div>
-                                                    <div class="checkbox col-md-3"><b>Ubicación</b>
+                                                    <div class="checkbox col-md-3"><b id="ubi">Ubicación</b>
                                                         <label>
                                                             <input type="checkbox" id="ubicacion"/>
                                                             <scan class="check"></scan>
                                                              <scan class="ripple"></scan>
                                                         </label>
                                                     </div>
-                                                    <div class="checkbox col-md-3"><b>Limpieza</b>
+                                                    <div class="checkbox col-md-3"><b id="lim">Limpieza</b>
                                                         <label>
                                                             <input type="checkbox" id="limpieza"/>
                                                            
@@ -214,7 +213,7 @@
                                                              <scan class="ripple"></scan>
                                                         </label>
                                                     </div>
-                                                    <div class="checkbox col-md-3"><b>Servicios</b>
+                                                    <div class="checkbox col-md-3"><b id="ser">Servicios</b>
                                                         <label>
                                                             <input type="checkbox" id="servicios"/>
                                                            
@@ -791,7 +790,11 @@
 
             };*/
 
-        
+        /*$(".check").click(function(){
+                    alert("check");
+                });*/
+      
+
          // ------------------------------------- show bayes method result
             $(document).ready(function() {
               $("#bayes").click(function(event){
@@ -800,10 +803,32 @@
                 });
                 var nameHotel= document.getElementById('hn-input').value;
                 // var termHotel= document.getElementById('ponw').value;
-
+                var termH1 = '';
+                var termH2 = '';
+                var termH3 = '';
+                var termH4 = '';
                 
+                $('.checkbox input').click(function () {
+                    if($("#precio").is(':checked')){
+                        termH1 = $(this).attr('id');
+                        alert(termH1);
+                    } else{alert(termH1);}
+                    if($("#ubicacion").is(':checked')){
+                        termH2 = $(this).attr('id');
+                        alert(termH2);
+                    }else{alert(termH2);}
+                    if($("#limpieza").is(':checked')){
+                        termH3 = $(this).attr('id');
+                        alert(termH3);
+                    }else{alert(termH3);}
+                    if($("#servicios").is(':checked')){
+                        termH4 = $(this).attr('id');
+                        alert(termH4);
+                    }else{alert(termH4);}
+                });
+
                 if( nameHotel != ''){
-                    $.getJSON(getBayesURL(city,nameHotel,termHotel), function(jd) {
+                    $.getJSON(getBayesURL(city,nameHotel,termH1, termH2, termH3, termH4), function(jd) {
                     $('#successB').html('<li><b>total bayes:</b> ' + jd + '</li>');
                   });
                 }

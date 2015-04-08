@@ -133,3 +133,33 @@ function searchCity(city){
               map.setZoom(14);
         }
       
+//-----------------------------
+function validar(f) {
+if (f.hotel.value   == '') { alert ('El nombre esta vacío'); 
+f.nombre.focus(); return false; }
+return true; 
+}
+
+//-----
+
+        // ------------------------------------- show nearly hoteles parsing the JSON
+
+        //function getNearlyHotels(lat, lng){
+            $(document).ready(function() {
+                
+                    $("#HotelesCercanos").click(function(event){
+                        if(clickLat != 40.41349604970198 && clickLng != -3.7051391601562){
+                          $.getJSON(getLatLngURL(clickLat,clickLng), function(jd) {
+                            for (var item in jd) { 
+                              var myLatlng = new google.maps.LatLng(jd[item].latitude,jd[item].longitude);
+                              // call to create markers method
+                              createMarker(myLatlng, jd[item].name);
+                            };map.setZoom(15);
+                          });
+                        }
+                        else{
+                            alert("Por favor indique su posición en el mapa!!");
+                        }
+                    });
+           });
+        //}

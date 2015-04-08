@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<h1>Header</h1>
+		</div>
+	</header>
+	
+	<br><br>
+
+	<div class="container">
+		<section class="main row">
+			<article class="col-xs-12 col-sm-5 col-md-5">
+				<label for="hotel">Hotel:</label>
+				<input class="form-control" id="hotel" type="text" placeholder="Introduce el nombre del Hotel:">
+			</article >
+			
+			<aside class="col-xs-12 col-sm-7 col-md-7">
+				<label for="hotel">Elige una provincia:</label>
+				<select class="form-control" name="" id="option">
+					<option value="">Madrid</option>
+					<option value="">Barcelona</option>
+					<option value="">Alicante</option>
+						
+
+				</select>
+				<br>
+				<div id="map_canvas" style="width:500px;height:380px;" class="col-xs-12 col-sm-7 col-md-7" >
+                	<iframe frameborder="0" style="border:0"></iframe>
+            	</div>
+
+			</aside>
+		</section>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio provident neque, iusto dolore. Beatae, ipsa cumque quis saepe minus ipsam, officiis molestias laboriosam cupiditate dignissimos deleniti tempora accusamus distinctio, adipisci!</p>
+
+				
+			</div>
+
+			
+		</div>
+	
+	</div>
+
+	
+	
+	<!-- -->		
+	<script src="js/jquerry.js"></script>
+	<script src="js/bootstrap.min.css"></script>	
+	
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script src="js/mapaGoogle.js"></script>
+
+</body>
+<button class="btn btn-primary">boton</button>
+</html>

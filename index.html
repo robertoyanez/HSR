@@ -742,22 +742,8 @@
         // var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/Results?city=Madrid&hotel='+nameH+'&termino='+termH;
         // personal server
         // http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=sucio
-        function getBayesURL(cityH, nameH, term1H, term2H, term3H, term4H) {
-            if(term1H != '' && (term2H == '' && term3H == '' && term4H == '')){
-                var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+termH1;
-            }
-            else if(term2H != '' && (term1H == '' && term3H == '' && term4H == '')){
-                var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+termH2;
-            }
-            else if(term3H != '' && (term1H == '' && term2H == '' && term4H == '')){
-                var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+termH3;
-            }
-            else if(term4H != '' && (term1H == '' && term2H == '' && term3H == '')){
-                var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+termH4;
-            }
-            else{
-                var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+termH1+termH2+termH3+termH4;
-            }      
+        function getBayesURL(cityH, nameH, terms) {
+            var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+terms;      
             return url;
         
         }
@@ -793,47 +779,89 @@
         /*$(".check").click(function(){
                     alert("check");
                 });*/
-      
+        var city = '';
+         $("#cities li").click(function() {
+            city = $(this).text(); // gets text contents of clicked li
+            alert(city);
+            return city;
+        });
 
          // ------------------------------------- show bayes method result
             $(document).ready(function() {
-              $("#bayes").click(function(event){
-                $("#cities li").click(function() {
-                    var city = $(this).text(); // gets text contents of clicked li
-                });
-                var nameHotel= document.getElementById('hn-input').value;
-                // var termHotel= document.getElementById('ponw').value;
-                var termH1 = '';
-                var termH2 = '';
-                var termH3 = '';
-                var termH4 = '';
-                
-                $('.checkbox input').click(function () {
-                    if($("#precio").is(':checked')){
-                        termH1 = $(this).attr('id');
-                        alert(termH1);
-                    } else{alert(termH1);}
-                    if($("#ubicacion").is(':checked')){
-                        termH2 = $(this).attr('id');
-                        alert(termH2);
-                    }else{alert(termH2);}
-                    if($("#limpieza").is(':checked')){
-                        termH3 = $(this).attr('id');
-                        alert(termH3);
-                    }else{alert(termH3);}
-                    if($("#servicios").is(':checked')){
-                        termH4 = $(this).attr('id');
-                        alert(termH4);
-                    }else{alert(termH4);}
-                });
 
+              $("#bayes").click(function(event){
+
+                var nameHotel= document.getElementById('hn-input').value;
+                
                 if( nameHotel != ''){
-                    $.getJSON(getBayesURL(city,nameHotel,termH1, termH2, termH3, termH4), function(jd) {
-                    $('#successB').html('<li><b>total bayes:</b> ' + jd + '</li>');
-                  });
+                    
+                    var url = getBayesURL(city,nameHotel,checkCat());
+                    alert(url);
+                    $.getJSON(url, function(jd) {alert("JSON");
+                        $('#successB').html(1+'<li><b>Resultados:</b></li>');
+                        //for (var item in jd){
+                            $('#successB').append('<li>'+jd.Precio +'</li>');
+
+                        //}
+
+                    });
                 }
+
               });
            });
+
+        function checkCat(){
+          var termH1 = '';
+          var termH2 = '';
+          var termH3 = '';
+          var termH4 = '';
+          if($("#precio").is(':checked')){
+              termH1 = $("#precio").attr('id');
+          }else{termH1 = '';}
+          if($("#ubicacion").is(':checked')){
+              termH2 = $("#ubicacion").attr('id');
+          }else{termH2 = '';}
+          if($("#limpieza").is(':checked')){
+              termH3 = $("#limpieza").attr('id');
+          }else{termH3 = '';}
+          if($("#servicios").is(':checked')){
+              termH4 = $("#servicios").attr('id');
+          }else{termH4 = '';}
+          
+          var terminos = '';
+          if(termH1 != ''){
+              terminos += ','+termH1;
+              if(termH2 != ''){
+                  terminos += ','+termH2;
+              }
+              if(termH3 != ''){
+                  terminos += ','+termH3;
+              }
+              if(termH4 != ''){
+                  terminos += ','+termH4;
+              }
+          }
+          else if(termH2 != ''){
+              terminos += ','+termH2;
+              if(termH3 != ''){
+                  terminos += ','+termH3;
+              }
+              if(termH4 != ''){
+                  terminos += ','+termH4;
+              }
+          }
+          else if(termH3 != ''){
+              terminos += ','+termH3;
+              if(termH4 != ''){
+                  terminos += ','+termH4;
+              }
+          }
+          else if(termH4 != ''){terminos += ','+termH4}
+          else{alert("seleccionar categoría")}
+              
+          var terms = terminos.substring(1);
+          return terms;
+        }
         // -----------------------------------------------------------------------------------
 
         // ------------------------------------- show expReg method results
@@ -856,7 +884,7 @@
                             for (var item in jd) {
 
                                 $('#divCollapse').append('<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+item+'"><p class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse'+item+'" aria-expanded="true" aria-controls="collapse'+item+'"><li class= "list-group-item list-group-item-default"><b>web:</b> ' + jd[item].url + '</li></a></p></div><div id="collapse'+item+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'+item+'"><div class="panel-body"><div class="list-group" id="terms'+item+'"></div>');
-                                    $('#terms'+item).html('<h1>Results</h1>');
+                                    $('#terms'+item).html('<h4>Resultados</h4>');
                                 // positve words list
                                   if(jd[item].positiveWord > 0){
                                         $('#terms'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de palabras positivas (+)</b>');

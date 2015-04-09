@@ -203,3 +203,7 @@ body{
   color: #4B088A;
 }
 
+.panel-heading, .panel-title li{
+  overflow:hidden;
+  text-overflow:ellipsis;
+}

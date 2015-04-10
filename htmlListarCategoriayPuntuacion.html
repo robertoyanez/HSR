@@ -17,7 +17,7 @@
 //http://mlh1415.ddns.net:8080/SystemRecommendations/Prueba/get
 
 //http://localhost:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=Limpieza
-$.getJSON('http://localhost:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=Ubicacion,Precio', {format: "json"}, function(data) { 
+$.getJSON('http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=Ubicacion,Precio', {format: "json"}, function(data) { 
 
 $("h1").html(data.nameHotel);
 $("p1").html(data.totalResult);

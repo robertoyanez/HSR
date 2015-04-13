@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>html demo</title>
+ 
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+ 
+ <h1></h1>
+<p1></p1>
+ 
+<script>
+//'http://www.vimeo.com/api/v2/video/31894179.json?callback=?'
+//http://localhost:8080/SystemRecommendations/Prueba/get
+//http://mlh1415.ddns.net:8080/SystemRecommendations/Prueba/get
+
+//http://localhost:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=Limpieza
+$.getJSON('http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=Ubicacion,Precio', {format: "json"}, function(data) { 
+
+$("h1").html(data.nameHotel);
+$("p1").html(data.totalResult);
+
+ var items = [];
+for (var item in data.category) { 
+items.push( "<li id='" + data.category[item].type + "'>" +data.category[item].type +" "+ data.category[item].value + "</li>" );
+}
+
+$( "<ul/>", {
+"class": "my-new-list",
+html: items.join( "" )
+}).appendTo( "body" );
+
+
+
+});
+</script>
+ 
+</body>
+</html>

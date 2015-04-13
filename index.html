@@ -177,6 +177,7 @@
                                     <div class="form-group">
 
                                         <div class="nearlyH text-center" id="showHotels">
+                                            <button id="geolocate" class="btn">geolocalización</button>
                                             <!-- search nearly hotels button -->
                                             <input class="btn btn-xl" type="button" id="nearlyHotels" value="Hoteles cercanos" />
                                         </div>
@@ -474,6 +475,8 @@
           var myOptions = {
             zoom: 12,
             center: latlng,
+            panControl: true,
+            zoomControl: true,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
           map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
@@ -495,30 +498,30 @@
 
           });
         }
-        // --------------------------------------------------------------------------*
-        // ------------------------------------- show nearly hoteles parsing the JSON
 
-        //function getNearlyHotels(lat, lng){
-            $(document).ready(function() {
+        google.maps.event.addDomListener(window, 'load', initialize);
+        // --------------------------------------------------------------------------*
+
+        // ------------------------------------------ geolocalitation
+        function geolocation(){
+            if(!!navigator.geolocation) {            
+                navigator.geolocation.getCurrentPosition(function(position) {
                 
-                    $("#nearlyHotels").click(function(event){
-                        if(clickLat != 40.41349604970198 && clickLng != -3.7051391601562){
-                          $.getJSON(getLatLngURL(500,clickLat,clickLng), function(jd) {
-                            for (var item in jd) { 
-                              var myLatlng = new google.maps.LatLng(jd[item].latitude,jd[item].longitude);
-                              // call to create markers method
-                              createMarker(myLatlng, jd[item].name);
-                            };map.setZoom(15);
-                          });
-                        }
-                        else{
-                            alert("Por favor indique la ciudad y su posición en el mapa!!");
-                        }
-                    });
+                    var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    
+                    placeMarker(geolocate);                    
+                    map.setCenter(geolocate);
+                    
+                });
                 
-              
-           });
-        //}
+            } else {
+                document.getElementById('map_canvas').innerHTML = 'No Geolocation Support.';
+            }
+        }
+
+        $("#geolocate").click(function(event){
+            geolocation();
+        });
 
         // ------------------------------------------------ place autocompleted
         function placeAutocompleted(){
@@ -756,33 +759,30 @@
             var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?search=Hotel%20'+cityH+'%20'+nameH+'&scan='+scanNum;            
             return url;
         
-        }        
-
-        google.maps.event.addDomListener(window, 'load', initialize);
+        }
 
 
-        // ------------------------------------------ parsing JSON
-        
-           /* var json_text = '{"hotels":['+
-              '{"name": "The Living Roof Hostel","latitude": 40.426183,"longitude": -3.705646},'+
-              '{"name": "Sil","latitude": 40.427131,"longitude": -3.701717}]}';
+        // ------------------------------------- show nearly hoteles parsing the JSON
+        //function getNearlyHotels(lat, lng){
+            $(document).ready(function() {
+                $("#nearlyHotels").click(function(event){
+                  $.getJSON(getLatLngURL(500,map.getCenter().lat(),map.getCenter().lng()), function(jd) {
+                    for (var item in jd) { 
+                      var myLatlng = new google.maps.LatLng(jd[item].latitude,jd[item].longitude);
+                      // call to create markers method
+                      createMarker(myLatlng, jd[item].name);
+                    };map.setZoom(15);
+                  });
+                });
+              
+           });
+        //}
 
-            obj = JSON.parse(json_text); // convert to js object
 
-            for (var i = 0; i < 2; i++) {
-                document.getElementById("parser").innerHTML += obj.hotels[i].name + "  ";
-                document.getElementById("jlat").innerHTML += obj.hotels[i].latitude + "  ";
-                document.getElementById("jlng").innerHTML += obj.hotels[i].longitude + "  ";
-
-            };*/
-
-        /*$(".check").click(function(){
-                    alert("check");
-                });*/
         var city = '';
          $("#cities li").click(function() {
             city = $(this).text(); // gets text contents of clicked li
-            alert(city);
+            // alert(city);
             return city;
         });
 
@@ -797,12 +797,11 @@
                     
                     var url = getBayesURL(city,nameHotel,checkCat());
                     alert(url);
-                    $.getJSON(url, function(jd) {alert("JSON");
-                        $('#successB').html(1+'<li><b>Resultados:</b></li>');
-                        //for (var item in jd){
-                            $('#successB').append('<li>'+jd.Precio +'</li>');
-
-                        //}
+                    $.getJSON(url, function(jd) {
+                        $('#successB').html(1+'<li><b>Resultados:</b></li><h1>'+jd.nameHotel+'</h1><p>'+jd.totalResult+'</p>');
+                        for (var item in jd.category) { 
+                            $('#successB').append( "<li id='" + jd.category[item].type + "'>" +jd.category[item].type +" "+ jd.category[item].value + "</li>" );
+                        }
 
                     });
                 }
@@ -857,7 +856,9 @@
               }
           }
           else if(termH4 != ''){terminos += ','+termH4}
-          else{alert("seleccionar categoría")}
+          else{$('#successB').hide();
+                alert("seleccionar categoría");
+                }
               
           var terms = terminos.substring(1);
           return terms;

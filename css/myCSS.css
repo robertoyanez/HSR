@@ -150,7 +150,7 @@ body{
   transform-origin: 50% 50%;
 }
 
-#progress{
+.rotating, .progress{
   background-color: white;
   margin: 0 auto;
 }
@@ -207,3 +207,27 @@ body{
   overflow:hidden;
   text-overflow:ellipsis;
 }
+
+.web{
+  color: #337ab7;
+}
+
+.btn-xl{
+  margin-bottom: 30px;
+}
+
+.geo:hover{
+  background-color:yellow;
+  background-color: rgba(200,200,200,.3);
+  -webkit-border-radius: 20px;
+  border-radius: 5x;
+  cursor: pointer;
+}
+
+.geo:hover img {
+   -moz-transform: scale(1.2);
+   -webkit-transform: scale(1.2);
+   -o-transform: scale(1.2);
+   -ms-transform: scale(1.2);
+   transform: scale(1.2);
+} 

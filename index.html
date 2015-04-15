@@ -177,7 +177,6 @@
                                     <div class="form-group">
 
                                         <div class="nearlyH text-center" id="showHotels">
-                                            <button id="geolocate" class="btn">geolocalización</button>
                                             <!-- search nearly hotels button -->
                                             <input class="btn btn-xl" type="button" id="nearlyHotels" value="Hoteles cercanos" />
                                         </div>
@@ -230,6 +229,9 @@
                                                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
                                                 </span>buscar</button>
+                                                    <!-- rotaing progress -->
+                                                    <div class="rotating progress" id="progressStat">
+                                                    </div>
                                                     <div id="successB">
                                                       
                                                     </div>
@@ -245,7 +247,7 @@
                                                 
                                                 <div class="col-lg-12 text-center">
                                                     <!-- rotaing progress -->
-                                                    <div class="rotating progress" id="progress">
+                                                    <div class="rotating progress" id="progress1">
                                                     </div>
 
                                                     <div id="loadText"></div>
@@ -253,6 +255,9 @@
                                                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                                     <i class="fa fa-users fa-stack-1x fa-inverse"></i>
                                                     </span>buscar</button>
+                                                    <!-- rotaing progress -->
+                                                    <div class="rotating progress" id="progressReg">
+                                                    </div>
                                                     <!-- results to recommender search -->
                                                     <div id="divCollapse"></div>
                                                 </div>
@@ -472,15 +477,22 @@
      
         function initialize() {
           var latlng = new google.maps.LatLng(clickLat,clickLng);
-          var myOptions = {
+          var mapDiv = document.getElementById('map_canvas');
+          var mapOptions = {
             zoom: 12,
             center: latlng,
             panControl: true,
             zoomControl: true,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
-          map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+          map = new google.maps.Map(mapDiv, mapOptions);
           geocoder = new google.maps.Geocoder();
+          // new button
+
+          var geoDiv = document.createElement('div');
+          var centerControl = new CenterControl(geoDiv, map);
+          geoDiv.index = 1;
+          map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(geoDiv);
 
           // call place autocompleted method
           placeAutocompleted();
@@ -498,6 +510,40 @@
 
           });
         }
+
+        // geolocation event
+        function CenterControl(controlDiv, map) {
+
+              // Set CSS for the control border
+              var controlUI = document.createElement('div');
+              controlUI.style.backgroundColor = '#fff';
+              controlUI.style.border = '2px solid #fff';
+              controlUI.style.borderRadius = '3px';
+              controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+              controlUI.style.cursor = 'pointer';
+              controlUI.style.marginBottom = '24px';
+              controlUI.style.textAlign = 'center';
+              controlUI.title = 'Muestra tu ubicación';
+              controlDiv.appendChild(controlUI);
+
+              // Set CSS for the control interior
+              var controlText = document.createElement('div');
+              controlText.style.color = 'rgb(25,25,25)';
+              controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+              controlText.style.fontSize = '16px';
+              controlText.style.lineHeight = '38px';
+              controlText.style.paddingLeft = '5px';
+              controlText.style.paddingRight = '5px';
+              controlText.innerHTML = '<div class="geo"><img src="img/png/geolocation.png"></div>';
+              controlUI.appendChild(controlText);
+
+              // Setup the click event listeners: simply set the map to
+              // Chicago
+              google.maps.event.addDomListener(controlUI, 'click', function() {
+                geolocation();
+              });
+
+            }
 
         google.maps.event.addDomListener(window, 'load', initialize);
         // --------------------------------------------------------------------------*
@@ -518,10 +564,6 @@
                 document.getElementById('map_canvas').innerHTML = 'No Geolocation Support.';
             }
         }
-
-        $("#geolocate").click(function(event){
-            geolocation();
-        });
 
         // ------------------------------------------------ place autocompleted
         function placeAutocompleted(){
@@ -795,15 +837,17 @@
                 var nameHotel= document.getElementById('hn-input').value;
                 
                 if( nameHotel != ''){
-                    
+                    // call the progress animation
+                    onLoadProgress('#progressStat');
+                    $('#progressStat').show();
                     var url = getBayesURL(city,nameHotel,checkCat());
-                    alert(url);
+                    // alert(url);
                     $.getJSON(url, function(jd) {
                         $('#successB').html(1+'<li><b>Resultados:</b></li><h1>'+jd.nameHotel+'</h1><p>'+jd.totalResult+'</p>');
                         for (var item in jd.category) { 
                             $('#successB').append( "<li id='" + jd.category[item].type + "'>" +jd.category[item].type +" "+ jd.category[item].value + "</li>" );
                         }
-
+                        $('#progressStat').hide();
                     });
                 }
 
@@ -875,9 +919,9 @@
                     var nameH = document.getElementById('hn-input').value;
                     if(nameH != ''){
                         // call the progress animation
-                        onLoadProgress();
+                        onLoadProgress('#progressReg');
 
-                        $('#progress').show();
+                        $('#progressReg').show();
                        // $('#loadText').html('Cargando...');
                         $.getJSON(getExpRegURL(city, nameH, 20), function(jd) {
 
@@ -885,7 +929,7 @@
 
                             for (var item in jd) {
 
-                                $('#divCollapse').append('<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+item+'"><p class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse'+item+'" aria-expanded="true" aria-controls="collapse'+item+'"><li class= "list-group-item list-group-item-default"><b>web:</b> ' + jd[item].url + '</li></a></p></div><div id="collapse'+item+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'+item+'"><div class="panel-body"><div class="list-group" id="terms'+item+'"></div>');
+                                $('#divCollapse').append('<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+item+'"><p class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse'+item+'" aria-expanded="true" aria-controls="collapse'+item+'"><li class= "list-group-item list-group-item-default"><b class="web">web:</b> ' + jd[item].url + '</li></a></p></div><div id="collapse'+item+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'+item+'"><div class="panel-body"><div class="list-group" id="terms'+item+'"></div>');
                                     $('#terms'+item).html('<h4>Resultados</h4>');
                                 // positve words list
                                   if(jd[item].positiveWord > 0){
@@ -938,7 +982,7 @@
 
                             $('#divCollapse').append('</div></div>');
                             $('#loadText').hide();
-                            $('#progress').hide();
+                            $('#progressReg').hide();
                         }); // end getJSON
                         
                      }
@@ -952,8 +996,8 @@
         <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.6.1/dist/progressbar.js"></script>
 
         <script>
-            function onLoadProgress() {
-                var circle = new ProgressBar.Circle('#progress', {
+            function onLoadProgress(x) {
+                var circle = new ProgressBar.Circle(x, {
                     color: '#4caf50',
                     trailColor: '#eee',
                     strokeWidth: 10,
@@ -987,7 +1031,7 @@
                       //  $('#loadText').hide();
                       //  $('#progress').hide();
                         circle.set(0.05);
-                        onLoadProgress();
+                        onLoadProgress(x);
                         }, 73000)
                     
                 }, 33000);

@@ -1,1047 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SRH</title>   
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Materials CSS -->
-    <link href="css/material.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/agency.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'> -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-    <!-- My CSS -->
-    <link href="css/myCSS.css" rel="stylesheet">
-
-    <link href="css/ripples.min.css" rel="stylesheet">
     
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <title>SRH</title>   
 
-    <!--  to parsing JSON -->      
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <!-- Materials CSS -->
+        <link href="css/material.css" rel="stylesheet">
 
-</head>
+        <!-- Custom CSS -->
+        <link href="css/agency.css" rel="stylesheet">
 
-<body id="page-top" class="index">
+        <!-- Custom Fonts -->
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+        <!-- My CSS -->
+        <link href="css/myCSS.css" rel="stylesheet">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="logo">
-                    <a class="navbar-brand page-scroll" href="#page-top"><img src="img/final2.png">
-                        <!-- <b>Sistema Recomendador de Hoteles</b> -->
-                    </a>
+        <link href="css/ripples.min.css" rel="stylesheet">
+        
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!--  to parsing JSON -->
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    </head>
+
+    <body id="page-top" class="index">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="logo">
+                        <a class="navbar-brand page-scroll" href="#page-top"><img src="img/final2.png">
+                            <!-- <b>Sistema Recomendador de Hoteles</b> -->
+                        </a>
+                    </div>
+                    
                 </div>
-                
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Buscar</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">Acerca de SRH</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#team">Equipo</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contacto</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-lead-in">Bienvenido </div>
-                <div class="intro-heading">Hazlo ahora!</div>
-                <a href="#services" class="page-scroll btn btn-xl">Empezar</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Services Section -->
-    <section id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Buscar Hoteles</h2>
-                    <h3 class="section-subheading text-muted">Encuentra los mejores hoteles en la ciudad que elijas.</h3>
+                <!-- menu -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#services">Buscar</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#about">Acerca de SRH</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#team">Equipo</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#contact">Contacto</a>
+                        </li>
+                    </ul>
                 </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
 
-                <!-- total form -->
-                <div class="col-md-12">
-                    <!--<div class="panel">-->
-                    <form class="form-horizontal" action="fin.html">
-                        <!-- Datos -->
-                        <div class="panel panel-default" id="datos">
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="intro-text">
+                    <div class="intro-lead-in">Bienvenido </div>
+                    <div class="intro-heading">Hazlo ahora!</div>
+                    <a href="#services" class="page-scroll btn btn-xl">Empezar</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Services Section -->
+        <section id="services">
+            <div class="container search">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Buscar Hoteles</h2>
+                        <h3 class="section-subheading text-muted">Encuentra los mejores hoteles en la ciudad que elijas.</h3>
+                    </div>
+                </div>
+                    <div class="col-lg-12 search1">
+                        <div class="panel panel-default search2" id="datos">
+                            <!-- head panel-->
                             <div class="panel-heading">
                                 <h3 class="panel-title">Búsqueda avanzada de hoteles</h3>
                             </div>
+                            <!-- body panel-->
                             <div class="panel-body">
-                                <fieldset>
-                                    <!--<legend>Búsqueda avanzada de hoteles</legend>-->
-                                    <div class="form-group col-md-12" id="dataH">
-                                        
-                                        <div class="col-md-8" >
-                                            <label class="col-md-6 control-label">Nombre del hotel: </label>
-                                            <input type="text" class="form-control" id="hn-input" placeholder="Ejemplo: Palace" required onFocus="rmClass()">
-                                        </div>
-                                        <!-- choose the city -->
-                                        <div class="btn-group" role="group" id="city_div">
-                                            <button type="button" class="btn btn-xl page-scroll btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="city">
-                                                   Ciudad     
-                                              <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu" id="cities">
-                                              <li><a onclick="searchCity('Alicante')" id="0">Alicante</a></li>
-                                              <li><a onclick="searchCity('Barcelona')" id="1">Barcelona</a></li>
-                                              <li><a onclick="searchCity('Bilbao')" id="2">Bilbao</a></li>
-                                              <li><a onclick="searchCity('Burgos')" id="3">Burgos</a></li>
-                                              <li><a onclick="searchCity('Donostia - San Sebastián')" id="4">Donostia - San Sebastián</a></li>
-                                              <li><a onclick="searchCity('Girona')" id="5">Girona</a></li>
-                                              <li><a onclick="searchCity('Granada')" id="6">Granada</a></li>
-                                              <li><a onclick="searchCity('Madrid')" id="7">Madrid</a></li>
-                                              <li><a onclick="searchCity('Palma de Mallorca')" id="8">Palma de Mallorca</a></li>
-                                              <li><a onclick="searchCity('Salamanca')" id="9">Salamanca</a></li>
-                                              <li><a onclick="searchCity('Santa Cruz de Tenerife')" id="10">Santa Cruz de Tenerife</a></li>
-                                              <li><a onclick="searchCity('Santiago de Compostela')" id="11">Santiago de Compostela</a></li>
-                                              <li><a onclick="searchCity('Sevilla')" id="12">Sevilla</a></li>
-                                              <li><a onclick="searchCity('Toledo')" id="13">Toledo</a></li>
-                                              <li><a onclick="searchCity('Valencia')" id="14">Valencia</a></li>
-                                              <li><a onclick="searchCity('Zaragoza')" id="15">Zaragoza</a></li>
-                                            </ul>
-                                        </div>                                      
-                                    </div>
-                                    <div class="form-group col-md-12 map" id="hotelMap">
-                                         <!-- <label for="nac" class="col-md-2 control-label">Mapa</label> -->
-                                        <div class="col-md-12 map">
-                                            <div id="map_canvas" class="google-maps">
-                                                <iframe frameborder="0" style="border:0"></iframe>
+                                <form class="form">
+                                    <fieldset>
+                                        <!-- hotel name & city button -->
+                                        <div class="row">
+                                           <div class="col-md-9" >
+                                                <div class="form-group" id="dataH">
+                                                    <label class="control-label">Nombre del hotel: </label>
+                                                    <input type="text" class="form-control" id="hn-input" placeholder="Ejemplo: Palace" required onFocus="rmClass()">
+                                                </div>
                                             </div>
+                                            <!-- choose the city -->
+                                            <div class="col-md-3 ">
+                                                <div class="btn-group" role="group">
+                                                    <button type="button" class="btn btn-lg page-scroll btn-default dropdown-toggle city-button" data-toggle="dropdown" aria-expanded="false" id="city">
+                                                               Ciudad     
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu" id="cities">
+                                                          <li><a onclick="searchCity('Alicante')" id="0">Alicante</a></li>
+                                                          <li><a onclick="searchCity('Barcelona')" id="1">Barcelona</a></li>
+                                                          <li><a onclick="searchCity('Bilbao')" id="2">Bilbao</a></li>
+                                                          <li><a onclick="searchCity('Burgos')" id="3">Burgos</a></li>
+                                                          <li><a onclick="searchCity('Donostia - San Sebastián')" id="4">Donostia - San Sebastián</a></li>
+                                                          <li><a onclick="searchCity('Girona')" id="5">Girona</a></li>
+                                                          <li><a onclick="searchCity('Granada')" id="6">Granada</a></li>
+                                                          <li><a onclick="searchCity('Madrid')" id="7">Madrid</a></li>
+                                                          <li><a onclick="searchCity('Palma de Mallorca')" id="8">Palma de Mallorca</a></li>
+                                                          <li><a onclick="searchCity('Salamanca')" id="9">Salamanca</a></li>
+                                                          <li><a onclick="searchCity('Santa Cruz de Tenerife')" id="10">Santa Cruz de Tenerife</a></li>
+                                                          <li><a onclick="searchCity('Santiago de Compostela')" id="11">Santiago de Compostela</a></li>
+                                                          <li><a onclick="searchCity('Sevilla')" id="12">Sevilla</a></li>
+                                                          <li><a onclick="searchCity('Toledo')" id="13">Toledo</a></li>
+                                                          <li><a onclick="searchCity('Valencia')" id="14">Valencia</a></li>
+                                                          <li><a onclick="searchCity('Zaragoza')" id="15">Zaragoza</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>                      
                                         </div>
-                                        <div class="col-md-12">
-                                          <!--  <input id="ex4" type="text" data-slider-min="100" data-slider-max="500" data-slider-step="1" data-slider-value="-3" data-slider-orientation="vertical"/> -->
-                                          <br>
-                                        </div> 
-
-                                    </div>
-                                    
-                                    <div class="col-md-12 map">
-                                          
-                                    </div>
-                                    <div class="form-group">
-
-                                        <div class="nearlyH text-center" id="showHotels">
-                                            <!-- search nearly hotels button -->
-                                            <input class="btn btn-xl" type="button" id="nearlyHotels" value="Hoteles cercanos" />
-                                        </div>
-                                        <div class="row text-center">
-                                            <div class="col-md-6">
-                                               <!-- <span class="fa-stack fa-4x">
-                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                                    <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
-                                                </span> -->
-                                                <h2 class="service-heading">Búsqueda estadística</h2>
-                                                <p class="text-muted">Uso del teorema de Bayes.</p>
-                                                <!--<input type="text" class="form-control col-md-2" id="ponw" placeholder="positive or negative term" required>-->
-
-                                                <div class="col-lg-12" id="checkOp">
-                                                    <div class="checkbox col-md-3"><b id="pre">Precio</b>
-                                                        <label>
-                                                            <input type="checkbox" id="precio"/>
-                                                            <scan class="check"></scan>
-                                                             <scan class="ripple"></scan>
-                                                         </label>
-                                                    </div>
-                                                    <div class="checkbox col-md-3"><b id="ubi">Ubicación</b>
-                                                        <label>
-                                                            <input type="checkbox" id="ubicacion"/>
-                                                            <scan class="check"></scan>
-                                                             <scan class="ripple"></scan>
-                                                        </label>
-                                                    </div>
-                                                    <div class="checkbox col-md-3"><b id="lim">Limpieza</b>
-                                                        <label>
-                                                            <input type="checkbox" id="limpieza"/>
-                                                           
-                                                            <scan class="check"></scan>
-                                                             <scan class="ripple"></scan>
-                                                        </label>
-                                                    </div>
-                                                    <div class="checkbox col-md-3"><b id="ser">Servicios</b>
-                                                        <label>
-                                                            <input type="checkbox" id="servicios"/>
-                                                           
-                                                            <scan class="check"></scan>
-                                                             <scan class="ripple"></scan>
-                                                        </label>
+                                        <!-- google map -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                 <!-- <label for="nac" class="col-md-2 control-label">Mapa</label> -->
+                                                <div class="map form-group "  id="hotelMap">
+                                                    <div id="map_canvas" class="google-maps embed-responsive embed-responsive-4by3">
+                                                            <iframe class="embed-responsive-item" frameborder="0" style="border:0"></iframe>
                                                     </div>
                                                 </div>
-                                                
-                                                <div class="col-lg-12 text-center">
+                                            </div>
+                                        </div>
+                                        <!-- nearly hotels button -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="nearlyH text-center" id="showHotels">
+                                                    <!-- search nearly hotels button -->
+                                                    <input class="btn btn-lg" type="button" id="nearlyHotels" value="Hoteles cercanos" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- statistics and regular expression search -->
+                                        <div class="row text-center">
+                                            <!-- statistics search -->
+                                            <div class="col-md-6">
+                                                <h2 class="service-heading">Análisis estadístico</h2>
+                                                <p class="text-muted">Uso del teorema de Bayes.</p>
+                                                <!-- terms to refine your search -->
+                                                <ul class="list-inline">
+                                                    <li>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" id="precio"/>
+                                                                <scan class="check"></scan>
+                                                                <scan class="ripple"></scan>
+                                                            </label>
+                                                            <b>Precio</b>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" id="ubicacion"/>
+                                                                <scan class="check"></scan>
+                                                                <scan class="ripple"></scan>
+                                                            </label>
+                                                            <b>Ubicación</b>
+                                                        </div>
                                                     
-                                                    <button type="submit" class="btn btn-xl page-scroll" id="bayes"><span class="fa-stack fa-2x">
-                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                                    <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
-                                                </span>buscar</button>
+                                                    </li>
+                                                    <li>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" id="servicios"/>
+                                                                <scan class="check"></scan>
+                                                                <scan class="ripple"></scan>
+                                                            </label>
+                                                            <b>Servicios</b>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <!-- search button -->
+                                                <div class="text-center">
+                                                    <button type="submit" class="btn btn-lg page-scroll" id="bayes">
+                                                        <span class="fa-stack fa-2x">
+                                                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                            <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
+                                                        </span>Analizar
+                                                    </button>
                                                     <!-- rotaing progress -->
                                                     <div class="rotating progress" id="progressStat">
                                                     </div>
                                                     <div id="successB">
-                                                      
+                                                        <!-- results -->
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- regular expression search -->
                                             <div class="col-md-6">
-                                               <!-- <span class="fa-stack fa-4x">
-                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                                    <i class="fa fa-users fa-stack-1x fa-inverse"></i>
-                                                </span> -->
-                                                <h2 class="service-heading">Búsqueda con recomendador</h2>
+                                                <h2 class="service-heading">Análisis con recomendador</h2>
                                                 <p class="text-muted">Uso de expresiones regulares.</p>
                                                 
-                                                <div class="col-lg-12 text-center">
-                                                    <!-- rotaing progress -->
+                                                <div class="text-center">
+                                                    <!-- rotaing progress || precision slider -->
                                                     <div class="rotating progress" id="progress1">
                                                     </div>
-
-                                                    <div id="loadText"></div>
-                                                    <button type="submit" class="btn btn-xl page-scroll" id="expR"><span class="fa-stack fa-2x">
-                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                                    <i class="fa fa-users fa-stack-1x fa-inverse"></i>
-                                                    </span>buscar</button>
+                                                    <!-- search button -->
+                                                    <button type="submit" class="btn btn-lg page-scroll" id="expR">
+                                                        <span class="fa-stack fa-2x">
+                                                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                        <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                                                        </span>Analizar
+                                                    </button>
                                                     <!-- rotaing progress -->
                                                     <div class="rotating progress" id="progressReg">
                                                     </div>
-                                                    <!-- results to recommender search -->
-                                                    <div id="divCollapse"></div>
+                                                    <div id="divCollapse">
+                                                        <!-- results to recommender search -->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!--<legend>Búsqueda avanzada de hoteles</legend>-->
-                                    <!-- RESULTADOS DE LA BUSQUEDA DEPENDIENDO EL TIPO
-                                    <div class="form-group">
-                                        <div class="panel panel-default" id="resultados">
-                                        </div>
-                                    </div> -->
-                                </fieldset>
+                                    </fieldset>
+                                </form>
                             </div>
                         </div> <!-- end panel datos -->
-                    </form> <!-- end total form -->
-                </div>
-            </div>
-        </div>
-    </section>
+                    </div> <!--  col-lg-12 contenido -->
+                <!-- end row contenido -->
+            </div><!-- end container -->
+        </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Acerca del SRH</h2>
-                    <h3 class="section-subheading text-muted">Trabajo de fin de Grado en Informática.</h3>
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Acerca del SRH</h2>
+                        <h3 class="section-subheading text-muted">Trabajo de fin de Grado en Informática.</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="timeline">
+                            <li>
+                                <div class="timeline-image">
+                                    <img class="img-circle img-responsive" src="img/about/about1.gif" alt="">
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4>2014-2015</h4>
+                                        <h4 class="subheading">Nuestro Proyecto</h4>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p class="text-muted">Nosotros reflejamos en ésta web un duro trabajo de investigación y desarrollo para presentar nuestro TFG, un sistema recomendador de hoteles (SRH) para las ciudades más visitadas en territorio español en los últimos años, dicho sistema hace una busqueda avanzada una vez seleccionada la ciuddad, puedes dar click sobre el mapa en el lugar donde se desee, y podrás buscar hoteles cercanos a la ubicación que señalaste, luego de ello hacer ouna busqueda estadítica o una búsqueda por un recomendador con el fin de ver la reputación de dicho hotel bajo valoraciones por puntajes o expresiones regulares que expresaran entre otras cosas los servicios que posee o no dicho hotel, de ésta forma encontrar el hotel que se adapte a tus necesidades y cumpla con lo que realmente necesites.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted">
+                                <div class="timeline-image">
+                                    <img class="img-circle img-responsive" src="img/about/about2.png" alt="">
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4>Junio 2015</h4>
+                                        <h4 class="subheading">TFG</h4>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p class="text-muted">Proyecto generado desde las aulas de la Facultad de Informática de la Universidad Complutense de Madrid para el Grado en Ingeniería Informática.</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="timeline">
-                        <li>
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="img/about/about1.gif" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>2014-2015</h4>
-                                    <h4 class="subheading">Nuestro Proyecto</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Nosotros reflejamos en ésta web un duro trabajo de investigación y desarrollo para presentar nuestro TFG, un sistema recomendador de hoteles (SRH) para las ciudades más visitadas en territorio español en los últimos años, dicho sistema hace una busqueda avanzada una vez seleccionada la ciuddad, puedes dar click sobre el mapa en el lugar donde se desee, y podrás buscar hoteles cercanos a la ubicación que señalaste, luego de ello hacer ouna busqueda estadítica o una búsqueda por un recomendador con el fin de ver la reputación de dicho hotel bajo valoraciones por puntajes o expresiones regulares que expresaran entre otras cosas los servicios que posee o no dicho hotel, de ésta forma encontrar el hotel que se adapte a tus necesidades y cumpla con lo que realmente necesites.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="img/about/about2.png" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>Junio 2015</h4>
-                                    <h4 class="subheading">TFG</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Proyecto generado desde las aulas de la Facultad de Informática de la Universidad Complutense de Madrid para el Grado en Ingeniería Informática.</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Team Section -->
-    <section id="team" class="bg-light-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Nuestro Equipo</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="img/team/yofdi.png" class="img-responsive img-circle" alt="">
-                        <h4>Roberto Yánez</h4>
-                        <p class="text-muted">Desarrollador</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
+        <!-- Team Section -->
+        <section id="team" class="bg-light-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Nuestro Equipo</h2>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="img/team/2.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Eddy Cerpa</h4>
-                        <p class="text-muted">Desarrollador</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="img/team/2.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Juan Antonio</h4>
-                        <p class="text-muted">Tutor - Director</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">Grupo de trabajo sobre el proyecto de un recomendador hotelero.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Contacta con nosotros</h2>
-                    <h3 class="section-subheading text-muted tm">Agradecemos tu atención y observaciones.</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <form name="sentMessage" id="contactForm" novalidate>
-                        <div class="row">
-                            <div class="col-md-6" id="formLeft">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="nombre *" id="name" required data-validation-required-message="Por favor ingresa tu nombre.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="correo electrónico *" id="email" required data-validation-required-message="Por favor ingresa la dirección de tu correo electrónico.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="teléfono *" id="phone" required data-validation-required-message="Por favor ingresa tu número telefónico.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-6" >
-                                <div class="form-group">
-                                    <textarea class="form-control ta" placeholder="mensaje *" id="message" required data-validation-required-message="Por favor ingresa tu mensaje."></textarea>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="col-lg-12 text-center">
-                                <div id="success"></div>
-                                <button type="submit" class="btn btn-xl">Enviar</button>
-                            </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="team-member">
+                            <img src="img/team/yofdi.png" class="img-responsive img-circle" alt="">
+                            <h4>Roberto Yánez</h4>
+                            <p class="text-muted">Desarrollador</p>
+                            <ul class="list-inline social-buttons">
+                                <li><a href="#"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                                </li>
+                            </ul>
                         </div>
-                    </form>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="team-member">
+                            <img src="img/team/2.jpg" class="img-responsive img-circle" alt="">
+                            <h4>Eddy Cerpa</h4>
+                            <p class="text-muted">Desarrollador</p>
+                            <ul class="list-inline social-buttons">
+                                <li><a href="#"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="team-member">
+                            <img src="img/team/2.jpg" class="img-responsive img-circle" alt="">
+                            <h4>Juan Antonio</h4>
+                            <p class="text-muted">Tutor - Director</p>
+                            <ul class="list-inline social-buttons">
+                                <li><a href="#"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                        <p class="large text-muted">Grupo de trabajo sobre el proyecto de un recomendador hotelero.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; SRH 2015</span>
+        </section>
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Contacta con nosotros</h2>
+                        <h3 class="section-subheading text-muted tm">Agradecemos tu atención y observaciones.</h3>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    
-                </div>
-                <div class="col-md-4">
-                    
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form name="sentMessage" id="contactForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6" id="formLeft">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="nombre *" id="name" required data-validation-required-message="Por favor ingresa tu nombre.">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="correo electrónico *" id="email" required data-validation-required-message="Por favor ingresa la dirección de tu correo electrónico.">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="tel" class="form-control" placeholder="teléfono *" id="phone" required data-validation-required-message="Por favor ingresa tu número telefónico.">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" >
+                                    <div class="form-group">
+                                        <textarea class="form-control ta" placeholder="mensaje *" id="message" required data-validation-required-message="Por favor ingresa tu mensaje."></textarea>
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-lg-12 text-center">
+                                    <div id="success"></div>
+                                    <button type="submit" class="btn btn-xl">Enviar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/cbpAnimatedHeader.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/agency.js"></script>
-    
-    <!--  google maps  https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places 
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>-->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-
-    <script>
-      var map;
-      var geocoder;
-      var clickLat = 40.41349604970198;
-      var clickLng = -3.7051391601562;
-     
-        function initialize() {
-          var latlng = new google.maps.LatLng(clickLat,clickLng);
-          var mapDiv = document.getElementById('map_canvas');
-          var mapOptions = {
-            zoom: 12,
-            center: latlng,
-            panControl: true,
-            zoomControl: true,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
-          map = new google.maps.Map(mapDiv, mapOptions);
-          geocoder = new google.maps.Geocoder();
-          // new button
-
-          var geoDiv = document.createElement('div');
-          var centerControl = new CenterControl(geoDiv, map);
-          geoDiv.index = 1;
-          map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(geoDiv);
-
-          // call place autocompleted method
-          placeAutocompleted();
-
-          google.maps.event.addListener(map, 'click', function(event) {
-            
-            // call a creator marker method
-            placeMarker(event.latLng);
-
-            clickLat = event.latLng.lat();
-            clickLng = event.latLng.lng();
-
-            // call getNearlyHotels method
-           // getNearlyHotels(clickLat, clickLng);
-
-          });
-        }
-
-        // geolocation event
-        function CenterControl(controlDiv, map) {
-
-              // Set CSS for the control border
-              var controlUI = document.createElement('div');
-              controlUI.style.backgroundColor = '#fff';
-              controlUI.style.border = '2px solid #fff';
-              controlUI.style.borderRadius = '3px';
-              controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-              controlUI.style.cursor = 'pointer';
-              controlUI.style.marginBottom = '24px';
-              controlUI.style.textAlign = 'center';
-              controlUI.title = 'Muestra tu ubicación';
-              controlDiv.appendChild(controlUI);
-
-              // Set CSS for the control interior
-              var controlText = document.createElement('div');
-              controlText.style.color = 'rgb(25,25,25)';
-              controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-              controlText.style.fontSize = '16px';
-              controlText.style.lineHeight = '38px';
-              controlText.style.paddingLeft = '5px';
-              controlText.style.paddingRight = '5px';
-              controlText.innerHTML = '<div class="geo"><img src="img/png/geolocation.png"></div>';
-              controlUI.appendChild(controlText);
-
-              // Setup the click event listeners: simply set the map to
-              // Chicago
-              google.maps.event.addDomListener(controlUI, 'click', function() {
-                geolocation();
-              });
-
-            }
-
-        google.maps.event.addDomListener(window, 'load', initialize);
-        // --------------------------------------------------------------------------*
-
-        // ------------------------------------------ geolocalitation
-        function geolocation(){
-            if(!!navigator.geolocation) {            
-                navigator.geolocation.getCurrentPosition(function(position) {
-                
-                    var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    
-                    placeMarker(geolocate);                    
-                    map.setCenter(geolocate);
-                    
-                });
-                
-            } else {
-                document.getElementById('map_canvas').innerHTML = 'No Geolocation Support.';
-            }
-        }
-
-        // ------------------------------------------------ place autocompleted
-        function placeAutocompleted(){
-          var input = /** @type {HTMLInputElement} */(
-              document.getElementById('hn-input'));
-                
-          var autocomplete = new google.maps.places.Autocomplete(input);
-
-          autocomplete.bindTo('bounds', map);
-
-          var infowindowA = new google.maps.InfoWindow();
-          var marker = new google.maps.Marker({
-            map: map,
-            anchorPoint: new google.maps.Point(0, -29)
-          });
-
-          google.maps.event.addListener(autocomplete, 'place_changed', function() {
-            infowindowA.close();
-            marker.setVisible(false);
-            var place = autocomplete.getPlace();
-            if (!place.geometry) {
-              return;
-            }
-
-            // If the place has a geometry, then present it on a map.
-            if (place.geometry.viewport) {
-              map.fitBounds(place.geometry.viewport);
-            } else {
-              map.setCenter(place.geometry.location);
-              map.setZoom(17);  // Why 17? Because it looks good.
-            }
-            marker.setIcon(/** @type {google.maps.Icon} */({
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(35, 35)
-            }));
-            marker.setPosition(place.geometry.location);
-            marker.setVisible(true);
-
-            infowindowA.setContent('<div><strong>' + place.name + '</strong><br>');
-            infowindowA.open(map, marker);
-          });
-        }
-
-        // ------------------------------------ search city
-        function searchCity(city){
-          var infowindowC = new google.maps.InfoWindow();
-          var pyrmont = 0;
-          var shieldCity = 0;
-              switch(city) {
-                case "Madrid":{
-                    pyrmont = new google.maps.LatLng(40.416775400000000000, -3.703790199999957600);
-                    shieldCity = 'img/madrid.png';
-                    break;}
-                case "Toledo":{
-                    pyrmont = new google.maps.LatLng(39.862831600000000000, -4.027323099999990000);
-                    shieldCity = 'img/toledo.png';
-                    break;}
-                case "Salamanca":{
-                    pyrmont = new google.maps.LatLng(40.970103900000000000, -5.663539700000001000);
-                    shieldCity = 'img/salamanca.png';
-                    break;}
-                case "Burgos":{
-                    pyrmont = new google.maps.LatLng(42.343992500000000000, -3.696906000000012700);
-                    shieldCity = 'img/burgos.png';
-                    break;}
-                case "Bilbao":{
-                    pyrmont = new google.maps.LatLng(43.263012600000000000, -2.934985200000028300);
-                    shieldCity = 'img/bilbao.png';
-                    break;}
-                case "Granada":{
-                    pyrmont = new google.maps.LatLng(37.177336300000000000, -3.598557099999993600);
-                    shieldCity = 'img/granada.png';
-                    break;}
-                case "Zaragoza":{
-                    pyrmont = new google.maps.LatLng(41.648822600000000000 , -0.889085300000033400);
-                    shieldCity = 'img/zaragoza.png';
-                    break;}
-                case "Alicante":{
-                    pyrmont = new google.maps.LatLng(38.345996300000000000, -0.490685500000040500);
-                    shieldCity = 'img/alicante.png';
-                    break;}
-                case "Palma de Mallorca":{
-                    pyrmont = new google.maps.LatLng(39.566667, 2.649722);
-                    shieldCity = 'img/baleares.png';
-                    break;}
-                case "Sevilla":{
-                    pyrmont = new google.maps.LatLng(37.389092400000000000, -5.984458899999936000);
-                    shieldCity = 'img/sevilla.png';
-                    break;}
-                case "Donostia - San Sebastián":{
-                    pyrmont = new google.maps.LatLng(43.318334000000000000, -1.981231299999990400);
-                    shieldCity = 'img/sanSebastian.png';
-                    break;}
-                case "Santiago de Compostela":{
-                    pyrmont = new google.maps.LatLng(42.878213200000000000, -8.544844499999954000);
-                    shieldCity = 'img/sanCompostela.png';
-                    break;}
-                case "Barcelona":{
-                    pyrmont = new google.maps.LatLng(41.3825, 2.176944);
-                    shieldCity = 'img/barcelona.png';
-                    break;}
-                case "Girona":{
-                    pyrmont = new google.maps.LatLng(41.983333, 2.816667);
-                    shieldCity = 'img/girona.png';
-                    break;}
-                case "Valencia":{
-                    pyrmont = new google.maps.LatLng(39.469907500000000000, -0.376288100000010700);
-                    shieldCity = 'img/valencia.png';
-                    break;}
-                case "Santa Cruz de Tenerife":{
-                    pyrmont = new google.maps.LatLng(28.466667, -16.25);
-                    shieldCity = 'img/canarias.png';
-                    break;}
-                default:{
-                    alert("default");
-                    pyrmont = new google.maps.LatLng(40.416775400000000000, -3.703790199999957600);
-                    shieldCity = 'img/madrid.png';}
-              }
-
-              var info = '<div id="sm">'+
-                            '<h3>'+city+'</h3>'+
-                            '<div id="ssm">' +
-                                '<p><a href="http://es.wikipedia.org/wiki/'+city+'" target="_blank">'+
-                                    '<img src="'+shieldCity+'" alt="shield city" height="42" width="42"></a></p>'+
-                            '</div>'+
-                        '</div>';
-
-              var marker = new google.maps.Marker({
-                map: map,
-                position: pyrmont,
-                content: info
-              });
-
-              google.maps.event.addListener(marker, 'click', function() {
-                infowindowC.setContent(info);
-                infowindowC.open(map, this);
-              });
-
-              map.setCenter(pyrmont);
-              map.setZoom(14);
-        }
-        // -----------------------------------------------------------------------
-        
-        // ------------------------------------ show latlng on the map with a click (you are here!!)
-        function placeMarker(location) {
-        var pin = 'img/png/mapUs.png';
-          var marker = new google.maps.Marker({
-            position: location,
-            map: map,
-            icon: pin,
-          });
-
-          map.setCenter(location);
-          var infowindow = new google.maps.InfoWindow({
-            //content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
-            content: 'Ud está aquí!!'
-          });
-          // call to listeners events to the map
-          // setupEvents();
-
-          // call to write lat and lng method
-          //writeLatLng(location.lat(), location.lng());
-
-          infowindow.open(map,marker);
-        }
-
-        // ------------------------------------------- create hotels markers on the map
-        function createMarker(location, nameH) {
-            var hpin = 'img/png/ubed.png';
-            var marker = new google.maps.Marker({
-              position: location,
-              map: map,
-              icon: hpin,
-            });
-
-            google.maps.event.addListener(marker, 'click', function() {
-                $("#hn-input").val(nameH); // update input hotel name
-                $("#hn-input").addClass("changeColour");
-              var infowindowH = new google.maps.InfoWindow({
-            content: nameH
-          });
-
-              infowindowH.open(map, this);
-            });
-          }
-
-        // ------------------------------------setup the listeners events to the map  
-        function setupEvents() {
-            google.maps.event.addListener(map, 'zoom_changed', function() {
-              map.getZoom();
-            });
-            // --------------------------------------change the center 
-           // google.maps.event.addListener(map, 'center_changed', centerChanged);
-
-           /* google.maps.event.addDomListener(document.getElementById('show_latlng'),'dblclick', function() {
-               map.setZoom(map.getZoom() + 1);
-            });*/
-        }
-
-        // -------------------------------------------write lat and lng
-        function writeLatLng(lat, lng){
-          document.getElementById('latitude').innerHTML = lat;
-          document.getElementById('longitude').innerHTML = lng;
-        }
-
-        // -------------------------------------------return the new url with lat and lng onclick
-        // var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/SearchHotel?radio=500&lat='+lat+'&lon='+lng;
-        // personal server
-        // http://mlh1415.ddns.net:8080/SystemRecommendations/SearchHotel?radio=500&lat=40.43&lon=-3.70
-        function getLatLngURL(rad, lat, lng) {
-            var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/SearchHotel?radio='+rad+'&lat='+lat+'&lon='+lng;            
-            return url;
-        
-        }
-
-        // -------------------------------------------return the new url with bayes data
-        // 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=sucio'
-        // var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/Results?city=Madrid&hotel='+nameH+'&termino='+termH;
-        // personal server
-        // http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=sucio
-        function getBayesURL(cityH, nameH, terms) {
-            var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+terms;      
-            return url;
-        
-        }
-
-        // -------------------------------------------return the new url with bayes data
-        // http://mlh.fdi.ucm.es:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20Palace&scan=8
-        // personal server
-        // http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20Palace&scan=8
-        function getExpRegURL(cityH, nameH, scanNum) {
-           // var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?search=Hotel%20'+cityH+'%20'+nameH+'&scan='+scanNum;
-            var url = 'http://localhost:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20Palace&scan=20';            
-            return url;
-        
-        }
-
-
-        // ------------------------------------- show nearly hoteles parsing the JSON
-        //function getNearlyHotels(lat, lng){
-            $(document).ready(function() {
-                $("#nearlyHotels").click(function(event){
-                  $.getJSON(getLatLngURL(500,map.getCenter().lat(),map.getCenter().lng()), function(jd) {
-                    for (var item in jd) { 
-                      var myLatlng = new google.maps.LatLng(jd[item].latitude,jd[item].longitude);
-                      // call to create markers method
-                      createMarker(myLatlng, jd[item].name);
-                    };map.setZoom(15);
-                  });
-                });
-              
-           });
-        //}
-
-
-        var city = '';
-         $("#cities li").click(function() {
-            city = $(this).text(); // gets text contents of clicked li
-            // alert(city);
-            return city;
-        });
-
-         // ------------------------------------- show bayes method result
-            $(document).ready(function() {
-
-              $("#bayes").click(function(event){
-
-                var nameHotel= document.getElementById('hn-input').value;
-                
-                if( nameHotel != ''){
-                    // call the progress animation
-                    onLoadProgress('#progressStat');
-                    $('#progressStat').show();
-                    var url = getBayesURL(city,nameHotel,checkCat());
-                    // alert(url);
-                    $.getJSON(url, function(jd) {
-                        $('#successB').html(1+'<li><b>Resultados:</b></li><h1>'+jd.nameHotel+'</h1><p>'+jd.totalResult+'</p>');
-                        for (var item in jd.category) { 
-                            $('#successB').append( "<li id='" + jd.category[item].type + "'>" +jd.category[item].type +" "+ jd.category[item].value + "</li>" );
-                        }
-                        $('#progressStat').hide();
-                    });
-                }
-
-              });
-           });
-
-        function checkCat(){
-          var termH1 = '';
-          var termH2 = '';
-          var termH3 = '';
-          var termH4 = '';
-          if($("#precio").is(':checked')){
-              termH1 = $("#precio").attr('id');
-          }else{termH1 = '';}
-          if($("#ubicacion").is(':checked')){
-              termH2 = $("#ubicacion").attr('id');
-          }else{termH2 = '';}
-          if($("#limpieza").is(':checked')){
-              termH3 = $("#limpieza").attr('id');
-          }else{termH3 = '';}
-          if($("#servicios").is(':checked')){
-              termH4 = $("#servicios").attr('id');
-          }else{termH4 = '';}
-          
-          var terminos = '';
-          if(termH1 != ''){
-              terminos += ','+termH1;
-              if(termH2 != ''){
-                  terminos += ','+termH2;
-              }
-              if(termH3 != ''){
-                  terminos += ','+termH3;
-              }
-              if(termH4 != ''){
-                  terminos += ','+termH4;
-              }
-          }
-          else if(termH2 != ''){
-              terminos += ','+termH2;
-              if(termH3 != ''){
-                  terminos += ','+termH3;
-              }
-              if(termH4 != ''){
-                  terminos += ','+termH4;
-              }
-          }
-          else if(termH3 != ''){
-              terminos += ','+termH3;
-              if(termH4 != ''){
-                  terminos += ','+termH4;
-              }
-          }
-          else if(termH4 != ''){terminos += ','+termH4}
-          else{$('#successB').hide();
-                alert("seleccionar categoría");
-                }
-              
-          var terms = terminos.substring(1);
-          return terms;
-        }
-        // -----------------------------------------------------------------------------------
-
-        // ------------------------------------- show expReg method results
-            $(document).ready(function() {
-                $("#expR").click(function(event){
-                    $("#cities li").click(function() {
-                        var city = $(this).text(); // gets text contents of clicked li
-                    });         
-                    var nameH = document.getElementById('hn-input').value;
-                    if(nameH != ''){
-                        // call the progress animation
-                        onLoadProgress('#progressReg');
-
-                        $('#progressReg').show();
-                       // $('#loadText').html('Cargando...');
-                        $.getJSON(getExpRegURL(city, nameH, 20), function(jd) {
-
-                            $('#divCollapse').html('<div class="container"><div class="panel-group col-lg-6" id="accordion" role="tablist" aria-multiselectable="true">');
-
-                            for (var item in jd) {
-
-                                $('#divCollapse').append('<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+item+'"><p class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse'+item+'" aria-expanded="true" aria-controls="collapse'+item+'"><li class= "list-group-item list-group-item-default"><b class="web">web:</b> ' + jd[item].url + '</li></a></p></div><div id="collapse'+item+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'+item+'"><div class="panel-body"><div class="list-group" id="terms'+item+'"></div>');
-                                    $('#terms'+item).html('<h4>Resultados</h4>');
-                                // positve words list
-                                  if(jd[item].positiveWord > 0){
-                                        $('#terms'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de palabras positivas (+)</b>');
-                                          for (var i = 0; i < jd[item].positiveWord; i++) {
-                                          $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].PositiveWordList[i].value+'</span><ul><li>' + jd[item].PositiveWordList[i].type + '</li></ul>');
-                                            };
-                                            $('#terms'+item).append('</li>');
-                                    }
-                                    else{
-                                    $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe palabras positivas (!)</b></li>');
-                                    }
-                                    // negative word list
-                                    if(jd[item].negativeWord > 0){
-                                             $('#terms'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de palabras negativas (-)</b>');
-                                              for (var i = 0; i < jd[item].negativeWord; i++) {
-                                              $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].NegativeWordList[i].value+'</span><ul><li>' + jd[item].NegativeWordList[i].type + '</li></ul>');
-                                             };
-                                             $('#terms'+item).append('</li>');
-                                    }
-                                    else{
-                                    $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe palabras negativas (!)</b></li>');
-                                    }
-
-                                // positive regular expressions list  
-                                  if(jd[item].positiveRegularExpresion > 0){
-                                     $('#terms'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de expresiones regulares positivas (+)</b>');
-                                      for (var i = 0; i < jd[item].positiveRegularExpresion; i++) {
-                                      $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveRegularExpresionList[i].value+'</span><ul><li>' + jd[item].positiveRegularExpresionList[i].type + '</li></ul>');
-                                        };
-                                        $('#terms'+item).append('</li>');                                  
-                                  }
-                                  else{
-                                    $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe exp. reg. positivas (!)</b></li>');
-                                  }
-                                  // negative regular expressions list
-                                  if(jd[item].negativeRegularExpresion > 0){
-                                         $('#terms'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de expresiones regulares negativas (-)</b>');
-                                          for (var i = 0; i < jd[item].negativeRegularExpresion; i++) {
-                                          $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].negativeRegularExpresionList[i].value+'</span><ul><li>' + jd[item].negativeRegularExpresionList[i].type + '</li></ul>');
-                                        };
-                                        $('#terms'+item).append('</li>');
-                                    }
-
-                                  else{
-                                    $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe exp. reg. negativas (!)</b></li>');
-                                  }
-                                  $('#divCollapse').append('</div></div></div>');
-                            }; // end for
-
-                            $('#divCollapse').append('</div></div>');
-                            $('#loadText').hide();
-                            $('#progressReg').hide();
-                        }); // end getJSON
+        </section>
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="copyright">Copyright &copy; SRH 2015</span>
+                    </div>
+                    <div class="col-md-4">
                         
-                     }
-                });
-            });
-        // -----------------------------------------------------------------------------------
-    
-    </script>
-    
-    <!-- These are probably out dated so you might want to use newest versions -->
+                    </div>
+                    <div class="col-md-4">
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+
+        <!-- Plugin JavaScript -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src="js/classie.js"></script>
+        <script src="js/cbpAnimatedHeader.js"></script>
+
+        <!-- Contact Form JavaScript -->
+        <script src="js/jqBootstrapValidation.js"></script>
+        <script src="js/contact_me.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="js/agency.js"></script>
+        
+        <!--  google maps  https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places 
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>-->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+
+        <!-- search hotels -->
+        <script src="src/searcH.js"></script>
+
+        <!-- animation load results -->
+        <script src="src/animation.js"></script>
+
+        
+        <!-- These are probably out dated so you might want to use newest versions -->
         <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.6.1/dist/progressbar.js"></script>
 
         <script>
-            function onLoadProgress(x) {
-                var circle = new ProgressBar.Circle(x, {
-                    color: '#4caf50',
-                    trailColor: '#eee',
-                    strokeWidth: 10,
-                    duration: 73000,
-                    //easing: 'easeInOut'
-                });
-
-                // $('#progress').show();
-                // $('#loadText').html('Cargando...');
-
-                circle.set(0.05);
-
-                setTimeout(function() {
-                    circle.animate(0.2);
-                }, 5000);
-
-                setTimeout(function() {
-                    circle.animate(0.4);
-                }, 5000);
-                setTimeout(function() {
-                    circle.animate(0.6);
-                }, 5000);
-
-                setTimeout(function() {
-                    circle.animate(0.8);
-                }, 5000);
-
-                setTimeout(function() {
-                    circle.animate(1);
-                    setTimeout(function(){
-                      //  $('#loadText').hide();
-                      //  $('#progress').hide();
-                        circle.set(0.05);
-                        onLoadProgress(x);
-                        }, 73000)
-                    
-                }, 33000);
-            };
-
-            function rmClass(){
-                $("#hn-input").removeClass("changeColour");
-            }
+            
         </script>
-
-   </body>
+    </body>
 
 </html>

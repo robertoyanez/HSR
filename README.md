@@ -1,2 +1,0 @@
-# HSR
-Hotels System Recommendation

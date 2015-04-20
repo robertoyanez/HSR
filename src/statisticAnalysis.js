@@ -2,7 +2,7 @@
 // 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=sucio'
 // var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/Results?city=Madrid&hotel='+nameH+'&termino='+termH;
 // personal server
-// http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=sucio
+// http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=servicios
 function getBayesURL(cityH, nameH, terms) {
     var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+terms;      
     return url;
@@ -74,15 +74,21 @@ $(document).ready(function() {
         var url = getBayesURL(city,nameHotel,checkCategory());
         // alert(url);
         $.getJSON(url, function(jd) {
-            $('#successB').html('<b>Resumen de valoraciones</b>');
-            for (var item in jd.category) { 
-                $('#successB').append('<p>' + jd.category[item].type +" "+ jd.category[item].value + '%</p>');
+            // total value
+            $('#successB').html('<div class="alert alert-info" role="alert"><b>Valoración Total (sobre 5)</b></div>');
+            setTotalValue(parseFloat(jd.totalResult));
+            $('#input-star').attr( "value",parseFloat(jd.totalResult));
+            $('#input-star').rating('update', parseFloat(jd.totalResult));
+            // resumen values
+            $('#successB2').html('<div class="alert alert-info" role="alert"><b>Resumen de valoraciones</b></div>');
+            $('#successB2').append('<div id="vertgraph">');
+            $('#vertgraph').html('<dl>');
+            for (var item in jd.category) {
+                setTermsPercents(jd.category[item]);
             }
-            $('#successB').append('<b>Valoración Total</b>');
-           
-            $('#successB').append('<p>'+jd.totalResult+'</p>');
-            $('#input-start').val( parseFloat(jd.totalResult));
-            console.log(parseFloat(jd.totalResult));
+            $('#vertgraph').append('</dl>');
+            $('#successB2').append('</div>');
+            // hide & show div's
             $('#progressStat').hide();
             $('#successB1').show();
         });
@@ -90,3 +96,30 @@ $(document).ready(function() {
 
   });
 });
+
+//------------------------------------------------ show terms porcents
+function setTermsPercents(term){
+  var percent = term.value +20;
+  if(parseFloat(term.value) > 0 && parseFloat(term.value) <= 30){
+    $('#vertgraph dl').append('<dd class"termTitle">'+term.type+': <b>'+term.term+'</b></dd>'+'<dd class="critical" style="width:'+percent+'px;">'+term.value+'%</dd>');
+  }
+  else if(parseFloat(term.value) > 30 && parseFloat(term.value) <= 65){
+    $('#vertgraph dl').append('<dd class"termTitle">'+term.type+': <b>'+term.term+'</b><dd class="medium" style="width:'+percent+'px;">'+term.value+'%</dd>');
+  }
+  else{
+    $('#vertgraph dl').append('<dd class"termTitle">'+term.type+': <b>'+term.term+'</b><dd class="high" style="width:'+percent+'px;">'+term.value+'%</dd>');
+  }
+}
+
+//------------------------------------------------ show values porcents
+function setTotalValue(value){
+  if(value > 0 && value < 1.6){
+    $('#successB').append('<p class="fiveS" style="color:#d9534f;">'+value+'</p>');
+  }
+  else if(value >= 1.6 && value < 3.6){
+    $('#successB').append('<p class="fiveS" style="color:#f0ad4e;">'+value+'</p>');
+  }
+  else{
+    $('#successB').append('<p class="fiveS" style="color:#5cb85c;">'+value+'</p>');
+  }
+}

@@ -4962,19 +4962,19 @@ fieldset[disabled] .navbar .btn-link:focus {
 .alert .alert-link {
   color: #FFFFFF;
 }
-.alert,
+/*.alert,
 .alert-default {
   background-color: #ffffff;
-}
+}*/
 .alert-primary {
   background-color: #009587;
 }
 .alert-success {
   background-color: #0f9d58;
 }
-.alert-info {
+/*.alert-info {
   background-color: #424242;
-}
+}*/
 .alert-warning {
   background-color: #ff5722;
 }
@@ -5035,12 +5035,12 @@ fieldset[disabled] .navbar .btn-link:focus {
 .alert-material-lightgrey {
   background-color: #ececec;
 }
-.alert-info,
+/*.alert-info,
 .alert-danger,
 .alert-warning,
 .alert-success {
   color: #FFFFFF;
-}
+}*/
 .alert-default a,
 .alert-default .alert-link {
   color: #000000;

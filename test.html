@@ -4,32 +4,240 @@
   <meta charset="utf-8">
   <title>html demo</title>
 
-
-  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="js/star-rating.min.js" type="text/javascript"></script>
-
+  <script src="js/star-rating.js" type="text/javascript"></script>
 
 </head>
 <body>
- // Support any fractional rating. For example validate a rating between 1 to 5 
-// with a step of 0.1 for 5 stars. Drag and slide across for changing ratings for 
-// better effects on touch input devices.
-<div class="star-rating rating-active">
-  <div class="rating-container rating-gly-star" data-content="">
-    <input id="input-start" value="3" type="number" class="rating form-control hide" min="0" max="5" step="0.1" data-size="xs">
-  </div>
-</div>
-<input id="input-21b" value="2" type="number" class="rating form-control hide" min="0" max="5" step="0.2" data-size="xs">
- <script type="text/javascript">
-    // initialize with defaults
-    $("#input-id").rating();
+  <input id="rating-system" type="number" class="rating" min="1" max="5" step="0.1">
+  <button id"ok">ok</button>
+  
+  <style type="text/css">
+    /* Main styles */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
 
-    // with plugin options
-    $("#input-id").rating({'size':'lg'});
-  </script>
-<!--<input id="input-id" type="number" class="rating" min=1 max=5 step=0.5 data-size="lg" data-rtl="true">-->
- 
+.text {
+  fill: url(#p-stars);
+  stroke: #551F7A;
+  stroke-width: 3;
+}
+
+/* Colorize & animate pattern */
+.g-stars polygon {
+  stroke-width: 0;
+  -webkit-animation: stroke 2s infinite;
+  animation: stroke 2s infinite;
+}
+
+.g-stars polygon:nth-child(5n + 1) {
+  fill: #551F7A;
+  stroke: #551F7A;
+  -webkit-animation-delay: -0.4s;
+  animation-delay: -0.4s;
+}
+
+.g-stars polygon:nth-child(5n + 2) {
+  fill: #BA2799;
+  stroke: #BA2799;
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+.g-stars polygon:nth-child(5n + 3) {
+  fill: #D9587A;
+  stroke: #D9587A;
+  -webkit-animation-delay: -1.2s;
+  animation-delay: -1.2s;
+}
+
+.g-stars polygon:nth-child(5n + 4) {
+  fill: #FFDD00;
+  stroke: #FFDD00;
+  -webkit-animation-delay: -1.6s;
+  animation-delay: -1.6s;
+}
+
+.g-stars polygon:nth-child(5n + 5) {
+  fill: #FFF3A1;
+  stroke: #FFF3A1;
+  -webkit-animation-delay: -2s;
+  animation-delay: -2s;
+}
+
+/* Change stroke-width within animation */
+@-webkit-keyframes stroke {
+  50% {
+    stroke-width: 8;
+  }
+}
+@keyframes stroke {
+  50% {
+    stroke-width: 8;
+  }
+}
+
+/* Other styles */
+html, body {
+  height: 100%;
+}
+
+body {
+  background-size: .2em 100%;
+  font: 2.5em/1 Impact;
+  margin: 0 auto;
+}
+
+svg {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+}
+
+  </style>
+  <svg viewBox="0 0 60 30">
+
+  <!-- Pattern -->
+  <pattern
+           id="p-stars"
+           width="70"
+           height="70"
+           viewBox="0 0 120 120"
+           patternUnits="userSpaceOnUse"
+           >
+
+    <g class="g-stars">
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549 "
+               transform="
+                          scale(.7,.7)"        
+               ></polygon>
+
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+               transform="
+                          translate(30,30)
+                          scale(.7,.7)
+                          " 
+               ></polygon>
+
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+               transform="
+                          translate(90,30)
+                          scale(.7,.7)
+                          " 
+               ></polygon>
+
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+               transform="
+                          translate(0,60)
+                          scale(.7,.7)" 
+               ></polygon>
+
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549 "
+               transform="
+                          translate(60,0)
+                          scale(.7,.7)  
+                          " 
+               ></polygon>
+
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+               transform="
+                          translate(60,60)
+                          scale(.7,.7)  
+                          " 
+               ></polygon>
+
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+               transform="
+                          translate(90,90)
+                          scale(.7,.7)
+                          " 
+               ></polygon>
+
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+               transform="
+                          translate(30,90)
+                          scale(.7,.7)
+                          " 
+               ></polygon>
+
+
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+               transform="
+                          translate(120,60)
+                          scale(.7,.7)
+                          " 
+               ></polygon>
+
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+               transform="
+                          translate(60,120)
+                          scale(.7,.7)
+                          " 
+               ></polygon>
+
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+               transform="
+                          translate(0,120)
+                          scale(.7,.7)
+                          " 
+               ></polygon>
+
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+               transform="
+                          translate(-30,90)
+                          scale(.7,.7)
+                          " 
+               ></polygon>
+
+      <!-- Hack to make shapes full  -->
+      <polygon></polygon>
+      <polygon></polygon>
+      <polygon></polygon>
+
+      <polygon
+               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+               transform="
+                          translate(120,0)
+                          scale(.7,.7)
+                          " 
+               ></polygon>
+
+    </g>
+
+  </pattern>
+
+  <!-- Text -->
+  <text text-anchor="middle"
+        x="50%"
+        y="50%"
+        dy=".35em"
+        class="text"
+        >
+    3.5
+  </text>
+
+</svg>
+
+   <script>
+   $(document).ready(function() {
+     $('#ok').click(function(event){
+        $('#rating-system').rating('update', 3);
+        alert(3);
+     });
+   });
+   </script>
 </body>
 </html>

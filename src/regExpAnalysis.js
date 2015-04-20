@@ -33,12 +33,23 @@ $(document).ready(function() {
             $('#progressReg').show();
            // $('#loadText').html('Cargando...');
             $.getJSON(getExpRegURL(city, nameH, 20), function(jd) {
+                // total value
+                $('#successB3').html('<div class="alert alert-info" role="alert"><b>Valoración Total (sobre 5)</b></div>');
+                setTotalValueExp(parseFloat(jd.stars));
+                $('#input-star1').attr( "value",parseFloat(jd.stars));
+                $('#input-star1').rating('update', parseFloat(jd.stars));
+                // resumen values
+                $('#divCollapse').html('<div class="alert alert-info" role="alert"><b>Resumen de valoraciones</b></div>');
 
-                $('#divCollapse').html('<div class="container"><div class="panel-group col-lg-6" id="accordion" role="tablist" aria-multiselectable="true">');
+                $('#divCollapse').append('<div class="container"><div class="panel-group col-md-6" id="accordion" role="tablist" aria-multiselectable="true">');
 
                 for (var item in jd) {
 
-                    $('#divCollapse').append('<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+item+'"><p class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse'+item+'" aria-expanded="true" aria-controls="collapse'+item+'"><li class= "list-group-item list-group-item-default"><b class="web">web:</b> ' + jd[item].url + '</li></a></p></div><div id="collapse'+item+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'+item+'"><div class="panel-body"><div class="list-group" id="terms'+item+'"></div>');
+                    $('#accordion').append('<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+item+'">'+
+                      '<a data-toggle="collapse" data-parent="#accordion" href="#collapse'+item+'" aria-expanded="false"'+
+                      'aria-controls="collapse'+item+'"><b class="web">web:' + jd[item].url + 
+                      '</b></a></div><div id="collapse'+item+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'+item+
+                      '"><div class="panel-body"><div class="list-group" id="terms'+item+'"></div>');
                         $('#terms'+item).html('<h4>Resultados</h4>');
                     // positve words list
                       if(jd[item].positiveWord > 0){
@@ -86,14 +97,27 @@ $(document).ready(function() {
                       else{
                         $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe exp. reg. negativas (!)</b></li>');
                       }
-                      $('#divCollapse').append('</div></div></div>');
+                      $('#accordion').append('</div></div></div>');
                 }; // end for
 
                 $('#divCollapse').append('</div></div>');
-                $('#loadText').hide();
                 $('#progressReg').hide();
+                $('#successB4').show();
             }); // end getJSON
             
          }
     });
 });
+
+//------------------------------------------------ show values porcents
+function setTotalValueExp(value){
+  if(value > 0 && value < 1.6){
+    $('#successB3').append('<p class="fiveS" style="color:#d9534f;">'+value+'</p>');
+  }
+  else if(value >= 1.6 && value < 3.6){
+    $('#successB3').append('<p class="fiveS" style="color:#f0ad4e;">'+value+'</p>');
+  }
+  else{
+    $('#successB3').append('<p class="fiveS" style="color:#5cb85c;">'+value+'</p>');
+  }
+}

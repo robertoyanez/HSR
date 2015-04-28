@@ -1,7 +1,7 @@
-
+/*
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
 margin-left: -30px;
-}
+}*/
 
 .navbar-fixed-top{
 font-size: 16px;
@@ -76,9 +76,23 @@ color: #DAD71D;
 }
 
 .navbar-default .navbar-brand {
-  font-family: "Roboto";
-  color: #fed136;
+  /*font-family: "Roboto";
+  color: #fed136;*/
+  
 }
+
+@media(max-width: 768px){
+  .navbar-default .navbar-brand {
+    max-width:360px;
+  }
+  
+
+  .navbar .navbar-brand {
+    height: 50px;
+    padding: 15px 15px;
+  }
+}
+
 
 #sm{
   text-align: center;
@@ -185,7 +199,7 @@ color: #DAD71D;
 
 #showHotels{
   padding-bottom: 3%;
-  padding-top: 4%;
+  padding-top: 6.5%;
 }
 
 .changeColour{
@@ -245,7 +259,7 @@ color: #DAD71D;
 
 @media (min-width: 1200px){
     .container {
-    width: 1370px;
+    width: 100%;
   }
   .search1{
     padding-right: 1px;

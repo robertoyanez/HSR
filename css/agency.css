@@ -280,6 +280,7 @@ header .intro-text .intro-lead-in {
     font-family: Roboto;
     font-size: 22px;
     line-height: 22px;
+    font-weight: 400;
 }
 
 header .intro-text .intro-heading {
@@ -308,7 +309,7 @@ header .intro-text .intro-heading {
         margin-bottom: 50px;
         text-transform: uppercase;
         font-family: Roboto;
-        font-size: 75px;
+        font-size: 55px;
         font-weight: 700;
         line-height: 75px;
     }
@@ -710,7 +711,7 @@ section#contact .text-danger {
 }
 
 footer {
-    padding: 25px 0;
+    /*padding: 25px 0;*/
     text-align: center;
 }
 

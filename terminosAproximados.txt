@@ -1,0 +1,84 @@
+Alicante
+begin
+Europa Center Apartments
+3.5
+Hostal La Lonja
+3.0
+Vacanza Mayve Apartments
+3.0
+La Palmera
+2.0
+Ibis budget Alicante
+3.5
+SHA Wellness Clinic
+4.0
+Barcelo Asia Gardens Hotel & Thai Spa
+4.5
+The Level at Meliá Villaitana
+4.5
+Villa Venecia Hotel Boutique
+4.5
+Reuma-Sol Senter
+5.0
+end
+Barcelona
+begin
+
+end
+Bilbao
+begin
+
+end
+Burgos
+begin
+
+end
+Donostia San Sebastián
+begin
+
+end
+Girona
+begin
+
+end
+Granada
+begin
+
+end
+Madrid
+begin
+
+end
+Palma de Mallorca
+begin
+
+end
+Salamanca
+begin
+
+end
+Santa Cruz de Tenerife
+begin
+
+end
+Santiago de Compostela
+begin
+
+end
+Sevilla
+begin
+
+end
+Toledo
+begin
+
+end
+Valencia
+begin
+
+end
+Zaragoza
+begin
+
+end
+-1

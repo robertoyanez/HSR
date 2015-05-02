@@ -10,12 +10,11 @@ function getBayesURL(cityH, nameH, terms) {
 }
 
 // -------------------------------------------return name city from dropbutton
-var city = '';
- $("#cities li").click(function() {
-    city = $(this).text(); // gets text contents of clicked li
+ var city = 0;
+  $("select").change(function(){
+    city =  $( "select option:selected" ).text();
     // alert(city);
-    return city;
-});
+ });
 
 
 //-------------------------------------------- check category from checkboxs

@@ -166,12 +166,19 @@ color: #DAD71D;
 .rotating, .progress{
   background-color: white;
   margin: 0 auto;
-  margin-bottom: 5px;
+  margin-bottom: 2%;
 }
 
-.btn-lg, .btn-md{
+.btn-xl, .btn-lg{
   border-radius: 5px;
+  background: rgba(0,0,0,.5);
 }
+
+.btn-md{
+  border-radius: 5px;
+  background: rgba(0,0,0,.6);
+}
+
 
 #expR{
   position: relative;
@@ -297,8 +304,6 @@ color: #DAD71D;
 }
 
 #accordion{
-  margin: 0 auto;
-  padding-right: 39px;
   padding-left: 5px;
 }
 
@@ -313,6 +318,14 @@ color: #DAD71D;
   padding-top: 4%;
 }
 
-#successB, #successB1, #successB2, #successB3, #successB4{
-  padding-left: 2%;
+.aStat, .aExp{
+  border: outset;
+}
+
+.list-inline b{
+  padding-right: 20px;
+}
+
+.leftPanel{
+  padding-top: 2.2%;
 }

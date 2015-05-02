@@ -3917,7 +3917,7 @@ fieldset[disabled] .form-control.focus:disabled,
   border-style: dashed;
 }
 select.form-control {
-  height: 23px;
+  height: 28px;
 }
 select[multiple].form-control,
 select[multiple].form-control:focus,

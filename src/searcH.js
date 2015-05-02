@@ -85,10 +85,38 @@ var map;
                     
                     placeMarker(geolocate);                    
                     map.setCenter(geolocate);
+                  // get city with current position;
+                   geocoder.geocode({'latLng': geolocate}, function(results, status)
+                    {
+                        //alert("Else loop1");
+                        if (status == google.maps.GeocoderStatus.OK)
+                         {
+                            if (results[0])
+                            {
+                              var add= results[0].formatted_address ;
+                              var  value=add.split(",");
+
+                              count=value.length;
+                              country=value[count-1];
+                              state=value[count-2];
+                              city=value[count-3];
+                              //alert("city name is: " + city);
+                            }
+                            else 
+                            {
+                              alert("address not found");
+                            }
+                        }else
+                        {
+                        //document.getElementById("location").innerHTML="Geocoder failed due to: " + status;
+                        //alert("Geocoder failed due to: " + status);
+                        }
+                    });
                     
                 });
                 
-            } else {
+            } 
+            else {
                 document.getElementById('map_canvas').innerHTML = 'No Geolocation Support.';
             }
         }

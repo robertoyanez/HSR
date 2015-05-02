@@ -12,26 +12,20 @@ function getExpRegURL(cityH, nameH, scanNum) {
 }
 
 // -------------------------------------------return name city from dropbutton
-var city = '';
- $("#cities li").click(function() {
-    city = $(this).text(); // gets text contents of clicked li
+  var city = 0;
+  $("select").change(function(){
+    city =  $( "select option:selected" ).text();
     // alert(city);
-    return city;
-});
-
+ });
 // ------------------------------------- show expReg method results
 $(document).ready(function() {
-    $("#expR").click(function(event){
-        $("#cities li").click(function() {
-            var city = $(this).text(); // gets text contents of clicked li
-        });         
+    $("#expR").click(function(event){         
         var nameH = document.getElementById('hn-input').value;
-        if(nameH != ''){
+        if(nameH != '' && city != 0){
             // call the progress animation
             onLoadProgress('#progressReg');
-
             $('#progressReg').show();
-           // $('#loadText').html('Cargando...');
+
             $.getJSON(getExpRegURL(city, nameH, 20), function(jd) {
                 // total value
                 $('#successB3').html('<div class="alert alert-info" role="alert"><b>Valoración Total (sobre 5)</b></div>');
@@ -41,63 +35,64 @@ $(document).ready(function() {
                 // resumen values
                 $('#divCollapse').html('<div class="alert alert-info" role="alert"><b>Resumen de valoraciones</b></div>');
 
-                $('#divCollapse').append('<div class="container"><div class="panel-group col-md-6" id="accordion" role="tablist" aria-multiselectable="true">');
+                $('#divCollapse').append('<div class="container"><div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">');
 
-                for (var item in jd) {
+                for (var item in jd.terminsWebs) {
 
                     $('#accordion').append('<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+item+'">'+
                       '<a data-toggle="collapse" data-parent="#accordion" href="#collapse'+item+'" aria-expanded="false"'+
-                      'aria-controls="collapse'+item+'"><b class="web">web:' + jd[item].url + 
+                      'aria-controls="collapse'+item+'"><b class="web">web:' + jd.terminsWebs[item].url + 
                       '</b></a></div><div id="collapse'+item+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'+item+
                       '"><div class="panel-body"><div class="list-group" id="terms'+item+'"></div>');
-                        $('#terms'+item).html('<h4>Resultados</h4>');
+                    $('#terms'+item).html('<h4>Resultados</h4>');
                     // positve words list
-                      if(jd[item].positiveWord > 0){
-                            $('#terms'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de palabras positivas (+)</b>');
-                              for (var i = 0; i < jd[item].positiveWord; i++) {
-                              $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].PositiveWordList[i].value+'</span><ul><li>' + jd[item].PositiveWordList[i].type + '</li></ul>');
-                                };
-                                $('#terms'+item).append('</li>');
-                        }
-                        else{
-                        $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe palabras positivas (!)</b></li>');
-                        }
-                        // negative word list
-                        if(jd[item].negativeWord > 0){
-                                 $('#terms'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de palabras negativas (-)</b>');
-                                  for (var i = 0; i < jd[item].negativeWord; i++) {
-                                  $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].NegativeWordList[i].value+'</span><ul><li>' + jd[item].NegativeWordList[i].type + '</li></ul>');
-                                 };
-                                 $('#terms'+item).append('</li>');
-                        }
-                        else{
-                        $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe palabras negativas (!)</b></li>');
-                        }
+                    if(jd.terminsWebs[item].positiveWord > 0){
+                      $('#terms'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de palabras positivas (+)</b>');
+                      for (var i = 0; i < jd.terminsWebs[item].positiveWord; i++) {
+                        $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd.terminsWebs[item].PositiveWordList[i].value+'</span>' + jd.terminsWebs[item].PositiveWordList[i].type);
+                      };
+                      $('#terms'+item).append('</li>');
+                    }
+                    /*else{
+                      $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe palabras positivas (!)</b></li>');
+                    }*/
+                    // negative word list
+                    if(jd.terminsWebs[item].negativeWord > 0){
+                      $('#terms'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de palabras negativas (-)</b>');
+                      for (var i = 0; i < jd.terminsWebs[item].negativeWord; i++) {
+                        $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd.terminsWebs[item].NegativeWordList[i].value+'</span>' + jd.terminsWebs[item].NegativeWordList[i].type);
+                      };
+                      $('#terms'+item).append('</li>');
+                    }
+                    /*else{
+                    $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe palabras negativas (!)</b></li>');
+                    }*/
 
                     // positive regular expressions list  
-                      if(jd[item].positiveRegularExpresion > 0){
-                         $('#terms'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de expresiones regulares positivas (+)</b>');
-                          for (var i = 0; i < jd[item].positiveRegularExpresion; i++) {
-                          $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].positiveRegularExpresionList[i].value+'</span><ul><li>' + jd[item].positiveRegularExpresionList[i].type + '</li></ul>');
-                            };
-                            $('#terms'+item).append('</li>');                                  
+                    if(jd.terminsWebs[item].positiveRegularExpresion > 0){
+                      $('#terms'+item).append('<li class= "list-group-item list-group-item-success"><b>Lista de expresiones regulares positivas (+)</b>');
+                      for (var i = 0; i < jd.terminsWebs[item].positiveRegularExpresion; i++) {
+                        $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd.terminsWebs[item].positiveRegularExpresionList[i].value+'</span>' + jd.terminsWebs[item].positiveRegularExpresionList[i].type);
+                      };
+                      $('#terms'+item).append('</li>');                                  
+                    }
+                    /*else{
+                      $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe exp. reg. positivas (!)</b></li>');
+                    }*/
+                    // negative regular expressions list
+                    if(jd.terminsWebs[item].negativeRegularExpresion > 0){
+                      $('#terms'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de expresiones regulares negativas (-)</b>');
+                      for (var i = 0; i < jd.terminsWebs[item].negativeRegularExpresion; i++) {
+                        $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd.terminsWebs[item].negativeRegularExpresionList[i].value+'</span>' + jd.terminsWebs[item].negativeRegularExpresionList[i].type);
+                      };
+                      $('#terms'+item).append('</li>');
                       }
-                      else{
-                        $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe exp. reg. positivas (!)</b></li>');
-                      }
-                      // negative regular expressions list
-                      if(jd[item].negativeRegularExpresion > 0){
-                             $('#terms'+item).append('<li class= "list-group-item list-group-item-danger"><b>Lista de expresiones regulares negativas (-)</b>');
-                              for (var i = 0; i < jd[item].negativeRegularExpresion; i++) {
-                              $('#terms'+item).append('<li class= "list-group-item"><span class="badge">'+jd[item].negativeRegularExpresionList[i].value+'</span><ul><li>' + jd[item].negativeRegularExpresionList[i].type + '</li></ul>');
-                            };
-                            $('#terms'+item).append('</li>');
-                        }
+                    if(jd.terminsWebs[item].positiveWord == 0 && jd.terminsWebs[item].negativeWord == 0 &&
+                      jd.terminsWebs[item].positiveRegularExpresion == 0 && jd.terminsWebs[item].negativeRegularExpresion == 0){
+                      $('#terms'+item).append('<p style="color: red"><b>No existe expresiones regulares compatibles en ésta web(!)</b><p>');
+                    }
 
-                      else{
-                        $('#terms'+item).append('<li href="#" class="list-group-item list-group-item-info"><b>No existe exp. reg. negativas (!)</b></li>');
-                      }
-                      $('#accordion').append('</div></div></div>');
+                    $('#accordion').append('</div></div></div>');
                 }; // end for
 
                 $('#divCollapse').append('</div></div>');

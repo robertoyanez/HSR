@@ -77,8 +77,8 @@ $(document).ready(function() {
             // total value
             $('#successB').html('<div class="alert alert-info" role="alert"><b>Valoración Total (sobre 5)</b></div>');
             setTotalValue(parseFloat(jd.totalStars));
-            $('#input-star').attr( "value",parseFloat(jd.totalStars)); // totalStars
-            $('#input-star').rating('update', parseFloat(jd.totalStars)); // totalStars
+            $('#input-star').attr( "value",parseFloat(jd.totalStars).toFixed(2)); // totalStars
+            $('#input-star').rating('update', parseFloat(jd.totalStars).toFixed(2)); // totalStars
             // resumen values
             $('#successB2').html('<div class="alert alert-info" role="alert"><b>Resumen de valoraciones</b></div>');
             $('#successB2').append('<div id="vertgraph">');

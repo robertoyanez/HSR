@@ -30,8 +30,8 @@ $(document).ready(function() {
                 // total value
                 $('#successB3').html('<div class="alert alert-info" role="alert"><b>Valoración Total (sobre 5)</b></div>');
                 setTotalValueExp(parseFloat(jd.stars));
-                $('#input-star1').attr( "value",parseFloat(jd.stars));
-                $('#input-star1').rating('update', parseFloat(jd.stars));
+                $('#input-star1').attr( "value",parseFloat(jd.stars).toFixed(2));
+                $('#input-star1').rating('update', parseFloat(jd.stars).toFixed(2));
                 // resumen values
                 $('#divCollapse').html('<div class="alert alert-info" role="alert"><b>Resumen de valoraciones</b></div>');
 

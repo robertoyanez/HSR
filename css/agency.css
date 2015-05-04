@@ -315,6 +315,26 @@ header .intro-text .intro-heading {
     }
 }
 
+@media(max-width:768px) {
+
+    header .intro-text {
+        padding-top: 190px;
+        
+    }
+    
+    header .intro-text .intro-lead-in {    
+        font-size: 20px;
+        
+        /*color: #fed136;*/
+    }
+
+    header .intro-text .intro-heading {
+        font-size: 30px;
+        font-weight: 600;
+        
+    }
+}
+
 section {
     padding: 100px 0;
 }

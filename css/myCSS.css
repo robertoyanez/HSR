@@ -83,7 +83,7 @@ color: #DAD71D;
 
 @media(max-width: 768px){
   .navbar-default .navbar-brand {
-    max-width:360px;
+    max-width:280px;
   }
   
 
@@ -166,7 +166,7 @@ color: #DAD71D;
 .rotating, .progress{
   background-color: white;
   margin: 0 auto;
-  margin-bottom: 2%;
+  margin-bottom: 3.5%;
 }
 
 .btn-xl, .btn-lg{
@@ -312,6 +312,8 @@ color: #DAD71D;
   font-style: bolder; 
   -webkit-transform:
   scale(4);
+  -moz-transform:
+  scale(4);
 }
 
 #rowExp{
@@ -327,5 +329,5 @@ color: #DAD71D;
 }
 
 .leftPanel{
-  padding-top: 3%;
+  padding-top: 3.8%;
 }

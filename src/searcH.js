@@ -75,7 +75,7 @@ var map;
 
         google.maps.event.addDomListener(window, 'load', initialize);
         // --------------------------------------------------------------------------*
-
+        var city = 0;
         // ------------------------------------------ geolocalitation
         function geolocation(){
             if(!!navigator.geolocation) {            
@@ -100,7 +100,7 @@ var map;
                               country=value[count-1];
                               state=value[count-2];
                               city=value[count-3];
-                              //alert("city name is: " + city);
+                              // alert("city name is: " + city);
                             }
                             else 
                             {

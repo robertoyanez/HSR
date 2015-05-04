@@ -4,7 +4,8 @@
 // personal server
 // http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=servicios
 function getBayesURL(cityH, nameH, terms) {
-    var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+terms;      
+    // var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+terms;
+    var url = 'http://mlh.fdi.ucm.es:8080/Backend/Results?city='+cityH+'&hotel='+nameH+'&termino='+terms;    
     return url;
 
 }
@@ -75,15 +76,15 @@ $(document).ready(function() {
         $.getJSON(url, function(jd) {
             // total value
             $('#successB').html('<div class="alert alert-info" role="alert"><b>Valoración Total (sobre 5)</b></div>');
-            setTotalValue(parseFloat(jd.totalResult));
-            $('#input-star').attr( "value",parseFloat(jd.totalResult));
-            $('#input-star').rating('update', parseFloat(jd.totalResult));
+            setTotalValue(parseFloat(jd.totalStars));
+            $('#input-star').attr( "value",parseFloat(jd.totalStars)); // totalStars
+            $('#input-star').rating('update', parseFloat(jd.totalStars)); // totalStars
             // resumen values
             $('#successB2').html('<div class="alert alert-info" role="alert"><b>Resumen de valoraciones</b></div>');
             $('#successB2').append('<div id="vertgraph">');
             $('#vertgraph').html('<dl>');
             for (var item in jd.category) {
-                setTermsPercents(jd.category[item]);
+                setTermsPercents(jd.category[item]); // .valuePercent
             }
             $('#vertgraph').append('</dl>');
             $('#successB2').append('</div>');
@@ -98,27 +99,27 @@ $(document).ready(function() {
 
 //------------------------------------------------ show terms porcents
 function setTermsPercents(term){
-  var percent = term.value +20;
-  if(parseFloat(term.value) > 0 && parseFloat(term.value) <= 30){
-    $('#vertgraph dl').append('<dd class"termTitle">'+term.type+': <b>'+term.term+'</b></dd>'+'<dd class="critical" style="width:'+percent+'px;">'+term.value+'%</dd>');
+  var percent = term.valuePercent +20;
+  if(parseFloat(term.valuePercent) > 0 && parseFloat(term.valuePercent) <= 30){
+    $('#vertgraph dl').append('<dd class"termTitle">'+term.type+': <b>'+term.valueString+'</b></dd>'+'<dd class="critical" style="width:'+percent+'px;">'+term.valuePercent.toFixed(2)+'%</dd>');
   }
-  else if(parseFloat(term.value) > 30 && parseFloat(term.value) <= 65){
-    $('#vertgraph dl').append('<dd class"termTitle">'+term.type+': <b>'+term.term+'</b><dd class="medium" style="width:'+percent+'px;">'+term.value+'%</dd>');
+  else if(parseFloat(term.valuePercent) > 30 && parseFloat(term.valuePercent) <= 65){
+    $('#vertgraph dl').append('<dd class"termTitle">'+term.type+': <b>'+term.valueString+'</b><dd class="medium" style="width:'+percent+'px;">'+term.valuePercent.toFixed(2)+'%</dd>');
   }
   else{
-    $('#vertgraph dl').append('<dd class"termTitle">'+term.type+': <b>'+term.term+'</b><dd class="high" style="width:'+percent+'px;">'+term.value+'%</dd>');
+    $('#vertgraph dl').append('<dd class"termTitle">'+term.type+': <b>'+term.valueString+'</b><dd class="high" style="width:'+percent+'px;">'+term.valuePercent.toFixed(2)+'%</dd>');
   }
 }
 
 //------------------------------------------------ show values porcents
 function setTotalValue(value){
   if(value > 0 && value < 1.6){
-    $('#successB').append('<p class="fiveS" style="color:#d9534f;">'+value+'</p>');
+    $('#successB').append('<p class="fiveS" style="color:#d9534f;">'+value.toFixed(2)+'</p>');
   }
   else if(value >= 1.6 && value < 3.6){
-    $('#successB').append('<p class="fiveS" style="color:#f0ad4e;">'+value+'</p>');
+    $('#successB').append('<p class="fiveS" style="color:#f0ad4e;">'+value.toFixed(2)+'</p>');
   }
   else{
-    $('#successB').append('<p class="fiveS" style="color:#5cb85c;">'+value+'</p>');
+    $('#successB').append('<p class="fiveS" style="color:#5cb85c;">'+value.toFixed(2)+'</p>');
   }
 }

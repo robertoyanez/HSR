@@ -178,7 +178,7 @@ Hotel Cortezo
 Hotel Regina
 4.5
 Petit Palace Alcala Torre
-4.5
+3.5
 The Westin Palace Madrid
 4.5
 end

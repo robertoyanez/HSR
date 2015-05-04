@@ -2,9 +2,9 @@
 // personal server
 // http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20Palace&scan=8
 function getExpRegURL(cityH, nameH, scanNum) {
-   // var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?search=Hotel%20'+cityH+'%20'+nameH+'&scan='+scanNum;
+  var url = 'http://mlh.fdi.ucm.es:8080/Backend/TermWebs?search=Hotel%20'+cityH+'%20'+nameH+'&scan='+scanNum;
    // var url = 'http://localhost:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20Palace&scan=20';            
-  var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?city=Madrid&nameHotel=Palace&scan=8';
+  // var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?city=Madrid&nameHotel=Palace&scan=8';
   //var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?city='+Madrid+'&nameHotel='+Palace+'&scan='+8;
 
   return url;
@@ -107,12 +107,12 @@ $(document).ready(function() {
 //------------------------------------------------ show values porcents
 function setTotalValueExp(value){
   if(value > 0 && value < 1.6){
-    $('#successB3').append('<p class="fiveS" style="color:#d9534f;">'+value+'</p>');
+    $('#successB3').append('<p class="fiveS" style="color:#d9534f;">'+value.toFixed(2)+'</p>');
   }
   else if(value >= 1.6 && value < 3.6){
-    $('#successB3').append('<p class="fiveS" style="color:#f0ad4e;">'+value+'</p>');
+    $('#successB3').append('<p class="fiveS" style="color:#f0ad4e;">'+value.toFixed(2)+'</p>');
   }
   else{
-    $('#successB3').append('<p class="fiveS" style="color:#5cb85c;">'+value+'</p>');
+    $('#successB3').append('<p class="fiveS" style="color:#5cb85c;">'+value.toFixed(2)+'</p>');
   }
 }

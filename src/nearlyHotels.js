@@ -15,11 +15,12 @@
 //}
 
 // -------------------------------------------return the new url with lat and lng onclick
-// var url = 'http://mlh.fdi.ucm.es:8080/SystemRecommendations/SearchHotel?radio=500&lat='+lat+'&lon='+lng;
+// var url = 'http://mlh.fdi.ucm.es:8080/Backend/SearchHotel?radio=500&lat='+lat+'&lon='+lng;
 // personal server
 // http://mlh1415.ddns.net:8080/SystemRecommendations/SearchHotel?radio=500&lat=40.43&lon=-3.70
 function getLatLngURL(rad, lat, lng) {
-    var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/SearchHotel?radio='+rad+'&lat='+lat+'&lon='+lng;            
+    //var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/SearchHotel?radio='+rad+'&lat='+lat+'&lon='+lng;            
+    var url = 'http://mlh.fdi.ucm.es:8080/Backend/SearchHotel?radio='+rad+'&lat='+lat+'&lon='+lng;
     return url;
 
 }

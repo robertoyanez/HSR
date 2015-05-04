@@ -15,18 +15,18 @@ function onLoadProgress(x) {
 
     setTimeout(function() {
         circle.animate(0.2);
-    }, 5000);
+    }, 3000);
 
     setTimeout(function() {
         circle.animate(0.4);
-    }, 5000);
+    }, 3000);
     setTimeout(function() {
         circle.animate(0.6);
-    }, 5000);
+    }, 3000);
 
     setTimeout(function() {
         circle.animate(0.8);
-    }, 5000);
+    }, 3000);
 
     setTimeout(function() {
         circle.animate(1);

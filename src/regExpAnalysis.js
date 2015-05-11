@@ -21,7 +21,7 @@ function getExpRegURL(cityH, nameH, scanNum) {
 $(document).ready(function() {
     $("#expR").click(function(event){         
         var nameH = document.getElementById('hn-input').value;
-        if(nameH != '' && city != 0){
+        if(nameH != '' /*&& city != 0*/){
             // call the progress animation
             onLoadProgress('#progressReg');
             $('#progressReg').show();

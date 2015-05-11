@@ -331,3 +331,8 @@ color: #DAD71D;
 .leftPanel{
   padding-top: 3.8%;
 }
+
+#successB, #successB1, #successB2, #successB3, #successB4, #divCollapse{
+  padding-left: 5%;
+  padding-right: 5%;
+}

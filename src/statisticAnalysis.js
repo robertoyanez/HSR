@@ -71,8 +71,10 @@ $(document).ready(function() {
         // call the progress animation
         onLoadProgress('#progressStat');
         $('#progressStat').show();
-        var url = getBayesURL(city,nameHotel,checkCategory());
-        // alert(url);
+        var auxHN = nameHotel.replace(/,/g, "");
+        console.log(auxHN);
+        var url = getBayesURL(city,auxHN,checkCategory());
+        alert(url);
         $.getJSON(url, function(jd) {
             // total value
             $('#successB').html('<div class="alert alert-info" role="alert"><b>Valoración Total (sobre 5)</b></div>');

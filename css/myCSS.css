@@ -332,7 +332,23 @@ color: #DAD71D;
   padding-top: 3.8%;
 }
 
-#successB, #successB1, #successB2, #successB3, #successB4, #divCollapse{
+#successB, #successB1, #successB2{
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+#successB3, #successB4, #divCollapse{
   padding-left: 5%;
   padding-right: 5%;
+}
+
+.stat{
+  padding-top: 0.8%;
+  text-decoration: none;
+}
+
+.stats{
+  color: #333;
+  font-family: 'Roboto';
+  text-decoration: none;
 }

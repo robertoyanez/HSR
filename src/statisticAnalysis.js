@@ -74,7 +74,7 @@ $(document).ready(function() {
         var auxHN = nameHotel.replace(/,/g, "");
         console.log(auxHN);
         var url = getBayesURL(city,auxHN,checkCategory());
-        alert(url);
+        // alert(url);
         $.getJSON(url, function(jd) {
             // total value
             $('#successB').html('<div class="alert alert-info" role="alert"><b>Valoración Total (sobre 5)</b></div>');

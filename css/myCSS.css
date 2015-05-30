@@ -206,7 +206,7 @@ color: #DAD71D;
 
 #showHotels{
   padding-bottom: 3%;
-  padding-top: 6.5%;
+  padding-top: 5%;
 }
 
 .changeColour{
@@ -320,10 +320,10 @@ color: #DAD71D;
   padding-top: 4%;
 }
 
-.aStat, .aExp{
+/*.aStat, .aExp{
   border: outset;
 }
-
+*/
 .list-inline b{
   padding-right: 20px;
 }

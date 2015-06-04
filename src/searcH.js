@@ -99,8 +99,9 @@ var map;
                               count=value.length;
                               country=value[count-1];
                               state=value[count-2];
-                              city=value[count-3];
-                              // alert("city name is: " + city);
+                              // city=value[count-3];
+                              city = value[count-2];
+                               //alert("city name is: " + city);
                             }
                             else 
                             {

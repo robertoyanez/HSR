@@ -2,7 +2,7 @@
 // personal server
 // http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20Palace&scan=8
 function getExpRegURL(cityH, nameH, scanNum) {
-  var url = 'http://mlh.fdi.ucm.es/Backend/TermWebs?search=Hotel%20'+cityH+'%20'+nameH+'&scan='+scanNum;
+  var url = 'http://mlh.fdi.ucm.es:8080/Backend/TermWebs?search=Hotel%20'+cityH+'%20'+nameH+'&scan='+scanNum;
    // var url = 'http://localhost:8080/SystemRecommendations/TermWebs?search=Hotel%20Madrid%20Palace&scan=20';            
   // var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?city=Madrid&nameHotel=Palace&scan=8';
   //var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/TermWebs?city='+Madrid+'&nameHotel='+Palace+'&scan='+8;

@@ -5,7 +5,7 @@
 // http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city=Madrid&hotel=Palace&termino=servicios
 function getBayesURL(cityH, nameH, terms) {
     // var url = 'http://mlh1415.ddns.net:8080/SystemRecommendations/Results?city='+cityH+'&hotel='+nameH+'&termino='+terms;
-    var url = 'http://mlh.fdi.ucm.es/Backend/Results?city='+cityH+'&hotel='+nameH+'&termino='+terms;    
+    var url = 'http://mlh.fdi.ucm.es:8080/Backend/Results?city='+cityH+'&hotel='+nameH+'&termino='+terms;    
     return url;
 
 }
